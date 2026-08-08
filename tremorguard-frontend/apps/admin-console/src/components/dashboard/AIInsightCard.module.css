@@ -1,0 +1,31 @@
+.aiCard {
+  background: linear-gradient(135deg, var(--tg-primary-light), var(--tg-secondary-light));
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: var(--space-md);
+}
+
+.title {
+  font-size: var(--text-h3);
+  color: var(--tg-primary-dark);
+  font-weight: 700;
+}
+
+.message {
+  font-size: var(--text-body-lg);
+  color: var(--tg-ink-2);
+  margin: 0;
+  line-height: 1.6;
+}

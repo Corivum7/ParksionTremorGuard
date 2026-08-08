@@ -1,0 +1,36 @@
+@media (max-width: 1023px) {
+  .sidebar-collapsed .sidebar-label,
+  .sidebar-collapsed .profile-text {
+    display: none;
+  }
+
+  .sidebar-collapsed .nav-item {
+    justify-content: center;
+    padding: 0;
+    width: 48px;
+  }
+
+  .sidebar-collapsed .sidebar-logo {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .sidebar-collapsed .sidebar-nav {
+    align-items: center;
+  }
+
+  .sidebar-collapsed .sidebar-profile {
+    justify-content: center;
+    padding: var(--space-md) var(--space-sm);
+  }
+}
+
+@media (max-width: 767px) {
+  .mobile-sidebar-open {
+    transform: translateX(0);
+  }
+
+  .mobile-sidebar-closed {
+    transform: translateX(-100%);
+  }
+}

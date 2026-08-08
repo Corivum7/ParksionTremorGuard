@@ -1,0 +1,399 @@
+/* ===== 容器 ===== */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+  padding-bottom: 80px;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+/* ===== Section 1：Profile Header ===== */
+.profileHeader {
+  background: linear-gradient(
+    135deg,
+    var(--tg-primary-light),
+    var(--tg-secondary-light)
+  );
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 32px var(--space-lg) 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-pill);
+  background: var(--tg-primary);
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-elevated);
+  margin-bottom: var(--space-md);
+}
+
+.name {
+  margin: 0;
+  font-size: var(--text-h1);
+  font-weight: 700;
+  color: var(--tg-ink);
+  line-height: 1.2;
+}
+
+.patientId {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  font-family: var(--font-mono);
+}
+
+.basicInfo {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--text-body);
+  color: var(--tg-ink-2);
+}
+
+.diagnoseDate {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+/* ===== 通用卡片头 ===== */
+.sectionCard {
+  padding: var(--space-lg);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: var(--text-h3);
+  font-weight: 600;
+  color: var(--tg-ink);
+  line-height: 1.3;
+}
+
+.headerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: var(--tg-primary);
+  cursor: pointer;
+  transition: color var(--ease-fast);
+}
+
+.headerLink:hover {
+  color: var(--tg-primary-dark);
+}
+
+.headerLink:focus-visible {
+  outline: 2px solid var(--tg-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ===== Section 2：健康摘要 ===== */
+.healthGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.healthCell {
+  background: var(--tg-surface-2);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.healthLabel {
+  font-size: var(--text-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--tg-muted);
+  margin-bottom: 6px;
+}
+
+.healthValue {
+  font-size: var(--text-h2);
+  font-weight: 700;
+  color: var(--tg-ink);
+  line-height: 1.2;
+}
+
+/* ===== Section 3：设备状态 ===== */
+.deviceBody {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.deviceInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.deviceNameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.deviceName {
+  font-size: var(--text-body-lg);
+  font-weight: 600;
+  color: var(--tg-ink);
+}
+
+.deviceBattery {
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--tg-success);
+}
+
+.deviceMeta {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.deviceId {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  font-family: var(--font-mono);
+}
+
+.deviceIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.batteryTrack {
+  height: 6px;
+  background: var(--tg-surface-2);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-top: var(--space-md);
+}
+
+.batteryFill {
+  height: 100%;
+  background: var(--tg-success);
+  border-radius: var(--radius-pill);
+  transition: width var(--ease-normal);
+}
+
+/* ===== Section 4：关怀团队 ===== */
+.careList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.careItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--tg-border);
+}
+
+.careItem:last-child {
+  border-bottom: none;
+}
+
+.careAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-body);
+  font-weight: 700;
+  font-family: var(--font-sans);
+  flex-shrink: 0;
+}
+
+.careInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.careName {
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--tg-ink);
+}
+
+.careRelation {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.carePhone {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  font-family: var(--font-mono);
+}
+
+.callButton {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--tg-success-light);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform var(--ease-fast);
+}
+
+.callButton:hover {
+  transform: scale(1.05);
+}
+
+.callButton:active {
+  transform: scale(0.95);
+}
+
+.callButton:focus-visible {
+  outline: 2px solid var(--tg-success);
+  outline-offset: 2px;
+}
+
+/* ===== Section 5：设置项列表 ===== */
+.settingsCard {
+  padding: 0;
+  overflow: hidden;
+}
+
+.settingsItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  height: var(--touch-min-mobile);
+  padding: 0 var(--space-lg);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--tg-border);
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background var(--ease-fast);
+}
+
+.settingsItem:last-child {
+  border-bottom: none;
+}
+
+.settingsItem:hover {
+  background: var(--tg-surface-2);
+}
+
+.settingsItem:focus-visible {
+  outline: 2px solid var(--tg-primary);
+  outline-offset: -2px;
+}
+
+.settingsLabel {
+  flex: 1;
+  font-size: var(--text-body-lg);
+  color: var(--tg-ink);
+  text-align: left;
+}
+
+/* ===== Section 6：退出登录 ===== */
+.logoutButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  height: var(--touch-min-mobile);
+  background: transparent;
+  color: var(--tg-danger);
+  font-size: var(--text-body-lg);
+  font-weight: 700;
+  font-family: var(--font-sans);
+  border: 2px solid var(--tg-danger);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform 150ms ease;
+}
+
+.logoutButton:hover {
+  background: var(--tg-danger-light);
+}
+
+.logoutButton:active {
+  transform: scale(0.98);
+}
+
+.logoutButton:focus-visible {
+  outline: 2px solid var(--tg-danger);
+  outline-offset: 2px;
+}
+
+/* ===== 桌面端 ===== */
+@media (min-width: 1024px) {
+  .sectionCard {
+    padding: var(--space-xl);
+  }
+}
+
+/* ===== 减少动画偏好 ===== */
+@media (prefers-reduced-motion: reduce) {
+  .batteryFill,
+  .headerLink,
+  .callButton,
+  .settingsItem,
+  .logoutButton {
+    transition: none;
+  }
+
+  .callButton:hover,
+  .logoutButton:active {
+    transform: none;
+  }
+}

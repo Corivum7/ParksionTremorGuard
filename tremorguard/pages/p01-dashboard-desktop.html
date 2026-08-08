@@ -1,0 +1,1202 @@
+﻿<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日仪表盘 - 桌面版 · TremorGuard</title>
+    <style id="theme-vars">
+/* ============================================================
+   TremorGuard Design System — colors_and_type.css
+   Parkinson's Tremor Monitoring Platform
+   WCAG 2.1 AA · 56px touch targets · 17px body baseline
+   ============================================================ */
+
+/* ---- Font Imports ---- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+/* ============================================================
+   1. SEMANTIC ALIASES (brand prefix: tg)
+   Required by apply-html-head-contract.mjs
+   ============================================================ */
+:root {
+  /* --- Core palette (user-specified exact values) --- */
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #ccfbf1;
+
+  --secondary: #0369a1;
+  --secondary-light: #e0f2fe;
+
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --success: #16a34a;
+  --success-light: #dcfce7;
+  --accent: #c2410c;
+  --accent-light: #fed7aa;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+  --ink: #0f172a;
+  --ink2: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  /* --- Semantic aliases (tg prefix) --- */
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-primary: var(--primary);
+  --tg-primary-foreground: #ffffff;
+  --tg-secondary: var(--secondary);
+  --tg-secondary-foreground: #ffffff;
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-accent: var(--accent);
+  --tg-accent-foreground: #ffffff;
+  --tg-destructive: var(--danger);
+  --tg-destructive-foreground: #ffffff;
+  --tg-success: var(--success);
+  --tg-success-foreground: #ffffff;
+  --tg-warning: var(--warning);
+  --tg-warning-foreground: #ffffff;
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+  --tg-ring: var(--primary);
+
+  /* --- Radius scale --- */
+  --tg-radius-small: 6px;
+  --tg-radius-medium: 8px;
+  --tg-radius-large: 12px;
+  --tg-radius-full: 9999px;
+
+  /* --- Typography tokens --- */
+  --tg-font: 'Outfit', system-ui, -apple-system, sans-serif;
+  --tg-font-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+
+  --tg-text-display: 32px;
+  --tg-text-h1: 24px;
+  --tg-text-h2: 20px;
+  --tg-text-h3: 18px;
+  --tg-text-body-lg: 17px;
+  --tg-text-body: 16px;
+  --tg-text-caption: 14px;
+  --tg-text-label: 12px;
+
+  /* --- Spacing scale --- */
+  --tg-space-xs: 4px;
+  --tg-space-sm: 8px;
+  --tg-space-md: 12px;
+  --tg-space-lg: 16px;
+  --tg-space-xl: 24px;
+  --tg-space-2xl: 32px;
+
+  /* --- Radius (user spec) --- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* --- Spacing (user spec, mirrored) --- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.10);
+  --shadow-modal: 0 8px 32px rgba(15, 23, 42, 0.15);
+
+  /* --- Animation tokens --- */
+  --ease-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pulse: 1.2s infinite alternate;
+
+  /* --- Touch target --- */
+  --touch-min: 56px;
+  --tab-bar-height: 64px;
+  --safe-area-bottom: 34px;
+
+  /* --- Desktop touch target --- */
+  --touch-desktop: 44px;
+}
+
+/* ============================================================
+   2. DARK MODE (Phase 2 mappings)
+   ============================================================ */
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface2: #334155;
+  --ink: #f1f5f9;
+  --ink2: #cbd5e1;
+  --muted: #94a3b8;
+  --border: #334155;
+
+  --primary-light: #134e4a;
+  --secondary-light: #0c4a6e;
+  --danger-light: #7f1d1d;
+  --warning-light: #78350f;
+  --success-light: #14532d;
+  --accent-light: #7c2d12;
+
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+}
+
+/* ============================================================
+   3. TAILWIND v4 @theme INLINE
+   ============================================================ */
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--primary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: #ffffff;
+  --color-muted: var(--surface2);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: #ffffff;
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: #ffffff;
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-surface2: var(--surface2);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
+}
+
+/* ============================================================
+   4. BASE STYLES
+   ============================================================ */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--tg-font);
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Typography utility classes ---- */
+.text-display { font-size: var(--tg-text-display); font-weight: 700; line-height: 1.2; }
+.text-h1 { font-size: var(--tg-text-h1); font-weight: 700; line-height: 1.3; }
+.text-h2 { font-size: var(--tg-text-h2); font-weight: 700; line-height: 1.4; }
+.text-h3 { font-size: var(--tg-text-h3); font-weight: 600; line-height: 1.4; }
+.text-body-lg { font-size: var(--tg-text-body-lg); font-weight: 400; line-height: 1.7; }
+.text-body { font-size: var(--tg-text-body); font-weight: 400; line-height: 1.7; }
+.text-caption { font-size: var(--tg-text-caption); font-weight: 400; line-height: 1.5; }
+.text-label { font-size: var(--tg-text-label); font-weight: 600; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.05em; }
+.text-mono { font-family: var(--tg-font-mono); }
+
+/* ---- Focus ring (WCAG 2.1 AA) ---- */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+
+/* ============================================================
+   5. COMPONENT CLASSES
+   ============================================================ */
+
+/* ---- Buttons ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--primary);
+  color: #ffffff;
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-primary:active { background: var(--primary-dark); transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: transparent;
+  color: var(--primary);
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-secondary:active { transform: scale(0.98); }
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--danger);
+  color: #ffffff;
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast);
+}
+.btn-danger:active { transform: scale(0.98); }
+
+/* ---- Cards ---- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg);
+}
+.card-pressable {
+  cursor: pointer;
+  transition: transform var(--ease-normal), box-shadow var(--ease-normal);
+}
+.card-pressable:active {
+  transform: scale(0.99);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* ---- Status badges ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-pill);
+  font-size: var(--tg-text-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-on { background: var(--success-light); color: var(--success); }
+.badge-off { background: var(--warning-light); color: var(--warning); }
+.badge-danger { background: var(--danger-light); color: var(--danger); }
+.badge-info { background: var(--secondary-light); color: var(--secondary); }
+.badge-accent { background: var(--accent-light); color: var(--accent); }
+
+/* ---- Status dots ---- */
+.dot { width: 8px; height: 8px; border-radius: var(--radius-pill); display: inline-block; }
+.dot-success { background: var(--success); }
+.dot-warning { background: var(--warning); }
+.dot-danger { background: var(--danger); }
+.dot-primary { background: var(--primary); }
+
+/* ---- Inputs ---- */
+.input {
+  width: 100%;
+  height: var(--touch-min);
+  padding: 0 var(--space-lg);
+  font-size: var(--tg-text-body-lg);
+  font-family: var(--tg-font);
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--ease-normal);
+}
+.input:focus { border-color: var(--primary); outline: none; }
+.input-error { border-color: var(--danger); }
+
+/* ---- Pulse animation (pending medication) ---- */
+@keyframes tg-pulse {
+  from { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+  to { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+}
+.animate-pulse-ring { animation: var(--pulse); animation-name: tg-pulse; }
+
+/* ---- Shimmer (skeleton loading) ---- */
+@keyframes tg-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: tg-shimmer 1.5s infinite;
+}
+
+/* ---- Spinner ---- */
+@keyframes tg-spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: tg-spin 0.8s linear infinite;
+}
+.spinner-primary {
+  border-color: rgba(13, 148, 136, 0.2);
+  border-top-color: var(--primary);
+}
+
+/* ---- Mobile container ---- */
+.mobile-frame {
+  width: 390px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ---- Safe area bottom spacer ---- */
+.safe-area-bottom {
+  height: var(--safe-area-bottom);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--tg-background);
+    --color-foreground: var(--tg-foreground);
+    --color-card: var(--tg-card);
+    --color-card-foreground: var(--tg-card-foreground);
+    --color-popover: var(--tg-popover);
+    --color-popover-foreground: var(--tg-popover-foreground);
+    --color-primary: var(--tg-primary);
+    --color-secondary: var(--tg-secondary);
+    --color-muted: var(--tg-muted);
+    --color-muted-foreground: var(--tg-muted-foreground);
+    --color-accent: var(--tg-accent);
+    --color-destructive: var(--tg-destructive);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-danger: var(--danger);
+    --color-border: var(--tg-border);
+    --color-input: var(--tg-input);
+    --color-ring: var(--tg-ring);
+    --color-ink: var(--ink);
+    --color-ink2: var(--ink2);
+    --color-surface2: var(--surface2);
+    --color-primary-foreground: var(--tg-primary-foreground);
+    --color-secondary-foreground: var(--tg-secondary-foreground);
+    --color-accent-foreground: var(--tg-accent-foreground);
+    --color-destructive-foreground: var(--tg-destructive-foreground);
+    --radius-sm: var(--tg-radius-small);
+    --radius-md: var(--tg-radius-medium);
+    --radius-lg: var(--tg-radius-large);
+  }
+  @layer base {
+    body { background: var(--tg-background); color: var(--tg-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--tg-background); }
+      .text-background { color: var(--tg-background); }
+      .border-background { border-color: var(--tg-background); }
+      .ring-background { --tw-ring-color: var(--tg-background); }
+      .bg-foreground { background-color: var(--tg-foreground); }
+      .text-foreground { color: var(--tg-foreground); }
+      .border-foreground { border-color: var(--tg-foreground); }
+      .ring-foreground { --tw-ring-color: var(--tg-foreground); }
+      .bg-card { background-color: var(--tg-card); }
+      .text-card { color: var(--tg-card); }
+      .border-card { border-color: var(--tg-card); }
+      .ring-card { --tw-ring-color: var(--tg-card); }
+      .bg-card-foreground { background-color: var(--tg-card-foreground); }
+      .text-card-foreground { color: var(--tg-card-foreground); }
+      .border-card-foreground { border-color: var(--tg-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--tg-card-foreground); }
+      .bg-popover { background-color: var(--tg-popover); }
+      .text-popover { color: var(--tg-popover); }
+      .border-popover { border-color: var(--tg-popover); }
+      .ring-popover { --tw-ring-color: var(--tg-popover); }
+      .bg-popover-foreground { background-color: var(--tg-popover-foreground); }
+      .text-popover-foreground { color: var(--tg-popover-foreground); }
+      .border-popover-foreground { border-color: var(--tg-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--tg-popover-foreground); }
+      .bg-primary { background-color: var(--tg-primary); }
+      .text-primary { color: var(--tg-primary); }
+      .border-primary { border-color: var(--tg-primary); }
+      .ring-primary { --tw-ring-color: var(--tg-primary); }
+      .bg-secondary { background-color: var(--tg-secondary); }
+      .text-secondary { color: var(--tg-secondary); }
+      .border-secondary { border-color: var(--tg-secondary); }
+      .ring-secondary { --tw-ring-color: var(--tg-secondary); }
+      .bg-muted { background-color: var(--tg-muted); }
+      .text-muted { color: var(--tg-muted); }
+      .border-muted { border-color: var(--tg-muted); }
+      .ring-muted { --tw-ring-color: var(--tg-muted); }
+      .bg-muted-foreground { background-color: var(--tg-muted-foreground); }
+      .text-muted-foreground { color: var(--tg-muted-foreground); }
+      .border-muted-foreground { border-color: var(--tg-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--tg-muted-foreground); }
+      .bg-accent { background-color: var(--tg-accent); }
+      .text-accent { color: var(--tg-accent); }
+      .border-accent { border-color: var(--tg-accent); }
+      .ring-accent { --tw-ring-color: var(--tg-accent); }
+      .bg-destructive { background-color: var(--tg-destructive); }
+      .text-destructive { color: var(--tg-destructive); }
+      .border-destructive { border-color: var(--tg-destructive); }
+      .ring-destructive { --tw-ring-color: var(--tg-destructive); }
+      .bg-success { background-color: var(--success); }
+      .text-success { color: var(--success); }
+      .border-success { border-color: var(--success); }
+      .ring-success { --tw-ring-color: var(--success); }
+      .bg-warning { background-color: var(--warning); }
+      .text-warning { color: var(--warning); }
+      .border-warning { border-color: var(--warning); }
+      .ring-warning { --tw-ring-color: var(--warning); }
+      .bg-danger { background-color: var(--danger); }
+      .text-danger { color: var(--danger); }
+      .border-danger { border-color: var(--danger); }
+      .ring-danger { --tw-ring-color: var(--danger); }
+      .bg-border { background-color: var(--tg-border); }
+      .text-border { color: var(--tg-border); }
+      .border-border { border-color: var(--tg-border); }
+      .ring-border { --tw-ring-color: var(--tg-border); }
+      .bg-input { background-color: var(--tg-input); }
+      .text-input { color: var(--tg-input); }
+      .border-input { border-color: var(--tg-input); }
+      .ring-input { --tw-ring-color: var(--tg-input); }
+      .bg-ring { background-color: var(--tg-ring); }
+      .text-ring { color: var(--tg-ring); }
+      .border-ring { border-color: var(--tg-ring); }
+      .ring-ring { --tw-ring-color: var(--tg-ring); }
+      .bg-ink { background-color: var(--ink); }
+      .text-ink { color: var(--ink); }
+      .border-ink { border-color: var(--ink); }
+      .ring-ink { --tw-ring-color: var(--ink); }
+      .bg-ink2 { background-color: var(--ink2); }
+      .text-ink2 { color: var(--ink2); }
+      .border-ink2 { border-color: var(--ink2); }
+      .ring-ink2 { --tw-ring-color: var(--ink2); }
+      .bg-surface2 { background-color: var(--surface2); }
+      .text-surface2 { color: var(--surface2); }
+      .border-surface2 { border-color: var(--surface2); }
+      .ring-surface2 { --tw-ring-color: var(--surface2); }
+      .bg-primary-foreground { background-color: var(--tg-primary-foreground); }
+      .text-primary-foreground { color: var(--tg-primary-foreground); }
+      .border-primary-foreground { border-color: var(--tg-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--tg-primary-foreground); }
+      .bg-secondary-foreground { background-color: var(--tg-secondary-foreground); }
+      .text-secondary-foreground { color: var(--tg-secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--tg-secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--tg-secondary-foreground); }
+      .bg-accent-foreground { background-color: var(--tg-accent-foreground); }
+      .text-accent-foreground { color: var(--tg-accent-foreground); }
+      .border-accent-foreground { border-color: var(--tg-accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--tg-accent-foreground); }
+      .bg-destructive-foreground { background-color: var(--tg-destructive-foreground); }
+      .text-destructive-foreground { color: var(--tg-destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--tg-destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--tg-destructive-foreground); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+
+      /* ============================================================
+         DESKTOP APP SHELL
+         ============================================================ */
+      .app-shell {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        grid-template-rows: 64px 1fr;
+        grid-template-areas:
+          "sidebar topbar"
+          "sidebar main";
+        min-height: 100vh;
+        background: var(--bg);
+      }
+
+      /* ---- Sidebar ---- */
+      .app-sidebar {
+        grid-area: sidebar;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        z-index: 40;
+      }
+      .sidebar-logo {
+        height: 64px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 20px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-md);
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .logo-text {
+        font-size: var(--tg-text-h3);
+        font-weight: 700;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .sidebar-nav {
+        flex: 1;
+        padding: 16px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        overflow-y: auto;
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 48px;
+        padding: 0 16px;
+        border-radius: var(--radius-md);
+        color: var(--ink2);
+        font-size: var(--tg-text-body);
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        width: 100%;
+        text-align: left;
+        transition: background var(--ease-fast), color var(--ease-fast);
+        min-height: var(--touch-desktop);
+      }
+      .nav-item:hover { background: var(--surface2); color: var(--ink); }
+      .nav-item.active { background: var(--primary-light); color: var(--primary-dark); }
+      .nav-item .nav-icon { flex-shrink: 0; display: inline-flex; }
+      .nav-item .nav-label { white-space: nowrap; }
+
+      .sidebar-profile {
+        padding: 16px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .profile-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-pill);
+        background: var(--primary);
+        color: var(--surface);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: var(--tg-text-body);
+        flex-shrink: 0;
+      }
+      .profile-text { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
+      .profile-name { font-size: var(--tg-text-body); font-weight: 700; color: var(--ink); white-space: nowrap; }
+      .profile-role { font-size: var(--tg-text-caption); color: var(--muted); white-space: nowrap; }
+
+      /* ---- Top bar ---- */
+      .app-topbar {
+        grid-area: topbar;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        gap: 16px;
+      }
+      .topbar-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+      .topbar-title-block { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+      .topbar-divider {
+        width: 1px;
+        height: 22px;
+        background: var(--border);
+        display: inline-block;
+      }
+      .topbar-right { display: flex; align-items: center; gap: 8px; }
+      .icon-btn {
+        width: 44px;
+        height: 44px;
+        min-height: var(--touch-desktop);
+        border-radius: var(--radius-md);
+        background: transparent;
+        border: none;
+        color: var(--ink2);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: background var(--ease-fast), color var(--ease-fast);
+      }
+      .icon-btn:hover { background: var(--surface2); color: var(--ink); }
+      .notif-dot {
+        position: absolute;
+        top: 9px;
+        right: 10px;
+        width: 8px;
+        height: 8px;
+        border-radius: var(--radius-pill);
+        background: var(--danger);
+        border: 2px solid var(--surface);
+      }
+      .hamburger-btn { display: none; }
+
+      /* ---- Main content ---- */
+      .app-main {
+        grid-area: main;
+        padding: 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* ---- Row layouts ---- */
+      .row-1 {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .row-1-right {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .row-2 { margin-bottom: 20px; }
+      .row-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      /* ---- Hero tremor card ---- */
+      .hero-card { padding: 24px; }
+      .hero-amp-row { display: flex; align-items: baseline; gap: 6px; }
+      .hero-sparkline { display: block; width: 100%; height: 72px; }
+
+      /* ---- AI insight card ---- */
+      .ai-card {
+        background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        text-align: center;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* ---- Alert card ---- */
+      .alert-card {
+        background: var(--danger-light);
+        border-radius: var(--radius-md);
+        border-left: 4px solid var(--danger);
+        padding: 16px 20px;
+        min-height: var(--touch-desktop);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        cursor: pointer;
+      }
+
+      /* ---- Medication timeline ---- */
+      .med-timeline {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .med-node {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        width: 96px;
+      }
+      .med-node-btn {
+        width: 44px;
+        height: 44px;
+        min-height: var(--touch-desktop);
+        border-radius: var(--radius-pill);
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .med-node-btn.done { background: var(--success); }
+      .med-node-btn.pending {
+        background: var(--surface);
+        border: 2px solid var(--primary);
+      }
+      .med-node-btn.future {
+        background: var(--surface);
+        border: 2px solid var(--border);
+      }
+      .med-line {
+        flex: 1;
+        height: 2px;
+        background: var(--border);
+        margin-top: 21px;
+        min-width: 24px;
+      }
+      .med-line.done { background: var(--success); }
+      .med-time { font-size: var(--tg-text-caption); color: var(--muted); font-weight: 600; }
+      .med-time.active { color: var(--primary); }
+      .med-status { font-size: var(--tg-text-label); color: var(--ink2); }
+      .med-status.muted { color: var(--muted); }
+      .med-status.active { color: var(--primary); }
+
+      /* ---- Quick stat card ---- */
+      .stat-card {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .stat-head { display: flex; align-items: center; gap: 10px; }
+      .stat-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-md);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .stat-icon.primary { background: var(--primary-light); color: var(--primary-dark); }
+      .stat-icon.success { background: var(--success-light); color: var(--success); }
+      .stat-icon.secondary { background: var(--secondary-light); color: var(--secondary); }
+      .stat-label { font-size: var(--tg-text-body); color: var(--muted); font-weight: 600; }
+      .stat-value-row { display: flex; align-items: baseline; gap: 4px; }
+      .stat-value { font-size: var(--tg-text-display); font-weight: 700; color: var(--ink); line-height: 1.1; }
+      .stat-unit { font-size: var(--tg-text-body); color: var(--muted); }
+      .stat-caption { font-size: var(--tg-text-caption); color: var(--muted); }
+
+      /* ---- Mobile sidebar backdrop ---- */
+      .sidebar-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: color-mix(in srgb, var(--ink) 40%, transparent);
+        z-index: 35;
+      }
+      .sidebar-backdrop.show { display: block; }
+
+      /* ============================================================
+         RESPONSIVE — Tablet (<=1023px): sidebar collapses to icon rail
+         ============================================================ */
+      @media (max-width: 1023px) {
+        .app-shell {
+          grid-template-columns: 64px 1fr;
+        }
+        .sidebar-logo { padding: 0; justify-content: center; }
+        .logo-text { display: none; }
+        .sidebar-nav { padding: 16px 8px; align-items: center; }
+        .nav-item { justify-content: center; padding: 0; width: 48px; }
+        .nav-item .nav-label { display: none; }
+        .sidebar-profile { justify-content: center; padding: 16px 8px; }
+        .profile-text { display: none; }
+      }
+
+      /* ============================================================
+         RESPONSIVE — Mobile (<=767px): sidebar hidden, hamburger shown
+         ============================================================ */
+      @media (max-width: 767px) {
+        .app-shell {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "topbar"
+            "main";
+        }
+        .app-sidebar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 240px;
+          transform: translateX(-100%);
+          transition: transform var(--ease-normal);
+          grid-area: auto;
+        }
+        .app-sidebar.open { transform: translateX(0); }
+        .hamburger-btn { display: inline-flex; }
+        .sidebar-logo { padding: 0 20px; justify-content: flex-start; }
+        .logo-text { display: inline; }
+        .sidebar-nav { padding: 16px 12px; align-items: stretch; }
+        .nav-item { justify-content: flex-start; padding: 0 16px; width: 100%; }
+        .nav-item .nav-label { display: inline; }
+        .sidebar-profile { justify-content: flex-start; padding: 16px; }
+        .profile-text { display: flex; }
+        .row-1 { grid-template-columns: 1fr; }
+        .app-main { padding: 16px; }
+        .med-node { width: 72px; }
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <div class="app-shell">
+
+        <!-- ============ LEFT SIDEBAR ============ -->
+        <aside class="app-sidebar" id="app-sidebar" aria-label="主导航">
+            <!-- Logo area -->
+            <div class="sidebar-logo">
+                <span class="logo-mark" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </span>
+                <span class="logo-text">Tremor<span style="color:var(--primary);">Guard</span></span>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav" aria-label="侧边导航">
+                <button class="nav-item active" aria-current="page">
+                    <span class="nav-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                    </span>
+                    <span class="nav-label">今日仪表盘</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                    </span>
+                    <span class="nav-label">趋势分析</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+                    </span>
+                    <span class="nav-label">报告列表</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+                    </span>
+                    <span class="nav-label">用药管理</span>
+                </button>
+                <button class="nav-item">
+                    <span class="nav-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </span>
+                    <span class="nav-label">设备设置</span>
+                </button>
+            </nav>
+
+            <!-- User profile -->
+            <div class="sidebar-profile">
+                <span class="profile-avatar" aria-hidden="true">王</span>
+                <span class="profile-text">
+                    <span class="profile-name">王伯伯</span>
+                    <span class="profile-role">患者</span>
+                </span>
+            </div>
+        </aside>
+
+        <!-- Mobile backdrop -->
+        <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+        <!-- ============ TOP BAR ============ -->
+        <header class="app-topbar">
+            <div class="topbar-left">
+                <button class="icon-btn hamburger-btn" id="hamburger-btn" aria-label="打开菜单">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                </button>
+                <div class="topbar-title-block">
+                    <h1 class="text-h1" style="color:var(--ink);margin:0;">今日仪表盘</h1>
+                    <span class="topbar-divider" aria-hidden="true"></span>
+                    <span class="text-caption" style="color:var(--muted);white-space:nowrap;">2026年7月25日 周六</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <button class="icon-btn" aria-label="通知" data-dom-id="topbar-notif">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                    <span class="notif-dot" aria-hidden="true"></span>
+                </button>
+                <button class="icon-btn" aria-label="全屏" data-dom-id="topbar-fullscreen">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- ============ MAIN CONTENT ============ -->
+        <main class="app-main" aria-label="今日仪表盘">
+
+            <!-- ===== Row 1: Tremor hero (60%) + AI insight & alert (40%) ===== -->
+            <section class="row-1" aria-label="震颤状态与提示">
+
+                <!-- Left col: Tremor status hero card -->
+                <article class="card card-pressable hero-card" data-dom-id="card-tremor-status" role="button" tabindex="0" aria-label="震颤状态详情">
+                    <!-- Header row -->
+                    <div class="flex items-center justify-between" style="margin-bottom:16px;">
+                        <div class="flex items-center" style="gap:8px;">
+                            <span class="badge badge-on">ON 状态</span>
+                            <span class="dot dot-success" aria-hidden="true"></span>
+                        </div>
+                        <span class="text-caption" style="color:var(--accent);">峰值 14:00 · 2.1cm</span>
+                    </div>
+
+                    <!-- Amplitude main value -->
+                    <div style="margin-bottom:16px;">
+                        <div class="hero-amp-row">
+                            <span class="text-display" style="color:var(--ink);">0.42</span>
+                            <span class="text-body" style="color:var(--muted);">g</span>
+                        </div>
+                        <span class="text-caption" style="color:var(--muted);display:block;">平均振幅 · 最后更新 14:32</span>
+                    </div>
+
+                    <!-- 24h sparkline -->
+                    <svg class="hero-sparkline" viewBox="0 0 340 60" preserveAspectRatio="none" role="img" aria-label="24小时震颤振幅趋势图">
+                        <!-- Medication markers (vertical dashed lines) -->
+                        <line x1="85" y1="0" x2="85" y2="60" stroke="var(--secondary)" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+                        <line x1="143" y1="0" x2="143" y2="60" stroke="var(--secondary)" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+                        <line x1="197" y1="0" x2="197" y2="60" stroke="var(--secondary)" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+                        <line x1="255" y1="0" x2="255" y2="60" stroke="var(--secondary)" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+                        <!-- Fill area under the curve -->
+                        <path d="M 0,44 C 19,45 38,49 57,48 C 71,47 76,44 85,42 C 99,41 99,45 113,44 C 128,43 128,41 142,40 C 156,39 156,39 170,38 C 184,37 184,21 198,18 C 213,16 213,31 227,34 C 241,37 241,41 255,40 C 269,39 269,43 283,42 C 297,41 297,47 312,46 C 326,45 326,49 340,48 L 340,60 L 0,60 Z" fill="var(--primary)" opacity="0.1"/>
+
+                        <!-- Amplitude line -->
+                        <path d="M 0,44 C 19,45 38,49 57,48 C 71,47 76,44 85,42 C 99,41 99,45 113,44 C 128,43 128,41 142,40 C 156,39 156,39 170,38 C 184,37 184,21 198,18 C 213,16 213,31 227,34 C 241,37 241,41 255,40 C 269,39 269,43 283,42 C 297,41 297,47 312,46 C 326,45 326,49 340,48" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+
+                        <!-- Anomaly event dot at 14:00 peak -->
+                        <circle cx="198" cy="18" r="3" fill="var(--danger)"/>
+                    </svg>
+                    <div class="flex justify-between" style="margin-top:4px;">
+                        <span class="text-caption" style="color:var(--muted);">00:00</span>
+                        <span class="text-caption" style="color:var(--muted);">24:00</span>
+                    </div>
+                </article>
+
+                <!-- Right col: AI insight + Alert -->
+                <div class="row-1-right">
+                    <!-- AI insight card -->
+                    <section class="ai-card" data-dom-id="ai-insight-card" aria-label="AI 洞察">
+                        <div class="flex items-center justify-center" style="gap:10px;margin-bottom:12px;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg>
+                            <span class="text-h3" style="color:var(--primary-dark);font-weight:700;">AI 洞察</span>
+                        </div>
+                        <p class="text-body-lg" style="color:var(--ink2);margin:0;line-height:1.6;">下午 14:00 前后有剂末效应趋势，建议提前 15 分钟服药</p>
+                    </section>
+
+                    <!-- Alert prompt card -->
+                    <div class="alert-card" data-dom-id="alert-prompt" role="button" tabindex="0" aria-label="1 条未处理警报，点击查看详情">
+                        <div class="flex items-center" style="gap:12px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            <span class="text-body" style="color:var(--danger);font-weight:700;">1 条未处理警报</span>
+                        </div>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Row 2: Medication timeline (full width) ===== -->
+            <section class="card row-2" aria-label="今日用药">
+                <div class="flex items-center justify-between" style="margin-bottom:20px;">
+                    <h2 class="text-h2" style="color:var(--ink);margin:0;">今日用药</h2>
+                    <span class="text-caption" style="color:var(--success);font-weight:600;">依从率 92%</span>
+                </div>
+
+                <div class="med-timeline">
+                    <!-- Node 1: 07:00 已服 (green) -->
+                    <div class="med-node" data-dom-id="med-node-01">
+                        <button class="med-node-btn done" aria-label="07:00 左旋多巴 已服用">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--surface)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </button>
+                        <span class="med-time">07:00</span>
+                        <span class="med-status">已服</span>
+                    </div>
+
+                    <div class="med-line done" aria-hidden="true"></div>
+
+                    <!-- Node 2: 12:00 待服 (teal pulse) -->
+                    <div class="med-node" data-dom-id="med-node-02">
+                        <button class="med-node-btn pending animate-pulse-ring" aria-label="12:00 左旋多巴 待服用">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" fill="var(--primary)"/></svg>
+                        </button>
+                        <span class="med-time active">12:00</span>
+                        <span class="med-status active">待服</span>
+                    </div>
+
+                    <div class="med-line" aria-hidden="true"></div>
+
+                    <!-- Node 3: 18:00 未到 (gray) -->
+                    <div class="med-node" data-dom-id="med-node-03">
+                        <button class="med-node-btn future" aria-label="18:00 左旋多巴 未到时间">
+                            <span style="width:8px;height:8px;border-radius:50%;background:var(--border);display:inline-block;"></span>
+                        </button>
+                        <span class="med-time">18:00</span>
+                        <span class="med-status muted">未到</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Row 3: Quick stats grid (3 columns) ===== -->
+            <section class="row-3" aria-label="快速统计">
+                <!-- 震颤频次 -->
+                <article class="card stat-card" data-dom-id="stat-freq">
+                    <div class="stat-head">
+                        <span class="stat-icon primary" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        </span>
+                        <span class="stat-label">震颤频次</span>
+                    </div>
+                    <div class="stat-value-row">
+                        <span class="stat-value">24</span>
+                        <span class="stat-unit">次/小时</span>
+                    </div>
+                    <span class="stat-caption">今日平均</span>
+                </article>
+
+                <!-- 用药依从率 -->
+                <article class="card stat-card" data-dom-id="stat-compliance">
+                    <div class="stat-head">
+                        <span class="stat-icon success" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 20.5 21 10a4.95 4.95 0 1 0-7-7L3.5 14a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+                        </span>
+                        <span class="stat-label">用药依从率</span>
+                    </div>
+                    <div class="stat-value-row">
+                        <span class="stat-value">92</span>
+                        <span class="stat-unit">%</span>
+                    </div>
+                    <span class="stat-caption">近 7 日</span>
+                </article>
+
+                <!-- ON状态时长 -->
+                <article class="card stat-card" data-dom-id="stat-on-duration">
+                    <div class="stat-head">
+                        <span class="stat-icon secondary" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </span>
+                        <span class="stat-label">ON状态时长</span>
+                    </div>
+                    <div class="stat-value-row">
+                        <span class="stat-value">6.5</span>
+                        <span class="stat-unit">小时</span>
+                    </div>
+                    <span class="stat-caption">今日累计</span>
+                </article>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+      lucide.createIcons();
+      // Mobile sidebar drawer toggle
+      (function () {
+        var hamburger = document.getElementById('hamburger-btn');
+        var sidebar = document.getElementById('app-sidebar');
+        var backdrop = document.getElementById('sidebar-backdrop');
+        if (!hamburger || !sidebar || !backdrop) return;
+        function toggle(force) {
+          var open = typeof force === 'boolean' ? force : !sidebar.classList.contains('open');
+          sidebar.classList.toggle('open', open);
+          backdrop.classList.toggle('show', open);
+        }
+        hamburger.addEventListener('click', function () { toggle(); });
+        backdrop.addEventListener('click', function () { toggle(false); });
+      })();
+    </script>
+</body>
+</html>

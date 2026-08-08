@@ -1,0 +1,70 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  padding: 0 var(--space-xs);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-caption);
+  color: var(--tg-ink-2);
+  font-weight: 600;
+}
+
+.legendSwatchOn {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-sm);
+  background: var(--tg-primary-light);
+  opacity: 0.45;
+}
+
+.legendSwatchOff {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-sm);
+  background: var(--tg-surface-2);
+  opacity: 0.9;
+}
+
+.legendLineMed {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--tg-ink-2);
+}
+
+.legendLineThreshold {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--tg-warning);
+}
+
+.legendDotAnomaly {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--tg-danger);
+}

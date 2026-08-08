@@ -1,0 +1,72 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.statCard {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.statHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.statIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconPrimary {
+  background: var(--tg-primary-light);
+  color: var(--tg-primary-dark);
+}
+
+.iconSuccess {
+  background: var(--tg-success-light);
+  color: var(--tg-success);
+}
+
+.iconSecondary {
+  background: var(--tg-secondary-light);
+  color: var(--tg-secondary);
+}
+
+.statLabel {
+  font-size: var(--text-body);
+  color: var(--tg-muted);
+  font-weight: 600;
+}
+
+.statValueRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.statValue {
+  font-size: var(--text-display);
+  font-weight: 700;
+  color: var(--tg-ink);
+  line-height: 1.1;
+}
+
+.statUnit {
+  font-size: var(--text-body);
+  color: var(--tg-muted);
+}
+
+.statCaption {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}

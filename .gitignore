@@ -1,0 +1,54 @@
+# IDE & 编辑器
+.trae/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 设计临时文件
+.design-temp/
+
+# Node.js
+node_modules/
+.pnpm-store/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+.expo/
+ios/Pods/
+android/.gradle/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# 环境变量与密钥
+.env
+.env.local
+.env.*.local
+
+# 数据库
+*.db
+*.sqlite3
+
+# 日志
+*.log
+
+# 操作系统
+.DS_Store
+Thumbs.db

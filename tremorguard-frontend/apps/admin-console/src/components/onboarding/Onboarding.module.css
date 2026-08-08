@@ -1,0 +1,551 @@
+/* ===== 桌面端 ===== */
+.desktopShell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--tg-bg);
+}
+
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--topbar-height);
+  background: var(--tg-surface);
+  border-bottom: 1px solid var(--tg-border);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-xl);
+}
+
+.topBarInner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logoMark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--tg-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: var(--text-h3);
+  font-weight: 700;
+  color: var(--tg-ink);
+  letter-spacing: -0.01em;
+}
+
+.topBarDivider {
+  color: var(--tg-border);
+  font-size: var(--text-body-lg);
+}
+
+.topBarCrumb {
+  font-size: var(--text-body-lg);
+  font-weight: 600;
+  color: var(--tg-ink-2);
+}
+
+.desktopStage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xl);
+  padding: 40px var(--space-xl);
+}
+
+/* Stepper */
+.stepper {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 640px;
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.stepCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--tg-surface);
+  border: 2px solid var(--tg-border);
+  color: var(--tg-muted);
+}
+
+.stepCompleted {
+  background: var(--tg-primary);
+  border-color: var(--tg-primary);
+  color: #ffffff;
+}
+
+.stepActive {
+  background: var(--tg-surface);
+  border-color: var(--tg-primary);
+  color: var(--tg-primary);
+  box-shadow: 0 0 0 4px var(--tg-primary-light);
+}
+
+.stepLabel {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.stepLabelActive {
+  color: var(--tg-primary);
+  font-weight: 700;
+}
+
+.stepLabelDone {
+  color: var(--tg-ink-2);
+  font-weight: 600;
+}
+
+.stepConnector {
+  flex: 1;
+  height: 2px;
+  background: var(--tg-border);
+  border-radius: var(--radius-pill);
+  margin-top: 19px;
+  min-width: 24px;
+}
+
+.stepConnectorDone {
+  background: var(--tg-primary);
+}
+
+/* 主卡片 */
+.onboardingCard {
+  width: 100%;
+  max-width: 640px;
+  background: var(--tg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--tg-border);
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.cardHeader {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.cardTitle {
+  font-size: var(--text-h1);
+  font-weight: 700;
+  color: var(--tg-ink);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.cardSubtitle {
+  font-size: var(--text-body);
+  color: var(--tg-muted);
+  margin-top: var(--space-sm);
+}
+
+/* 二维码扫描框 */
+.qrFrame {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border: 2px dashed var(--tg-border);
+  border-radius: var(--radius-lg);
+  background: var(--tg-surface-2);
+  overflow: hidden;
+}
+
+.qrCorner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--tg-primary);
+  border-radius: var(--radius-md);
+  pointer-events: none;
+}
+
+.qrCornerTl {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.qrCornerTr {
+  top: -2px;
+  right: -2px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.qrCornerBl {
+  bottom: -2px;
+  left: -2px;
+  border-right: none;
+  border-top: none;
+}
+
+.qrCornerBr {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+.qrCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.qrHint {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.scanLine {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--tg-primary);
+  box-shadow: 0 0 10px var(--tg-primary);
+  border-radius: var(--radius-pill);
+  animation: tgScan 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* 设备 ID 输入 */
+.fieldGroup {
+  margin-top: var(--space-2xl);
+}
+
+.fieldLabel {
+  display: block;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--tg-ink-2);
+  margin-bottom: var(--space-sm);
+}
+
+.deviceInput {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--space-lg);
+  font-size: var(--text-body);
+  font-family: var(--font-sans);
+  color: var(--tg-ink);
+  background: var(--tg-surface);
+  border: 2px solid var(--tg-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--ease-normal), box-shadow var(--ease-normal);
+  box-sizing: border-box;
+}
+
+.deviceInput::placeholder {
+  color: var(--tg-muted);
+}
+
+.deviceInput:focus {
+  outline: none;
+  border-color: var(--tg-primary);
+  box-shadow: 0 0 0 3px var(--tg-primary-light);
+}
+
+.fieldHint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+/* 状态提示 */
+.statusHint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--tg-primary-light);
+  border-radius: var(--radius-md);
+}
+
+.spinner {
+  color: var(--tg-primary);
+  animation: tgSpin 0.8s linear infinite;
+}
+
+.statusText {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--tg-primary-dark);
+}
+
+/* 底部导航 */
+.navRow {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.btnStep {
+  height: 44px;
+  min-width: 140px;
+  padding: 0 var(--space-xl);
+  border-radius: var(--radius-md);
+  font-size: var(--text-body);
+  font-weight: 700;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  transition: background var(--ease-fast), color var(--ease-fast), border-color var(--ease-fast), transform var(--ease-fast);
+}
+
+.btnPrev {
+  background: var(--tg-surface);
+  color: var(--tg-ink-2);
+  border: 2px solid var(--tg-border);
+}
+
+.btnPrev:hover {
+  border-color: var(--tg-primary);
+  color: var(--tg-primary);
+}
+
+.btnPrev:active {
+  transform: scale(0.98);
+}
+
+.btnNext {
+  background: var(--tg-primary);
+  color: #ffffff;
+  border: none;
+}
+
+.btnNext:hover {
+  background: var(--tg-primary-dark);
+}
+
+.btnNext:active {
+  transform: scale(0.98);
+}
+
+/* ===== 移动端 ===== */
+.mobileFrame {
+  width: 390px;
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--tg-bg);
+  position: relative;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileProgress {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--tg-surface);
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--tg-border);
+}
+
+.mobileProgressTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.mobileProgressBars {
+  flex: 1;
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.mobileBar {
+  flex: 1;
+  height: 4px;
+  background: var(--tg-border);
+  border-radius: 2px;
+}
+
+.mobileBarActive {
+  background: var(--tg-primary);
+}
+
+.mobileStepCount {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  white-space: nowrap;
+}
+
+.mobileStepLabels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
+.mobileStepLabel {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  text-align: center;
+}
+
+.mobileStepLabelActive {
+  color: var(--tg-primary);
+  font-weight: 600;
+}
+
+.mobileContent {
+  flex: 1;
+  padding: var(--space-xl) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.mobileTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.mobileTitle {
+  font-size: var(--text-h1);
+  font-weight: 700;
+  color: var(--tg-ink);
+  margin: 0;
+}
+
+.mobileSubtitle {
+  font-size: var(--text-body-lg);
+  color: var(--tg-muted);
+  margin: 0;
+}
+
+.mobilePermissionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.manualLink {
+  margin-top: var(--space-lg);
+  text-align: center;
+  font-size: var(--text-body);
+  color: var(--tg-secondary);
+  text-decoration: underline;
+}
+
+.mobileBottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 390px;
+  max-width: 100%;
+  background: var(--tg-surface);
+  border-top: 1px solid var(--tg-border);
+  padding: var(--space-lg);
+  padding-bottom: calc(var(--space-lg) + var(--safe-area-bottom));
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+/* 动画 */
+@keyframes tgScan {
+  0% {
+    top: 6px;
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 6px);
+    opacity: 0.2;
+  }
+}
+
+@keyframes tgSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanLine,
+  .spinner {
+    animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .onboardingCard {
+    padding: var(--space-xl);
+  }
+
+  .qrFrame {
+    width: 160px;
+    height: 160px;
+  }
+
+  .stepper {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .stepCircle {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .btnStep {
+    flex: 1;
+    min-width: 0;
+  }
+}

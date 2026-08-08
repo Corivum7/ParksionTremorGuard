@@ -1,0 +1,461 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+.card {
+  padding: var(--space-lg);
+}
+
+.row1 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* 区块1 当前用药方案 */
+.regimenTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.regimenTitle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.regimenName {
+  font-size: var(--text-h2);
+  font-weight: 700;
+  color: var(--tg-ink);
+  margin: 0;
+}
+
+.regimenDose {
+  font-weight: 700;
+  color: var(--tg-primary);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.regimenFreq {
+  font-size: var(--text-body);
+  color: var(--tg-muted);
+  margin: 0;
+}
+
+.regimenMeta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.metaLabel {
+  font-size: var(--text-label);
+  font-weight: 600;
+  color: var(--tg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metaValue {
+  font-size: var(--text-body-lg);
+  font-weight: 600;
+  color: var(--tg-ink);
+  margin: 0;
+}
+
+.regimenTiming {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--tg-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.timingLabel {
+  font-size: var(--text-label);
+  font-weight: 600;
+  color: var(--tg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timingPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.timingPill {
+  padding: 6px 12px;
+  background: var(--tg-surface-2);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--tg-ink-2);
+}
+
+.timingPillCurrent {
+  background: var(--tg-primary-light);
+  color: var(--tg-primary-dark);
+}
+
+/* 卡片头通用 */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.cardTitle {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  color: var(--tg-ink);
+  margin: 0;
+}
+
+.cardSubtitle {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  display: block;
+  margin-top: 2px;
+}
+
+/* 区块2 时间轴 */
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineItem {
+  display: flex;
+  gap: var(--space-md);
+  padding-bottom: var(--space-md);
+}
+
+.timelineItem:last-child {
+  padding-bottom: 0;
+}
+
+.timelineRail {
+  position: relative;
+  width: 16px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timelineDot {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+  margin-top: 4px;
+  z-index: 1;
+}
+
+.timelineLine {
+  flex: 1;
+  width: 2px;
+  background: var(--tg-border);
+  margin-top: 4px;
+  min-height: 20px;
+}
+
+.dot_done {
+  background: var(--tg-success);
+}
+
+.dot_pending {
+  background: transparent;
+  border: 3px solid var(--tg-primary);
+  animation: tgPulseRing 1.2s infinite alternate;
+}
+
+.dot_future {
+  background: transparent;
+  border: 2px solid var(--tg-border);
+}
+
+.timelineCard {
+  flex: 1;
+  background: var(--tg-surface-2);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.card_done {
+  background: var(--tg-surface-2);
+}
+
+.card_pending {
+  background: var(--tg-primary-light);
+  border: 1px solid var(--tg-primary);
+}
+
+.card_future {
+  background: var(--tg-surface-2);
+  opacity: 0.7;
+}
+
+.timelineCardTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.timelineTime {
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--tg-ink);
+}
+
+.futureLabel {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.timelineMed {
+  font-size: var(--text-body-lg);
+  color: var(--tg-ink-2);
+}
+
+.confirmBtn {
+  min-width: 0 !important;
+  height: 48px !important;
+}
+
+/* 区块4 依从性 */
+.complianceRow {
+  display: flex;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.donutWrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.donut {
+  width: 120px;
+  height: 120px;
+}
+
+.donutCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donutValue {
+  font-size: var(--text-h2);
+  font-weight: 700;
+  color: var(--tg-ink);
+  line-height: 1.1;
+}
+
+.donutLabel {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.barsWrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.barsTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.barsCaption {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.barsAvg {
+  font-size: var(--text-caption);
+  color: var(--tg-success);
+  font-weight: 600;
+}
+
+.bars {
+  width: 100%;
+  height: 85px;
+}
+
+.barsBottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+/* 区块5 变更记录 */
+.exportBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid var(--tg-border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tg-ink-2);
+  cursor: pointer;
+  transition: background var(--ease-fast), color var(--ease-fast);
+}
+
+.exportBtn:hover {
+  background: var(--tg-surface-2);
+  color: var(--tg-ink);
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--tg-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.table th {
+  text-align: left;
+  padding: 12px 16px;
+  background: var(--tg-surface-2);
+  font-size: var(--text-label);
+  font-weight: 600;
+  color: var(--tg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--tg-border);
+}
+
+.table td {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--tg-border);
+  vertical-align: top;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: var(--tg-surface-2);
+}
+
+.cellDate {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--tg-ink);
+}
+
+.cellFrom {
+  color: var(--tg-muted);
+}
+
+.cellTo {
+  font-weight: 700;
+  color: var(--tg-primary);
+}
+
+.cellNote {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+/* 移动端变更记录列表 */
+.changeList {
+  display: flex;
+  flex-direction: column;
+}
+
+.changeItem {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--tg-border);
+}
+
+.changeItem:last-child {
+  border-bottom: none;
+}
+
+.changeItemTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.changeItemContent {
+  margin-bottom: var(--space-xs);
+  font-size: var(--text-body);
+}
+
+@keyframes tgPulseRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgba(13, 148, 136, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot_pending {
+    animation: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    gap: var(--space-xl);
+  }
+
+  .card {
+    padding: var(--space-xl);
+  }
+
+  .row1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-xl);
+  }
+}

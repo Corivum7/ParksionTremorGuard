@@ -1,0 +1,91 @@
+{
+  "root": {
+    "nodeId": "gen-project-shell",
+    "kind": "project-shell",
+    "pageIds": ["page-p01-dashboard", "page-p02-trend", "page-p05-report-list", "page-p03-medication", "page-p14-alert-detail", "page-p13-onboarding", "page-p16-emergency"],
+    "output": "colors_and_type.css",
+    "sharedRegions": ["CSS variables", "typography scale", "component classes", "bottom tab bar (via mobileNavigation contract for tab pages only)"],
+    "privateRegions": [],
+    "mutableSlots": [],
+    "status": "generated",
+    "children": [
+      {
+        "nodeId": "gen-page-p01-dashboard",
+        "kind": "page-leaf",
+        "pageIds": ["page-p01-dashboard"],
+        "output": "pages/p01-dashboard.html",
+        "sharedRegions": [],
+        "privateRegions": ["status bar Z1", "tremor status card Z2", "medication timeline Z3", "alert prompt Z4", "AI insight card Z5", "bottom tab bar (active: today)"],
+        "mutableSlots": [],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-p02-trend",
+        "kind": "page-leaf",
+        "pageIds": ["page-p02-trend"],
+        "output": "pages/p02-trend.html",
+        "sharedRegions": [],
+        "privateRegions": ["time range selector", "main chart area", "statistics summary grid", "event annotation list", "export button", "bottom tab bar (active: trend)"],
+        "mutableSlots": [],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-p05-report-list",
+        "kind": "page-leaf",
+        "pageIds": ["page-p05-report-list"],
+        "output": "pages/p05-report-list.html",
+        "sharedRegions": [],
+        "privateRegions": ["type filter bar", "report card list", "generating banner", "empty state", "bottom tab bar (active: report)"],
+        "mutableSlots": [],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-p03-medication",
+        "kind": "page-leaf",
+        "pageIds": ["page-p03-medication"],
+        "output": "pages/p03-medication.html",
+        "sharedRegions": [],
+        "privateRegions": ["nav bar with back button", "current regimen card", "today medication timeline", "response curve chart", "compliance statistics", "regimen change history"],
+        "mutableSlots": [],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-p14-alert-detail",
+        "kind": "page-leaf",
+        "pageIds": ["page-p14-alert-detail"],
+        "output": "pages/p14-alert-detail.html",
+        "sharedRegions": [],
+        "privateRegions": ["nav bar with back button", "event header with severity bar", "tremor curve chart", "trigger condition card", "intervention timeline", "bottom action bar"],
+        "mutableSlots": [],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-p13-onboarding",
+        "kind": "page-leaf",
+        "pageIds": ["page-p13-onboarding"],
+        "output": "pages/p13-onboarding.html",
+        "sharedRegions": [],
+        "privateRegions": ["progress indicator", "welcome screen", "device binding step", "medication regimen step", "caregiver invite step", "calibration step", "completion summary"],
+        "mutableSlots": [],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-p16-emergency",
+        "kind": "page-leaf",
+        "pageIds": ["page-p16-emergency"],
+        "output": "pages/p16-emergency.html",
+        "sharedRegions": [],
+        "privateRegions": ["full-screen danger background", "status display area", "action buttons", "notification status", "emergency contacts", "real-time tremor curve"],
+        "mutableSlots": [],
+        "status": "planned",
+        "children": []
+      }
+    ]
+  }
+}

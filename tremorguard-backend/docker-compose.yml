@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: tremorguard-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: tremorguard
+      POSTGRES_PASSWORD: tremorguard
+      POSTGRES_DB: tremorguard
+    volumes:
+      - tremorguard_pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tremorguard"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  tremorguard_pgdata:

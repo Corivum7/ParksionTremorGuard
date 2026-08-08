@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TremorGuard Preflight</title>
+    <style id="theme-vars">
+/* ============================================================
+   TremorGuard Design System — colors_and_type.css
+   Parkinson's Tremor Monitoring Platform
+   WCAG 2.1 AA · 56px touch targets · 17px body baseline
+   ============================================================ */
+
+/* ---- Font Imports ---- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+/* ============================================================
+   1. SEMANTIC ALIASES (brand prefix: tg)
+   Required by apply-html-head-contract.mjs
+   ============================================================ */
+:root {
+  /* --- Core palette (user-specified exact values) --- */
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #ccfbf1;
+
+  --secondary: #0369a1;
+  --secondary-light: #e0f2fe;
+
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --success: #16a34a;
+  --success-light: #dcfce7;
+  --accent: #c2410c;
+  --accent-light: #fed7aa;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+  --ink: #0f172a;
+  --ink2: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  /* --- Semantic aliases (tg prefix) --- */
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-primary: var(--primary);
+  --tg-primary-foreground: #ffffff;
+  --tg-secondary: var(--secondary);
+  --tg-secondary-foreground: #ffffff;
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-accent: var(--accent);
+  --tg-accent-foreground: #ffffff;
+  --tg-destructive: var(--danger);
+  --tg-destructive-foreground: #ffffff;
+  --tg-success: var(--success);
+  --tg-success-foreground: #ffffff;
+  --tg-warning: var(--warning);
+  --tg-warning-foreground: #ffffff;
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+  --tg-ring: var(--primary);
+
+  /* --- Radius scale --- */
+  --tg-radius-small: 6px;
+  --tg-radius-medium: 8px;
+  --tg-radius-large: 12px;
+  --tg-radius-full: 9999px;
+
+  /* --- Typography tokens --- */
+  --tg-font: 'Outfit', system-ui, -apple-system, sans-serif;
+  --tg-font-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+
+  --tg-text-display: 32px;
+  --tg-text-h1: 24px;
+  --tg-text-h2: 20px;
+  --tg-text-h3: 18px;
+  --tg-text-body-lg: 17px;
+  --tg-text-body: 16px;
+  --tg-text-caption: 14px;
+  --tg-text-label: 12px;
+
+  /* --- Spacing scale --- */
+  --tg-space-xs: 4px;
+  --tg-space-sm: 8px;
+  --tg-space-md: 12px;
+  --tg-space-lg: 16px;
+  --tg-space-xl: 24px;
+  --tg-space-2xl: 32px;
+
+  /* --- Radius (user spec) --- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* --- Spacing (user spec, mirrored) --- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.10);
+  --shadow-modal: 0 8px 32px rgba(15, 23, 42, 0.15);
+
+  /* --- Animation tokens --- */
+  --ease-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pulse: 1.2s infinite alternate;
+
+  /* --- Touch target --- */
+  --touch-min: 56px;
+  --tab-bar-height: 64px;
+  --safe-area-bottom: 34px;
+}
+
+/* ============================================================
+   2. DARK MODE (Phase 2 mappings)
+   ============================================================ */
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface2: #334155;
+  --ink: #f1f5f9;
+  --ink2: #cbd5e1;
+  --muted: #94a3b8;
+  --border: #334155;
+
+  --primary-light: #134e4a;
+  --secondary-light: #0c4a6e;
+  --danger-light: #7f1d1d;
+  --warning-light: #78350f;
+  --success-light: #14532d;
+  --accent-light: #7c2d12;
+
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+}
+
+/* ============================================================
+   3. TAILWIND v4 @theme INLINE
+   ============================================================ */
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--primary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: #ffffff;
+  --color-muted: var(--surface2);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: #ffffff;
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: #ffffff;
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-surface2: var(--surface2);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
+}
+
+/* ============================================================
+   4. BASE STYLES
+   ============================================================ */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--tg-font);
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Typography utility classes ---- */
+.text-display { font-size: var(--tg-text-display); font-weight: 700; line-height: 1.2; }
+.text-h1 { font-size: var(--tg-text-h1); font-weight: 700; line-height: 1.3; }
+.text-h2 { font-size: var(--tg-text-h2); font-weight: 700; line-height: 1.4; }
+.text-h3 { font-size: var(--tg-text-h3); font-weight: 600; line-height: 1.4; }
+.text-body-lg { font-size: var(--tg-text-body-lg); font-weight: 400; line-height: 1.7; }
+.text-body { font-size: var(--tg-text-body); font-weight: 400; line-height: 1.7; }
+.text-caption { font-size: var(--tg-text-caption); font-weight: 400; line-height: 1.5; }
+.text-label { font-size: var(--tg-text-label); font-weight: 600; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.05em; }
+.text-mono { font-family: var(--tg-font-mono); }
+
+/* ---- Focus ring (WCAG 2.1 AA) ---- */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+
+/* ============================================================
+   5. COMPONENT CLASSES
+   ============================================================ */
+
+/* ---- Buttons ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--primary);
+  color: #ffffff;
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-primary:active { background: var(--primary-dark); transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: transparent;
+  color: var(--primary);
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-secondary:active { transform: scale(0.98); }
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--danger);
+  color: #ffffff;
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast);
+}
+.btn-danger:active { transform: scale(0.98); }
+
+/* ---- Cards ---- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg);
+}
+.card-pressable {
+  cursor: pointer;
+  transition: transform var(--ease-normal), box-shadow var(--ease-normal);
+}
+.card-pressable:active {
+  transform: scale(0.99);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* ---- Status badges ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-pill);
+  font-size: var(--tg-text-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-on { background: var(--success-light); color: var(--success); }
+.badge-off { background: var(--warning-light); color: var(--warning); }
+.badge-danger { background: var(--danger-light); color: var(--danger); }
+.badge-info { background: var(--secondary-light); color: var(--secondary); }
+.badge-accent { background: var(--accent-light); color: var(--accent); }
+
+/* ---- Status dots ---- */
+.dot { width: 8px; height: 8px; border-radius: var(--radius-pill); display: inline-block; }
+.dot-success { background: var(--success); }
+.dot-warning { background: var(--warning); }
+.dot-danger { background: var(--danger); }
+.dot-primary { background: var(--primary); }
+
+/* ---- Inputs ---- */
+.input {
+  width: 100%;
+  height: var(--touch-min);
+  padding: 0 var(--space-lg);
+  font-size: var(--tg-text-body-lg);
+  font-family: var(--tg-font);
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--ease-normal);
+}
+.input:focus { border-color: var(--primary); outline: none; }
+.input-error { border-color: var(--danger); }
+
+/* ---- Pulse animation (pending medication) ---- */
+@keyframes tg-pulse {
+  from { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+  to { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+}
+.animate-pulse-ring { animation: var(--pulse); animation-name: tg-pulse; }
+
+/* ---- Shimmer (skeleton loading) ---- */
+@keyframes tg-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: tg-shimmer 1.5s infinite;
+}
+
+/* ---- Spinner ---- */
+@keyframes tg-spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: tg-spin 0.8s linear infinite;
+}
+.spinner-primary {
+  border-color: rgba(13, 148, 136, 0.2);
+  border-top-color: var(--primary);
+}
+
+/* ---- Mobile container ---- */
+.mobile-frame {
+  width: 390px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ---- Safe area bottom spacer ---- */
+.safe-area-bottom {
+  height: var(--safe-area-bottom);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--tg-background);
+    --color-foreground: var(--tg-foreground);
+    --color-card: var(--tg-card);
+    --color-card-foreground: var(--tg-card-foreground);
+    --color-popover: var(--tg-popover);
+    --color-popover-foreground: var(--tg-popover-foreground);
+    --color-primary: var(--tg-primary);
+    --color-secondary: var(--tg-secondary);
+    --color-muted: var(--tg-muted);
+    --color-muted-foreground: var(--tg-muted-foreground);
+    --color-accent: var(--tg-accent);
+    --color-destructive: var(--tg-destructive);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-danger: var(--danger);
+    --color-border: var(--tg-border);
+    --color-input: var(--tg-input);
+    --color-ring: var(--tg-ring);
+    --color-ink: var(--ink);
+    --color-ink2: var(--ink2);
+    --color-surface2: var(--surface2);
+    --color-primary-foreground: var(--tg-primary-foreground);
+    --color-secondary-foreground: var(--tg-secondary-foreground);
+    --color-accent-foreground: var(--tg-accent-foreground);
+    --color-destructive-foreground: var(--tg-destructive-foreground);
+    --radius-sm: var(--tg-radius-small);
+    --radius-md: var(--tg-radius-medium);
+    --radius-lg: var(--tg-radius-large);
+  }
+  @layer base {
+    body { background: var(--tg-background); color: var(--tg-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--tg-background); }
+      .text-background { color: var(--tg-background); }
+      .border-background { border-color: var(--tg-background); }
+      .ring-background { --tw-ring-color: var(--tg-background); }
+      .bg-foreground { background-color: var(--tg-foreground); }
+      .text-foreground { color: var(--tg-foreground); }
+      .border-foreground { border-color: var(--tg-foreground); }
+      .ring-foreground { --tw-ring-color: var(--tg-foreground); }
+      .bg-card { background-color: var(--tg-card); }
+      .text-card { color: var(--tg-card); }
+      .border-card { border-color: var(--tg-card); }
+      .ring-card { --tw-ring-color: var(--tg-card); }
+      .bg-card-foreground { background-color: var(--tg-card-foreground); }
+      .text-card-foreground { color: var(--tg-card-foreground); }
+      .border-card-foreground { border-color: var(--tg-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--tg-card-foreground); }
+      .bg-popover { background-color: var(--tg-popover); }
+      .text-popover { color: var(--tg-popover); }
+      .border-popover { border-color: var(--tg-popover); }
+      .ring-popover { --tw-ring-color: var(--tg-popover); }
+      .bg-popover-foreground { background-color: var(--tg-popover-foreground); }
+      .text-popover-foreground { color: var(--tg-popover-foreground); }
+      .border-popover-foreground { border-color: var(--tg-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--tg-popover-foreground); }
+      .bg-primary { background-color: var(--tg-primary); }
+      .text-primary { color: var(--tg-primary); }
+      .border-primary { border-color: var(--tg-primary); }
+      .ring-primary { --tw-ring-color: var(--tg-primary); }
+      .bg-secondary { background-color: var(--tg-secondary); }
+      .text-secondary { color: var(--tg-secondary); }
+      .border-secondary { border-color: var(--tg-secondary); }
+      .ring-secondary { --tw-ring-color: var(--tg-secondary); }
+      .bg-muted { background-color: var(--tg-muted); }
+      .text-muted { color: var(--tg-muted); }
+      .border-muted { border-color: var(--tg-muted); }
+      .ring-muted { --tw-ring-color: var(--tg-muted); }
+      .bg-muted-foreground { background-color: var(--tg-muted-foreground); }
+      .text-muted-foreground { color: var(--tg-muted-foreground); }
+      .border-muted-foreground { border-color: var(--tg-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--tg-muted-foreground); }
+      .bg-accent { background-color: var(--tg-accent); }
+      .text-accent { color: var(--tg-accent); }
+      .border-accent { border-color: var(--tg-accent); }
+      .ring-accent { --tw-ring-color: var(--tg-accent); }
+      .bg-destructive { background-color: var(--tg-destructive); }
+      .text-destructive { color: var(--tg-destructive); }
+      .border-destructive { border-color: var(--tg-destructive); }
+      .ring-destructive { --tw-ring-color: var(--tg-destructive); }
+      .bg-success { background-color: var(--success); }
+      .text-success { color: var(--success); }
+      .border-success { border-color: var(--success); }
+      .ring-success { --tw-ring-color: var(--success); }
+      .bg-warning { background-color: var(--warning); }
+      .text-warning { color: var(--warning); }
+      .border-warning { border-color: var(--warning); }
+      .ring-warning { --tw-ring-color: var(--warning); }
+      .bg-danger { background-color: var(--danger); }
+      .text-danger { color: var(--danger); }
+      .border-danger { border-color: var(--danger); }
+      .ring-danger { --tw-ring-color: var(--danger); }
+      .bg-border { background-color: var(--tg-border); }
+      .text-border { color: var(--tg-border); }
+      .border-border { border-color: var(--tg-border); }
+      .ring-border { --tw-ring-color: var(--tg-border); }
+      .bg-input { background-color: var(--tg-input); }
+      .text-input { color: var(--tg-input); }
+      .border-input { border-color: var(--tg-input); }
+      .ring-input { --tw-ring-color: var(--tg-input); }
+      .bg-ring { background-color: var(--tg-ring); }
+      .text-ring { color: var(--tg-ring); }
+      .border-ring { border-color: var(--tg-ring); }
+      .ring-ring { --tw-ring-color: var(--tg-ring); }
+      .bg-ink { background-color: var(--ink); }
+      .text-ink { color: var(--ink); }
+      .border-ink { border-color: var(--ink); }
+      .ring-ink { --tw-ring-color: var(--ink); }
+      .bg-ink2 { background-color: var(--ink2); }
+      .text-ink2 { color: var(--ink2); }
+      .border-ink2 { border-color: var(--ink2); }
+      .ring-ink2 { --tw-ring-color: var(--ink2); }
+      .bg-surface2 { background-color: var(--surface2); }
+      .text-surface2 { color: var(--surface2); }
+      .border-surface2 { border-color: var(--surface2); }
+      .ring-surface2 { --tw-ring-color: var(--surface2); }
+      .bg-primary-foreground { background-color: var(--tg-primary-foreground); }
+      .text-primary-foreground { color: var(--tg-primary-foreground); }
+      .border-primary-foreground { border-color: var(--tg-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--tg-primary-foreground); }
+      .bg-secondary-foreground { background-color: var(--tg-secondary-foreground); }
+      .text-secondary-foreground { color: var(--tg-secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--tg-secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--tg-secondary-foreground); }
+      .bg-accent-foreground { background-color: var(--tg-accent-foreground); }
+      .text-accent-foreground { color: var(--tg-accent-foreground); }
+      .border-accent-foreground { border-color: var(--tg-accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--tg-accent-foreground); }
+      .bg-destructive-foreground { background-color: var(--tg-destructive-foreground); }
+      .text-destructive-foreground { color: var(--tg-destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--tg-destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--tg-destructive-foreground); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

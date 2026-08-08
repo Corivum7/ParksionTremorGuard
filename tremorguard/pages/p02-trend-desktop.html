@@ -1,0 +1,1232 @@
+﻿<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>趋势分析 - 桌面版 · TremorGuard</title>
+    <style id="theme-vars">
+/* ============================================================
+   TremorGuard Design System — colors_and_type.css
+   Parkinson's Tremor Monitoring Platform
+   WCAG 2.1 AA · 56px touch targets · 17px body baseline
+   ============================================================ */
+
+/* ---- Font Imports ---- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+/* ============================================================
+   1. SEMANTIC ALIASES (brand prefix: tg)
+   ============================================================ */
+:root {
+  /* --- Core palette (user-specified exact values) --- */
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #ccfbf1;
+
+  --secondary: #0369a1;
+  --secondary-light: #e0f2fe;
+
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --success: #16a34a;
+  --success-light: #dcfce7;
+  --accent: #c2410c;
+  --accent-light: #fed7aa;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+  --ink: #0f172a;
+  --ink2: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  /* --- Semantic aliases (tg prefix) --- */
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-primary: var(--primary);
+  --tg-primary-foreground: #ffffff;
+  --tg-secondary: var(--secondary);
+  --tg-secondary-foreground: #ffffff;
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-accent: var(--accent);
+  --tg-accent-foreground: #ffffff;
+  --tg-destructive: var(--danger);
+  --tg-destructive-foreground: #ffffff;
+  --tg-success: var(--success);
+  --tg-success-foreground: #ffffff;
+  --tg-warning: var(--warning);
+  --tg-warning-foreground: #ffffff;
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+  --tg-ring: var(--primary);
+
+  /* --- Radius scale --- */
+  --tg-radius-small: 6px;
+  --tg-radius-medium: 8px;
+  --tg-radius-large: 12px;
+  --tg-radius-full: 9999px;
+
+  /* --- Typography tokens --- */
+  --tg-font: 'Outfit', system-ui, -apple-system, sans-serif;
+  --tg-font-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+
+  --tg-text-display: 32px;
+  --tg-text-h1: 24px;
+  --tg-text-h2: 20px;
+  --tg-text-h3: 18px;
+  --tg-text-body-lg: 17px;
+  --tg-text-body: 16px;
+  --tg-text-caption: 14px;
+  --tg-text-label: 12px;
+
+  /* --- Spacing scale --- */
+  --tg-space-xs: 4px;
+  --tg-space-sm: 8px;
+  --tg-space-md: 12px;
+  --tg-space-lg: 16px;
+  --tg-space-xl: 24px;
+  --tg-space-2xl: 32px;
+
+  /* --- Radius (user spec) --- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* --- Spacing (user spec, mirrored) --- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.10);
+  --shadow-modal: 0 8px 32px rgba(15, 23, 42, 0.15);
+
+  /* --- Animation tokens --- */
+  --ease-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pulse: 1.2s infinite alternate;
+
+  /* --- Touch target --- */
+  --touch-min: 56px;
+  --tab-bar-height: 64px;
+  --safe-area-bottom: 34px;
+}
+
+/* ============================================================
+   2. DARK MODE (Phase 2 mappings)
+   ============================================================ */
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface2: #334155;
+  --ink: #f1f5f9;
+  --ink2: #cbd5e1;
+  --muted: #94a3b8;
+  --border: #334155;
+
+  --primary-light: #134e4a;
+  --secondary-light: #0c4a6e;
+  --danger-light: #7f1d1d;
+  --warning-light: #78350f;
+  --success-light: #14532d;
+  --accent-light: #7c2d12;
+
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+}
+
+/* ============================================================
+   3. TAILWIND v4 @theme INLINE
+   ============================================================ */
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--primary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: #ffffff;
+  --color-muted: var(--surface2);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: #ffffff;
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: #ffffff;
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-surface2: var(--surface2);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
+}
+
+/* ============================================================
+   4. BASE STYLES
+   ============================================================ */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--tg-font);
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Typography utility classes ---- */
+.text-display { font-size: var(--tg-text-display); font-weight: 700; line-height: 1.2; }
+.text-h1 { font-size: var(--tg-text-h1); font-weight: 700; line-height: 1.3; }
+.text-h2 { font-size: var(--tg-text-h2); font-weight: 700; line-height: 1.4; }
+.text-h3 { font-size: var(--tg-text-h3); font-weight: 600; line-height: 1.4; }
+.text-body-lg { font-size: var(--tg-text-body-lg); font-weight: 400; line-height: 1.7; }
+.text-body { font-size: var(--tg-text-body); font-weight: 400; line-height: 1.7; }
+.text-caption { font-size: var(--tg-text-caption); font-weight: 400; line-height: 1.5; }
+.text-label { font-size: var(--tg-text-label); font-weight: 600; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.05em; }
+.text-mono { font-family: var(--tg-font-mono); }
+
+/* ---- Focus ring (WCAG 2.1 AA) ---- */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--tg-background);
+    --color-foreground: var(--tg-foreground);
+    --color-card: var(--tg-card);
+    --color-card-foreground: var(--tg-card-foreground);
+    --color-popover: var(--tg-popover);
+    --color-popover-foreground: var(--tg-popover-foreground);
+    --color-primary: var(--tg-primary);
+    --color-secondary: var(--tg-secondary);
+    --color-muted: var(--tg-muted);
+    --color-muted-foreground: var(--tg-muted-foreground);
+    --color-accent: var(--tg-accent);
+    --color-destructive: var(--tg-destructive);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-danger: var(--danger);
+    --color-border: var(--tg-border);
+    --color-input: var(--tg-input);
+    --color-ring: var(--tg-ring);
+    --color-ink: var(--ink);
+    --color-ink2: var(--ink2);
+    --color-surface2: var(--surface2);
+    --color-primary-foreground: var(--tg-primary-foreground);
+    --color-secondary-foreground: var(--tg-secondary-foreground);
+    --color-accent-foreground: var(--tg-accent-foreground);
+    --color-destructive-foreground: var(--tg-destructive-foreground);
+    --radius-sm: var(--tg-radius-small);
+    --radius-md: var(--tg-radius-medium);
+    --radius-lg: var(--tg-radius-large);
+  }
+  @layer base {
+    body { background: var(--tg-background); color: var(--tg-foreground); }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--tg-background); }
+      .text-foreground { color: var(--tg-foreground); }
+      .bg-card { background-color: var(--tg-card); }
+      .text-card-foreground { color: var(--tg-card-foreground); }
+      .bg-primary { background-color: var(--tg-primary); }
+      .text-primary { color: var(--tg-primary); }
+      .border-primary { border-color: var(--tg-primary); }
+      .bg-muted { background-color: var(--tg-muted); }
+      .text-muted-foreground { color: var(--tg-muted-foreground); }
+      .bg-destructive { background-color: var(--tg-destructive); }
+      .text-destructive { color: var(--tg-destructive); }
+      .bg-success { background-color: var(--success); }
+      .text-success { color: var(--success); }
+      .bg-warning { background-color: var(--warning); }
+      .text-warning { color: var(--warning); }
+      .bg-danger { background-color: var(--danger); }
+      .text-danger { color: var(--danger); }
+      .border-border { border-color: var(--tg-border); }
+      .text-ink { color: var(--ink); }
+      .text-ink2 { color: var(--ink2); }
+      .bg-surface2 { background-color: var(--surface2); }
+      .text-primary-foreground { color: var(--tg-primary-foreground); }
+    </style>
+    <style>
+      /* ============================================================
+         PAGE-SPECIFIC STYLES — P02 趋势分析 (Desktop)
+         ============================================================ */
+
+      /* ---- App shell layout ---- */
+      .app-shell {
+        display: flex;
+        min-height: 100vh;
+        background: var(--bg);
+      }
+
+      /* ---- Sidebar ---- */
+      .sidebar {
+        width: 240px;
+        flex-shrink: 0;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 50;
+        transition: width var(--ease-normal), transform var(--ease-normal);
+      }
+
+      .sidebar-header {
+        padding: 20px 16px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-md);
+        background: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .logo-icon svg { width: 20px; height: 20px; color: var(--tg-primary-foreground); }
+
+      .logo-text {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--ink);
+        white-space: nowrap;
+        letter-spacing: -0.01em;
+      }
+      .logo-text span { color: var(--primary); }
+
+      /* ---- Navigation ---- */
+      .nav-list {
+        flex: 1;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .nav-section-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 16px 16px 6px;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 48px;
+        padding: 0 16px;
+        border-radius: var(--radius-md);
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        width: 100%;
+        text-align: left;
+        transition: background var(--ease-fast), color var(--ease-fast);
+      }
+      .nav-item:hover { background: var(--surface2); color: var(--ink); }
+      .nav-item.active {
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        font-weight: 700;
+      }
+      .nav-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+      .nav-item .nav-label { white-space: nowrap; }
+
+      /* ---- User profile ---- */
+      .user-profile {
+        padding: 16px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-pill);
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+
+      .user-info { min-width: 0; flex: 1; }
+      .user-name { font-size: 14px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+      .user-role { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+      /* ---- Main column ---- */
+      .app-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        margin-left: 240px;
+        transition: margin-left var(--ease-normal);
+      }
+
+      /* ---- Top bar ---- */
+      .topbar {
+        height: 64px;
+        flex-shrink: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        gap: 16px;
+      }
+
+      .topbar-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+      .topbar-title { font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+      .topbar-date { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+      .topbar-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        color: var(--ink2);
+        cursor: pointer;
+        position: relative;
+        transition: background var(--ease-fast), color var(--ease-fast), border-color var(--ease-fast);
+      }
+      .icon-btn:hover { background: var(--surface2); color: var(--ink); }
+      .icon-btn svg { width: 20px; height: 20px; }
+
+      .notif-dot {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 8px;
+        height: 8px;
+        border-radius: var(--radius-pill);
+        background: var(--danger);
+        border: 2px solid var(--surface);
+      }
+
+      .export-btn-desktop {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        height: 40px;
+        padding: 0 16px;
+        background: var(--primary);
+        color: var(--tg-primary-foreground);
+        border: none;
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background var(--ease-fast);
+      }
+      .export-btn-desktop:hover { background: var(--primary-dark); }
+      .export-btn-desktop svg { width: 18px; height: 18px; }
+
+      .hamburger-btn { display: none; }
+
+      /* ---- Content area ---- */
+      .content {
+        flex: 1;
+        padding: 24px;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .content > * + * { margin-top: 20px; }
+
+      /* ---- Segmented pill control ---- */
+      .seg-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .seg-pill {
+        padding: 8px 20px;
+        border-radius: var(--radius-pill);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background var(--ease-fast), color var(--ease-fast), border-color var(--ease-fast);
+      }
+      .seg-pill:hover { background: var(--surface2); color: var(--ink); }
+      .seg-pill.active {
+        background: var(--primary);
+        color: var(--tg-primary-foreground);
+        border-color: var(--primary);
+      }
+
+      /* ---- Chart card ---- */
+      .chart-card {
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-card);
+        padding: 24px;
+      }
+
+      .chart-card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .chart-container {
+        width: 100%;
+        height: 400px;
+      }
+      .chart-container svg { width: 100%; height: 100%; display: block; }
+
+      /* ---- Chart SVG element styles (CSS variables only) ---- */
+      .chart-grid { stroke: var(--border); stroke-width: 1; }
+      .chart-axis-line { stroke: var(--border); stroke-width: 1; }
+      .chart-band-on { fill: var(--primary-light); opacity: 0.45; }
+      .chart-band-off { fill: var(--surface2); opacity: 0.9; }
+      .chart-area { fill: var(--primary); fill-opacity: 0.08; }
+      .chart-line {
+        fill: none;
+        stroke: var(--primary);
+        stroke-width: 2.5;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+      .chart-med-line {
+        stroke: var(--ink2);
+        stroke-width: 1.5;
+        stroke-dasharray: 4 4;
+        opacity: 0.5;
+      }
+      .chart-threshold-line {
+        stroke: var(--warning);
+        stroke-width: 1.5;
+        stroke-dasharray: 6 4;
+        opacity: 0.65;
+      }
+      .chart-anomaly-line {
+        stroke: var(--danger);
+        stroke-width: 1;
+        opacity: 0.3;
+        stroke-dasharray: 2 2;
+      }
+      .chart-anomaly-dot { fill: var(--danger); }
+      .chart-anomaly-ring { fill: none; stroke: var(--danger); stroke-width: 1; opacity: 0.35; }
+      .chart-axis-label {
+        font-family: var(--tg-font-mono);
+        font-size: 12px;
+        fill: var(--muted);
+      }
+      .chart-band-label {
+        font-family: var(--tg-font);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      .chart-threshold-label {
+        font-family: var(--tg-font);
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      /* ---- Toggle switch (用药叠加) ---- */
+      .tg-toggle-hit {
+        width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .tg-toggle {
+        position: relative;
+        width: 36px;
+        height: 20px;
+        border-radius: var(--radius-pill);
+        background: var(--border);
+        display: block;
+        transition: background 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .tg-toggle-hit[aria-checked="true"] .tg-toggle { background: var(--primary); }
+      .tg-thumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: var(--radius-pill);
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+        transition: left 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .tg-toggle-hit[aria-checked="true"] .tg-thumb { left: 18px; }
+
+      /* ---- Legend ---- */
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+        margin-top: 16px;
+      }
+      .legend-item { display: flex; align-items: center; gap: 6px; }
+      .legend-swatch-on { background: var(--primary-light); opacity: 0.85; }
+      .legend-swatch-off { background: var(--surface2); border: 1px solid var(--border); }
+      .legend-swatch-med { background: var(--ink2); opacity: 0.5; }
+      .legend-swatch-anom { background: var(--danger); }
+      .legend-swatch-threshold { background: var(--warning); opacity: 0.65; }
+
+      /* ---- Stats grid ---- */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .stat-card {
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-card);
+        padding: 20px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .stat-value-row {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .stat-value {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+      .stat-unit { font-size: 16px; font-weight: 400; color: var(--muted); }
+
+      .stat-trend {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      /* ---- Event list card ---- */
+      .event-card {
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-card);
+        padding: 24px;
+      }
+
+      .event-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+
+      .event-list { display: flex; flex-direction: column; gap: 12px; }
+
+      .event-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 20px;
+        background: var(--surface2);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: background var(--ease-fast), border-color var(--ease-fast);
+      }
+      .event-row:hover { background: var(--surface); border-color: var(--primary); }
+
+      .event-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+      .event-time {
+        font-family: var(--tg-font-mono);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .event-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+      .event-value {
+        font-family: var(--tg-font-mono);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .event-desc { font-size: 13px; color: var(--muted); margin-top: 6px; }
+      .event-row svg.chevron { width: 18px; height: 18px; color: var(--muted); }
+
+      /* ---- Badges ---- */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 10px;
+        border-radius: var(--radius-pill);
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .badge-on { background: var(--success-light); color: var(--success); }
+      .badge-off { background: var(--warning-light); color: var(--warning); }
+      .badge-danger { background: var(--danger-light); color: var(--danger); }
+
+      /* ---- Overlay backdrop (mobile drawer) ---- */
+      .sidebar-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.4);
+        z-index: 45;
+      }
+      .sidebar-backdrop.show { display: block; }
+
+      /* ============================================================
+         RESPONSIVE DESIGN
+         ============================================================ */
+
+      /* ---- Tablet: sidebar collapses to icon-only ---- */
+      @media (max-width: 1023px) {
+        .sidebar { width: 64px; }
+        .sidebar-header { padding: 16px 8px; justify-content: center; }
+        .logo-text { display: none; }
+        .nav-section-label { display: none; }
+        .nav-item { justify-content: center; padding: 0; }
+        .nav-item .nav-label { display: none; }
+        .user-profile { justify-content: center; padding: 16px 8px; }
+        .user-info { display: none; }
+        .app-main { margin-left: 64px; }
+      }
+
+      /* ---- Mobile: sidebar hidden, hamburger shown ---- */
+      @media (max-width: 767px) {
+        .sidebar {
+          transform: translateX(-100%);
+          width: 240px;
+        }
+        .sidebar.open {
+          transform: translateX(0);
+        }
+        .sidebar.open .logo-text,
+        .sidebar.open .nav-section-label,
+        .sidebar.open .nav-item .nav-label,
+        .sidebar.open .user-info { display: block; }
+        .sidebar.open .nav-item { justify-content: flex-start; padding: 0 16px; }
+        .sidebar.open .sidebar-header { justify-content: flex-start; padding: 20px 16px; }
+        .sidebar.open .user-profile { justify-content: flex-start; padding: 16px; }
+
+        .app-main { margin-left: 0; }
+        .hamburger-btn { display: inline-flex; }
+        .topbar { padding: 0 16px; }
+        .content { padding: 16px; }
+        .chart-container { height: 250px; }
+        .stats-grid { grid-template-columns: 1fr; }
+        .export-btn-desktop .export-label { display: none; }
+        .export-btn-desktop { padding: 0 12px; }
+        .chart-card-header { flex-direction: column; gap: 12px; }
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+
+<div class="app-shell">
+
+  <!-- ===== Sidebar backdrop (mobile drawer) ===== -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+  <!-- ===== Left Sidebar ===== -->
+  <aside class="sidebar" id="sidebar" aria-label="主导航">
+    <!-- Logo -->
+    <div class="sidebar-header">
+      <a href="#" class="logo" aria-label="TremorGuard 首页">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h4l3-9 4 18 3-9h4"/>
+          </svg>
+        </span>
+        <span class="logo-text">Tremor<span>Guard</span></span>
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-list" aria-label="主导航菜单">
+      <div class="nav-section-label">主菜单</div>
+
+      <a href="#" class="nav-item" aria-label="今日仪表盘">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="9" rx="1"/>
+          <rect x="14" y="3" width="7" height="5" rx="1"/>
+          <rect x="14" y="12" width="7" height="9" rx="1"/>
+          <rect x="3" y="16" width="7" height="5" rx="1"/>
+        </svg>
+        <span class="nav-label">今日仪表盘</span>
+      </a>
+
+      <a href="#" class="nav-item active" aria-current="page" aria-label="趋势分析">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+          <polyline points="16 7 22 7 22 13"/>
+        </svg>
+        <span class="nav-label">趋势分析</span>
+      </a>
+
+      <a href="#" class="nav-item" aria-label="报告列表">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="8" y1="13" x2="16" y2="13"/>
+          <line x1="8" y1="17" x2="16" y2="17"/>
+        </svg>
+        <span class="nav-label">报告列表</span>
+      </a>
+
+      <a href="#" class="nav-item" aria-label="用药管理">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+          <path d="m8.5 8.5 7 7"/>
+        </svg>
+        <span class="nav-label">用药管理</span>
+      </a>
+
+      <a href="#" class="nav-item" aria-label="设备设置">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <span class="nav-label">设备设置</span>
+      </a>
+    </nav>
+
+    <!-- User profile -->
+    <div class="user-profile">
+      <div class="user-avatar" aria-hidden="true">王</div>
+      <div class="user-info">
+        <div class="user-name">王伯伯</div>
+        <div class="user-role">患者</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== Main column ===== -->
+  <div class="app-main">
+
+    <!-- ===== Top Bar ===== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn hamburger-btn" id="hamburgerBtn" aria-label="打开菜单" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="18" x2="20" y2="18"/>
+          </svg>
+        </button>
+        <div>
+          <h1 class="topbar-title">趋势分析</h1>
+          <p class="topbar-date">2026年7月24日 · 周五</p>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" aria-label="通知" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
+          <span class="notif-dot" aria-hidden="true"></span>
+        </button>
+        <button class="export-btn-desktop" aria-label="导出报告" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span class="export-label">导出报告</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===== Main Content ===== -->
+    <main class="content">
+
+      <!-- Row 1: Segmented time range selector -->
+      <section aria-label="时间范围选择">
+        <div class="seg-row" role="tablist" aria-label="时间范围">
+          <button class="seg-pill active" role="tab" aria-selected="true" type="button">今日</button>
+          <button class="seg-pill" role="tab" aria-selected="false" type="button">7天</button>
+          <button class="seg-pill" role="tab" aria-selected="false" type="button">30天</button>
+          <button class="seg-pill" role="tab" aria-selected="false" type="button">90天</button>
+        </div>
+      </section>
+
+      <!-- Row 2: Main amplitude chart card -->
+      <section aria-label="振幅趋势图">
+        <div class="chart-card">
+          <!-- chart header row -->
+          <div class="chart-card-header">
+            <div>
+              <div class="text-h3" style="color:var(--ink)">振幅趋势</div>
+              <div class="text-caption" style="color:var(--muted)">单位 cm · 0:00 – 24:00</div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-caption" style="color:var(--ink2);font-weight:600;">用药叠加</span>
+              <button class="tg-toggle-hit" role="switch" aria-checked="true" aria-label="用药叠加" type="button">
+                <span class="tg-toggle" aria-hidden="true">
+                  <span class="tg-thumb"></span>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <!-- inline SVG amplitude chart -->
+          <div class="chart-container">
+            <svg viewBox="0 0 1080 360" role="img"
+                 aria-label="全天振幅趋势图：横轴为时间0点至24点，纵轴为振幅0至3厘米；14点出现2.5厘米峰值异常">
+
+              <!-- ON / OFF status background bands -->
+              <rect class="chart-band-on"  x="351.7" y="24" width="291.6" height="276"/>
+              <rect class="chart-band-off" x="643.3" y="24" width="41.7"  height="276"/>
+              <rect class="chart-band-on"  x="685"   y="24" width="291.7" height="276"/>
+
+              <!-- horizontal gridlines -->
+              <line class="chart-grid" x1="60" y1="24"  x2="1060" y2="24"/>
+              <line class="chart-grid" x1="60" y1="208" x2="1060" y2="208"/>
+              <line class="chart-axis-line" x1="60" y1="300" x2="1060" y2="300"/>
+
+              <!-- threshold line (2.0cm alert threshold) -->
+              <line class="chart-threshold-line" x1="60" y1="116" x2="1060" y2="116"/>
+              <text class="chart-threshold-label" x="1056" y="111" text-anchor="end" style="fill:var(--warning)">阈值 2.0cm</text>
+
+              <!-- band labels -->
+              <text class="chart-band-label" x="497.5" y="40" text-anchor="middle" style="fill:var(--primary-dark)">ON</text>
+              <text class="chart-band-label" x="664.2" y="40" text-anchor="middle" style="fill:var(--muted)">OFF</text>
+              <text class="chart-band-label" x="830.8" y="40" text-anchor="middle" style="fill:var(--primary-dark)">ON</text>
+
+              <!-- medication vertical dashed lines (07:00 / 11:00 / 15:00 / 19:00) -->
+              <line class="chart-med-line" x1="351.7" y1="24" x2="351.7" y2="300"/>
+              <line class="chart-med-line" x1="518.3" y1="24" x2="518.3" y2="300"/>
+              <line class="chart-med-line" x1="685"   y1="24" x2="685"   y2="300"/>
+              <line class="chart-med-line" x1="851.7" y1="24" x2="851.7" y2="300"/>
+
+              <!-- amplitude fill area -->
+              <path class="chart-area" d="M 60 272.4 L 143.3 281.6 L 226.7 277 L 310 263.2 L 330.8 244.8 L 351.7 235.6 L 393.3 244.8 L 435 254 L 476.7 244.8 L 518.3 235.6 L 560 254 L 601.7 244.8 L 622.5 217.2 L 643.3 70 L 664.2 134.4 L 685 226.4 L 726.7 244.8 L 768.3 254 L 810 244.8 L 851.7 235.6 L 893.3 244.8 L 935 254 L 976.7 263.2 L 1018.3 272.4 L 1060 272.4 L 1060 300 L 60 300 Z"/>
+
+              <!-- amplitude line -->
+              <path class="chart-line" d="M 60 272.4 L 143.3 281.6 L 226.7 277 L 310 263.2 L 330.8 244.8 L 351.7 235.6 L 393.3 244.8 L 435 254 L 476.7 244.8 L 518.3 235.6 L 560 254 L 601.7 244.8 L 622.5 217.2 L 643.3 70 L 664.2 134.4 L 685 226.4 L 726.7 244.8 L 768.3 254 L 810 244.8 L 851.7 235.6 L 893.3 244.8 L 935 254 L 976.7 263.2 L 1018.3 272.4 L 1060 272.4"/>
+
+              <!-- anomaly guide + dot at 14:00 peak (2.5cm) -->
+              <line class="chart-anomaly-line" x1="643.3" y1="24" x2="643.3" y2="300"/>
+              <circle class="chart-anomaly-ring" cx="643.3" cy="70" r="8"/>
+              <circle class="chart-anomaly-dot" cx="643.3" cy="70" r="4"/>
+              <text class="chart-band-label" x="637" y="64" text-anchor="end" style="fill:var(--danger)">2.5cm</text>
+
+              <!-- Y axis labels -->
+              <text class="chart-axis-label" x="52" y="24"  text-anchor="end" dominant-baseline="middle">3.0</text>
+              <text class="chart-axis-label" x="52" y="116" text-anchor="end" dominant-baseline="middle">2.0</text>
+              <text class="chart-axis-label" x="52" y="208" text-anchor="end" dominant-baseline="middle">1.0</text>
+              <text class="chart-axis-label" x="52" y="300" text-anchor="end" dominant-baseline="middle">0</text>
+
+              <!-- X axis labels -->
+              <text class="chart-axis-label" x="60"   y="322" text-anchor="middle">00:00</text>
+              <text class="chart-axis-label" x="310"  y="322" text-anchor="middle">06:00</text>
+              <text class="chart-axis-label" x="560"  y="322" text-anchor="middle">12:00</text>
+              <text class="chart-axis-label" x="810"  y="322" text-anchor="middle">18:00</text>
+              <text class="chart-axis-label" x="1060" y="322" text-anchor="middle">24:00</text>
+            </svg>
+          </div>
+
+          <!-- legend -->
+          <div class="legend">
+            <span class="legend-item">
+              <span class="legend-swatch-on" style="width:14px;height:10px;border-radius:2px;display:inline-block;"></span>
+              <span class="text-caption" style="color:var(--ink2)">ON 时段</span>
+            </span>
+            <span class="legend-item">
+              <span class="legend-swatch-off" style="width:14px;height:10px;border-radius:2px;display:inline-block;"></span>
+              <span class="text-caption" style="color:var(--ink2)">OFF 时段</span>
+            </span>
+            <span class="legend-item">
+              <span class="legend-swatch-med" style="width:14px;height:2px;display:inline-block;"></span>
+              <span class="text-caption" style="color:var(--ink2)">用药</span>
+            </span>
+            <span class="legend-item">
+              <span class="legend-swatch-threshold" style="width:14px;height:2px;display:inline-block;"></span>
+              <span class="text-caption" style="color:var(--ink2)">阈值</span>
+            </span>
+            <span class="legend-item">
+              <span class="legend-swatch-anom" style="width:8px;height:8px;border-radius:50%;display:inline-block;"></span>
+              <span class="text-caption" style="color:var(--ink2)">异常事件</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Row 3: Stats grid -->
+      <section aria-label="统计概览">
+        <div class="stats-grid">
+          <!-- 平均震颤幅度 -->
+          <div class="stat-card">
+            <div class="stat-label">平均震颤幅度</div>
+            <div class="stat-value-row">
+              <span class="stat-value" style="color:var(--ink)">1.2</span>
+              <span class="stat-unit">cm</span>
+            </div>
+            <div class="stat-trend">较昨日下降 0.1cm</div>
+          </div>
+
+          <!-- ON状态时长 -->
+          <div class="stat-card">
+            <div class="stat-label">ON状态时长</div>
+            <div class="stat-value-row">
+              <span class="stat-value" style="color:var(--success)">78</span>
+              <span class="stat-unit">%</span>
+            </div>
+            <div class="stat-trend">较昨日提升 3%</div>
+          </div>
+
+          <!-- 剂末效应次数 -->
+          <div class="stat-card">
+            <div class="stat-label">剂末效应次数</div>
+            <div class="stat-value-row">
+              <span class="stat-value" style="color:var(--warning)">2</span>
+              <span class="stat-unit">次</span>
+            </div>
+            <div class="stat-trend">wearing-off · 较昨日持平</div>
+          </div>
+
+          <!-- 峰值振幅 -->
+          <div class="stat-card">
+            <div class="stat-label">峰值振幅</div>
+            <div class="stat-value-row">
+              <span class="stat-value" style="color:var(--danger)">2.5</span>
+              <span class="stat-unit">cm</span>
+            </div>
+            <div class="stat-trend">出现在 14:02</div>
+          </div>
+
+          <!-- 用药依从率 -->
+          <div class="stat-card">
+            <div class="stat-label">用药依从率</div>
+            <div class="stat-value-row">
+              <span class="stat-value" style="color:var(--success)">92</span>
+              <span class="stat-unit">%</span>
+            </div>
+            <div class="stat-trend">本周平均 90%</div>
+          </div>
+
+          <!-- 异常事件数 -->
+          <div class="stat-card">
+            <div class="stat-label">异常事件数</div>
+            <div class="stat-value-row">
+              <span class="stat-value" style="color:var(--danger)">1</span>
+              <span class="stat-unit">次</span>
+            </div>
+            <div class="stat-trend">较昨日减少 1 次</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Row 4: Annotated event list -->
+      <section aria-label="异常事件列表">
+        <div class="event-card">
+          <div class="event-card-header">
+            <h2 class="text-h3" style="color:var(--ink)">异常事件</h2>
+            <span class="text-caption" style="color:var(--muted)">今日 1 条</span>
+          </div>
+
+          <div class="event-list">
+            <div class="event-row" role="button" tabindex="0"
+                 aria-label="查看异常事件详情：14:02 震颤升高">
+              <div style="min-width:0;flex:1;">
+                <div class="event-left">
+                  <span class="event-time">14:02</span>
+                  <span class="badge badge-danger">震颤升高</span>
+                </div>
+                <div class="event-desc">持续 8min · 较基线升高 3.1 倍 · 已自动记录</div>
+              </div>
+              <div class="event-right">
+                <span class="event-value" style="color:var(--danger)">2.5cm</span>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  // Initialize Lucide icons
+  if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+
+  // Hamburger menu toggle (mobile)
+  (function() {
+    var hamburger = document.getElementById('hamburgerBtn');
+    var sidebar = document.getElementById('sidebar');
+    var backdrop = document.getElementById('sidebarBackdrop');
+    if (!hamburger || !sidebar || !backdrop) return;
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('open');
+      backdrop.classList.toggle('show');
+      var isOpen = sidebar.classList.contains('open');
+      hamburger.setAttribute('aria-label', isOpen ? '关闭菜单' : '打开菜单');
+    }
+
+    hamburger.addEventListener('click', toggleSidebar);
+    backdrop.addEventListener('click', function() {
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('show');
+      hamburger.setAttribute('aria-label', '打开菜单');
+    });
+  })();
+
+  // Segmented control toggle
+  (function() {
+    var pills = document.querySelectorAll('.seg-pill');
+    pills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        pills.forEach(function(p) {
+          p.classList.remove('active');
+          p.setAttribute('aria-selected', 'false');
+        });
+        pill.classList.add('active');
+        pill.setAttribute('aria-selected', 'true');
+      });
+    });
+  })();
+
+  // Toggle switch (用药叠加)
+  (function() {
+    var toggles = document.querySelectorAll('.tg-toggle-hit');
+    toggles.forEach(function(toggle) {
+      toggle.addEventListener('click', function() {
+        var checked = toggle.getAttribute('aria-checked') === 'true';
+        toggle.setAttribute('aria-checked', checked ? 'false' : 'true');
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

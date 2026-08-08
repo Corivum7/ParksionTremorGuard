@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "jsx": "react-native",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@tremorguard/shared-types": ["../../packages/shared-types/src"],
+      "@tremorguard/utils": ["../../packages/utils/src"],
+      "@tremorguard/ble-service": ["../../packages/ble-service/src"],
+      "@tremorguard/local-db": ["../../packages/local-db/src"],
+      "@tremorguard/sync-engine": ["../../packages/sync-engine/src"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "ios", "android", "dist"]
+}

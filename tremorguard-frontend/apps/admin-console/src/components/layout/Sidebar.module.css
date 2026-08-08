@@ -1,0 +1,206 @@
+.sidebar {
+  background: var(--tg-surface);
+  border-right: 1px solid var(--tg-border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 40;
+  transition: transform var(--ease-normal);
+}
+
+.sidebarDesktop {
+  width: var(--sidebar-width);
+}
+
+.sidebarCollapsed {
+  width: var(--sidebar-collapsed);
+}
+
+.sidebarMobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  transform: translateX(-100%);
+}
+
+.sidebarMobileOpen {
+  transform: translateX(0);
+}
+
+.logoArea {
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--tg-border);
+  flex-shrink: 0;
+}
+
+.logoMark {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--tg-primary-light);
+  color: var(--tg-primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: var(--text-h3);
+  font-weight: 700;
+  color: var(--tg-ink);
+  white-space: nowrap;
+}
+
+.logoTextAccent {
+  color: var(--tg-primary);
+}
+
+.nav {
+  flex: 1;
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  overflow-y: auto;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  height: 48px;
+  padding: 0 var(--space-lg);
+  border-radius: var(--radius-md);
+  color: var(--tg-ink-2);
+  font-size: var(--text-body);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  transition: background var(--ease-fast), color var(--ease-fast);
+  min-height: var(--touch-min);
+}
+
+.navItem:hover {
+  background: var(--tg-surface-2);
+  color: var(--tg-ink);
+}
+
+.navItemActive {
+  background: var(--tg-primary-light);
+  color: var(--tg-primary-dark);
+}
+
+.navIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navLabel {
+  white-space: nowrap;
+}
+
+.collapsed .logoArea {
+  padding: 0;
+  justify-content: center;
+}
+
+.collapsed .logoText,
+.collapsed .navLabel {
+  display: none;
+}
+
+.collapsed .nav {
+  padding: var(--space-lg) var(--space-sm);
+  align-items: center;
+}
+
+.collapsed .navItem {
+  justify-content: center;
+  padding: 0;
+  width: 48px;
+}
+
+.profile {
+  padding: var(--space-lg);
+  border-top: 1px solid var(--tg-border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+  width: 100%;
+  text-align: left;
+  transition: background var(--ease-fast);
+}
+
+.profile:hover {
+  background: var(--tg-surface-2);
+}
+
+.profileAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--tg-primary);
+  color: var(--tg-surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--text-body);
+  flex-shrink: 0;
+}
+
+.profileText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  min-width: 0;
+}
+
+.profileName {
+  font-size: var(--text-body);
+  font-weight: 700;
+  color: var(--tg-ink);
+  white-space: nowrap;
+}
+
+.profileRole {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  white-space: nowrap;
+}
+
+.collapsed .profile {
+  justify-content: center;
+  padding: var(--space-md) var(--space-sm);
+}
+
+.collapsed .profileText {
+  display: none;
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--tg-ink) 40%, transparent);
+  z-index: 35;
+}
+
+.backdropShow {
+  display: block;
+}

@@ -1,0 +1,64 @@
+.heroCard {
+  padding: var(--space-xl);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.statusGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.peakInfo {
+  font-size: var(--text-caption);
+  color: var(--tg-accent);
+}
+
+.amplitudeRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: var(--space-lg);
+}
+
+.amplitudeValue {
+  font-size: var(--text-display);
+  font-weight: 700;
+  color: var(--tg-ink);
+  line-height: 1.1;
+}
+
+.amplitudeUnit {
+  font-size: var(--text-body);
+  color: var(--tg-muted);
+}
+
+.amplitudeCaption {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.sparkline {
+  display: block;
+  width: 100%;
+  height: 72px;
+}
+
+.axisRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.axisLabel {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}

@@ -1,0 +1,275 @@
+{
+  "data": [
+    {
+      "id": "page-p01-dashboard",
+      "title": "今日仪表盘",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784884183000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p01-dashboard.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p02-trend",
+      "title": "趋势分析",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784884183000,
+      "canvasData": {
+        "x": 309,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p02-trend.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p05-report-list",
+      "title": "报告列表",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784884183000,
+      "canvasData": {
+        "x": 618,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p05-report-list.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p03-medication",
+      "title": "用药详情",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784884183000,
+      "canvasData": {
+        "x": 927,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p03-medication.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p14-alert-detail",
+      "title": "警报详情",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784884183000,
+      "canvasData": {
+        "x": 1236,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p14-alert-detail.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p13-onboarding",
+      "title": "首次配置引导",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784884183000,
+      "canvasData": {
+        "x": 1545,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p13-onboarding.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p16-emergency",
+      "title": "紧急模式",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784884183000,
+      "canvasData": {
+        "x": 1854,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p16-emergency.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p01-dashboard-desktop",
+      "title": "今日仪表盘 - 桌面版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784964733129,
+      "canvasData": {
+        "x": 0,
+        "y": 648,
+        "group": 1,
+        "deviceType": "desktop"
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p01-dashboard-desktop.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p02-trend-desktop",
+      "title": "趋势分析 - 桌面版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784964733129,
+      "canvasData": {
+        "x": 624,
+        "y": 648,
+        "group": 1,
+        "deviceType": "desktop"
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p02-trend-desktop.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p05-report-list-desktop",
+      "title": "报告列表 - 桌面版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784964733129,
+      "canvasData": {
+        "x": 1240,
+        "y": 644,
+        "group": 1,
+        "deviceType": "desktop"
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p05-report-list-desktop.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p03-medication-desktop",
+      "title": "用药详情 - 桌面版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784964733129,
+      "canvasData": {
+        "x": 1860,
+        "y": 644,
+        "group": 1,
+        "deviceType": "desktop"
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p03-medication-desktop.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p14-alert-detail-desktop",
+      "title": "警报详情 - 桌面版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784964733129,
+      "canvasData": {
+        "x": 2328,
+        "y": 660,
+        "group": 1,
+        "deviceType": "desktop"
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p14-alert-detail-desktop.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p13-onboarding-desktop",
+      "title": "首次配置引导 - 桌面版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784964733129,
+      "canvasData": {
+        "x": 2789,
+        "y": 644,
+        "group": 1,
+        "deviceType": "desktop"
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p13-onboarding-desktop.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p16-emergency-desktop",
+      "title": "紧急模式 - 桌面版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784964733129,
+      "canvasData": {
+        "x": 3098,
+        "y": 644,
+        "group": 1,
+        "deviceType": "desktop"
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p16-emergency-desktop.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p17-user-profile",
+      "title": "用户主页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1784971200000,
+      "canvasData": {
+        "x": 2163,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p17-user-profile.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-p18-unauth",
+      "title": "未登录",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785306700000,
+      "canvasData": {
+        "x": 2472,
+        "y": 0,
+        "group": 0,
+        "deviceType": "mobile"
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/p18-unauth.html",
+        "interactions": []
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": false,
+    "deviceType": "mobile",
+    "projectName": "TremorGuard 帕金森震颤监测平台",
+    "designLibrary": null,
+    "visualEditorEnabled": false
+  }
+}

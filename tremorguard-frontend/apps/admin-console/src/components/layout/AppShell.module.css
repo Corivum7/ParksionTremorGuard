@@ -1,0 +1,53 @@
+.appShell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--topbar-height) 1fr;
+  grid-template-areas:
+    'sidebar topbar'
+    'sidebar main';
+  min-height: 100vh;
+  background: var(--tg-bg);
+}
+
+.sidebarArea {
+  grid-area: sidebar;
+}
+
+.topbarArea {
+  grid-area: topbar;
+}
+
+.mainArea {
+  grid-area: main;
+  padding: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.collapsed {
+  grid-template-columns: var(--sidebar-collapsed) 1fr;
+}
+
+.mobileLayout {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'topbar'
+    'main';
+}
+
+.mobileLayout .sidebarArea {
+  position: fixed;
+  z-index: 40;
+}
+
+.mobileLayout .mainArea {
+  padding: var(--space-md);
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .appShell {
+    grid-template-columns: var(--sidebar-collapsed) 1fr;
+  }
+}

@@ -1,0 +1,1013 @@
+﻿<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>警报详情 - 桌面版 · TremorGuard</title>
+  <style id="theme-vars">
+/* ============================================================
+   TremorGuard Design System — colors_and_type.css
+   Parkinson's Tremor Monitoring Platform
+   WCAG 2.1 AA · Desktop adaptive · 17px body baseline
+   ============================================================ */
+
+/* ---- Font Imports ---- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+/* ============================================================
+   1. SEMANTIC ALIASES (brand prefix: tg)
+   ============================================================ */
+:root {
+  /* --- Core palette (user-specified exact values) --- */
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #ccfbf1;
+
+  --secondary: #0369a1;
+  --secondary-light: #e0f2fe;
+
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --success: #16a34a;
+  --success-light: #dcfce7;
+  --accent: #c2410c;
+  --accent-light: #fed7aa;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+  --ink: #0f172a;
+  --ink2: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  /* --- Semantic aliases (tg prefix) --- */
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-primary: var(--primary);
+  --tg-primary-foreground: #ffffff;
+  --tg-secondary: var(--secondary);
+  --tg-secondary-foreground: #ffffff;
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-accent: var(--accent);
+  --tg-accent-foreground: #ffffff;
+  --tg-destructive: var(--danger);
+  --tg-destructive-foreground: #ffffff;
+  --tg-success: var(--success);
+  --tg-success-foreground: #ffffff;
+  --tg-warning: var(--warning);
+  --tg-warning-foreground: #ffffff;
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+  --tg-ring: var(--primary);
+
+  /* --- Radius scale --- */
+  --tg-radius-small: 6px;
+  --tg-radius-medium: 8px;
+  --tg-radius-large: 12px;
+  --tg-radius-full: 9999px;
+
+  /* --- Typography tokens --- */
+  --tg-font: 'Outfit', system-ui, -apple-system, sans-serif;
+  --tg-font-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+
+  --tg-text-display: 32px;
+  --tg-text-h1: 24px;
+  --tg-text-h2: 20px;
+  --tg-text-h3: 18px;
+  --tg-text-body-lg: 17px;
+  --tg-text-body: 16px;
+  --tg-text-caption: 14px;
+  --tg-text-label: 12px;
+
+  /* --- Spacing scale --- */
+  --tg-space-xs: 4px;
+  --tg-space-sm: 8px;
+  --tg-space-md: 12px;
+  --tg-space-lg: 16px;
+  --tg-space-xl: 24px;
+  --tg-space-2xl: 32px;
+
+  /* --- Radius (user spec) --- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* --- Spacing (user spec, mirrored) --- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.10);
+  --shadow-modal: 0 8px 32px rgba(15, 23, 42, 0.15);
+
+  /* --- Animation tokens --- */
+  --ease-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pulse: 1.2s infinite alternate;
+
+  /* --- Touch target --- */
+  --touch-min: 56px;
+  --tab-bar-height: 64px;
+  --safe-area-bottom: 34px;
+
+  /* --- Desktop layout tokens --- */
+  --sidebar-w: 240px;
+  --sidebar-w-icon: 72px;
+  --topbar-h: 64px;
+  --content-max: 1200px;
+}
+
+/* ============================================================
+   2. DARK MODE (Phase 2 mappings)
+   ============================================================ */
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface2: #334155;
+  --ink: #f1f5f9;
+  --ink2: #cbd5e1;
+  --muted: #94a3b8;
+  --border: #334155;
+
+  --primary-light: #134e4a;
+  --secondary-light: #0c4a6e;
+  --danger-light: #7f1d1d;
+  --warning-light: #78350f;
+  --success-light: #14532d;
+  --accent-light: #7c2d12;
+
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+}
+
+/* ============================================================
+   3. TAILWIND v4 @theme INLINE
+   ============================================================ */
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--primary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: #ffffff;
+  --color-muted: var(--surface2);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: #ffffff;
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: #ffffff;
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-surface2: var(--surface2);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
+}
+
+/* ============================================================
+   4. BASE STYLES
+   ============================================================ */
+* { -webkit-tap-highlight-color: transparent; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--tg-font);
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Typography utility classes ---- */
+.text-display { font-size: var(--tg-text-display); font-weight: 700; line-height: 1.2; }
+.text-h1 { font-size: var(--tg-text-h1); font-weight: 700; line-height: 1.3; }
+.text-h2 { font-size: var(--tg-text-h2); font-weight: 700; line-height: 1.4; }
+.text-h3 { font-size: var(--tg-text-h3); font-weight: 600; line-height: 1.4; }
+.text-body-lg { font-size: var(--tg-text-body-lg); font-weight: 400; line-height: 1.7; }
+.text-body { font-size: var(--tg-text-body); font-weight: 400; line-height: 1.7; }
+.text-caption { font-size: var(--tg-text-caption); font-weight: 400; line-height: 1.5; }
+.text-label { font-size: var(--tg-text-label); font-weight: 600; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.05em; }
+.text-mono { font-family: var(--tg-font-mono); }
+
+*:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+
+/* ============================================================
+   5. COMPONENT CLASSES
+   ============================================================ */
+
+/* ---- Buttons ---- */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min); min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--primary);
+  color: var(--tg-primary-foreground);
+  font-size: var(--tg-text-body-lg); font-weight: 700;
+  border: none; border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-primary:active { background: var(--primary-dark); transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min); min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: transparent;
+  color: var(--primary);
+  font-size: var(--tg-text-body-lg); font-weight: 700;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-secondary:hover { background: var(--primary-light); }
+.btn-secondary:active { transform: scale(0.98); }
+
+.btn-danger {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min); min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--danger);
+  color: var(--tg-destructive-foreground);
+  font-size: var(--tg-text-body-lg); font-weight: 700;
+  border: none; border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast);
+}
+.btn-danger:active { transform: scale(0.98); }
+
+/* ---- Cards ---- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg);
+}
+
+/* ---- Status badges ---- */
+.badge {
+  display: inline-flex; align-items: center; gap: var(--space-xs);
+  padding: 3px var(--space-sm);
+  border-radius: var(--radius-pill);
+  font-size: var(--tg-text-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-on { background: var(--success-light); color: var(--success); }
+.badge-off { background: var(--warning-light); color: var(--warning); }
+.badge-danger { background: var(--danger-light); color: var(--danger); }
+.badge-info { background: var(--secondary-light); color: var(--secondary); }
+.badge-accent { background: var(--accent-light); color: var(--accent); }
+
+/* ---- Status dots ---- */
+.dot { width: 8px; height: 8px; border-radius: var(--radius-pill); display: inline-block; }
+.dot-success { background: var(--success); }
+.dot-warning { background: var(--warning); }
+.dot-danger { background: var(--danger); }
+.dot-primary { background: var(--primary); }
+
+/* ---- Pulse animation ---- */
+@keyframes tg-pulse {
+  from { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+  to { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+}
+.animate-pulse-ring { animation: var(--pulse); animation-name: tg-pulse; }
+
+/* ---- Shimmer (skeleton loading) ---- */
+@keyframes tg-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: tg-shimmer 1.5s infinite;
+}
+
+/* ============================================================
+   6. DESKTOP LAYOUT
+   ============================================================ */
+.app-shell { display: flex; min-height: 100vh; background: var(--bg); }
+
+/* ---- Sidebar ---- */
+.sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: sticky; top: 0; height: 100vh;
+  padding: 20px 16px;
+  z-index: 40;
+}
+.sidebar .brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px; }
+.sidebar .brand-mark { width: 36px; height: 36px; flex-shrink: 0; }
+.sidebar .brand-text { font-size: 18px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; line-height: 1.1; }
+.sidebar .brand-text span { color: var(--primary); }
+
+.sidebar .nav-section-label {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 12px 12px 6px;
+}
+.sidebar .nav { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.sidebar .nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  color: var(--ink2);
+  font-size: 15px; font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--ease-fast), color var(--ease-fast);
+}
+.sidebar .nav-item:hover { background: var(--surface2); color: var(--ink); }
+.sidebar .nav-item.active { background: var(--primary-light); color: var(--primary-dark); font-weight: 600; }
+.sidebar .nav-item svg { flex-shrink: 0; }
+.sidebar .nav-label { white-space: nowrap; }
+
+.sidebar .user-profile {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px; border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background var(--ease-fast);
+}
+.sidebar .user-profile:hover { background: var(--surface2); }
+.sidebar .user-avatar {
+  width: 36px; height: 36px; border-radius: var(--radius-pill);
+  background: var(--primary); color: var(--tg-primary-foreground);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+.sidebar .user-meta { min-width: 0; flex: 1; }
+.sidebar .user-name { font-size: 14px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sidebar .user-role { font-size: 12px; color: var(--muted); }
+.sidebar .user-chevron { color: var(--muted); flex-shrink: 0; }
+
+/* ---- Main area ---- */
+.main-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.topbar {
+  height: var(--topbar-h); flex-shrink: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 24px; gap: 12px;
+  position: sticky; top: 0; z-index: 30;
+}
+.topbar .back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 36px; padding: 0 10px;
+  background: transparent; border: none; cursor: pointer;
+  color: var(--ink2); font-size: 14px; font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: background var(--ease-fast), color var(--ease-fast);
+}
+.topbar .back-btn:hover { background: var(--surface2); color: var(--ink); }
+.topbar .tb-sep { color: var(--border); font-size: 18px; }
+.topbar .tb-title { font-size: 16px; font-weight: 600; color: var(--ink); }
+.topbar .tb-spacer { flex: 1; }
+.topbar .tb-meta { display: flex; align-items: center; gap: 10px; }
+.topbar .tb-time { font-family: var(--tg-font-mono); font-size: 13px; color: var(--muted); }
+
+.content {
+  flex: 1;
+  padding: 24px;
+  max-width: var(--content-max); width: 100%;
+  margin: 0 auto;
+  display: flex; flex-direction: column; gap: 24px;
+}
+
+.grid-2col { display: grid; grid-template-columns: 3fr 2fr; gap: 24px; align-items: start; }
+
+/* ---- Desktop card ---- */
+.dcard {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 20px 24px;
+}
+.dcard-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.dcard-title { font-size: 18px; font-weight: 600; color: var(--ink); }
+.dcard-subtitle { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.dcard-tag { font-size: 12px; color: var(--muted); font-family: var(--tg-font-mono); }
+
+/* ---- Alert header card (Row 1) ---- */
+.alert-header-card {
+  background: var(--danger-light);
+  border-left: 4px solid var(--danger);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+  box-shadow: var(--shadow-card);
+}
+.ahc-left { display: flex; align-items: center; gap: 16px; }
+.ahc-icon {
+  width: 56px; height: 56px; border-radius: var(--radius-md);
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--danger);
+  box-shadow: var(--shadow-card);
+}
+.ahc-title { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+.ahc-badges { display: flex; gap: 8px; margin-top: 8px; align-items: center; flex-wrap: wrap; }
+.ahc-stats { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.ahc-stat-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.ahc-stat-value { font-family: var(--tg-font-mono); font-size: 20px; font-weight: 600; color: var(--ink); }
+.ahc-stat-danger { color: var(--danger); }
+.ahc-divider { width: 1px; height: 40px; background: var(--border); }
+
+/* ---- Pulsing danger dot ---- */
+@keyframes danger-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+  100% { box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
+}
+.dot-danger-pulse {
+  width: 8px; height: 8px; border-radius: var(--radius-pill);
+  background: var(--danger); display: inline-block;
+  animation: danger-pulse 1.2s infinite alternate;
+}
+
+/* ---- Chart ---- */
+.chart-wrap { width: 100%; }
+.chart-svg { display: block; width: 100%; height: auto; }
+.chart-legend {
+  display: flex; flex-wrap: wrap; gap: 16px 20px;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.chart-legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink2); }
+.chart-legend-swatch { display: inline-block; width: 18px; height: 3px; border-radius: 2px; }
+.chart-legend-line { display: inline-block; width: 18px; height: 0; }
+.chart-legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: var(--radius-pill); }
+
+/* ---- Trigger rows ---- */
+.trigger-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+}
+.trigger-row:last-child { border-bottom: none; }
+.trigger-label { font-size: 15px; color: var(--ink2); }
+.trigger-value { font-family: var(--tg-font-mono); font-weight: 600; color: var(--ink); font-size: 15px; }
+.trigger-value-danger { color: var(--danger); }
+.trigger-value-muted { color: var(--muted); }
+
+/* ---- Horizontal timeline ---- */
+.tl-track { display: flex; flex-direction: row; padding: 12px 0 4px; }
+.tl-node { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 8px; position: relative; min-width: 0; }
+.tl-marker { position: relative; width: 100%; height: 24px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.tl-dot { width: 16px; height: 16px; border-radius: var(--radius-pill); border: 3px solid var(--surface); z-index: 1; position: relative; }
+.tl-dot-danger { background: var(--danger); box-shadow: 0 0 0 3px var(--danger-light); }
+.tl-dot-secondary { background: var(--secondary); box-shadow: 0 0 0 3px var(--secondary-light); }
+.tl-dot-success { background: var(--success); box-shadow: 0 0 0 3px var(--success-light); }
+.tl-dot-muted { background: var(--muted); box-shadow: 0 0 0 3px var(--surface2); }
+.tl-line { position: absolute; top: 50%; left: 50%; width: 100%; height: 2px; transform: translateY(-50%); background: var(--border); z-index: 0; }
+.tl-line-done { background: var(--success); }
+.tl-line-pending { background: var(--border); }
+.tl-node:last-child .tl-line { display: none; }
+.tl-time { font-family: var(--tg-font-mono); font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.tl-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.tl-desc { font-size: 12px; color: var(--ink2); margin-bottom: 4px; line-height: 1.4; }
+.tl-actor { font-size: 11px; color: var(--muted); }
+.tl-pending .tl-title,
+.tl-pending .tl-time { color: var(--muted); }
+
+/* ---- Action bar ---- */
+.action-bar {
+  position: sticky; bottom: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex; justify-content: flex-end; gap: 12px;
+  z-index: 30;
+  box-shadow: 0 -2px 12px rgba(15, 23, 42, 0.04);
+}
+.action-bar-inner {
+  width: 100%; max-width: var(--content-max); margin: 0 auto;
+  display: flex; justify-content: flex-end; gap: 12px;
+}
+.action-bar .btn-primary,
+.action-bar .btn-secondary { min-width: 180px; height: 48px; }
+
+/* ---- Helpers ---- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ============================================================
+   7. RESPONSIVE
+   ============================================================ */
+@media (max-width: 1023px) {
+  .sidebar { width: var(--sidebar-w-icon); padding: 20px 12px; }
+  .sidebar .brand { justify-content: center; padding: 4px 0 20px; }
+  .sidebar .brand-text,
+  .sidebar .nav-label,
+  .sidebar .nav-section-label,
+  .sidebar .user-meta,
+  .sidebar .user-chevron { display: none; }
+  .sidebar .nav-item { justify-content: center; padding: 12px; }
+  .sidebar .user-profile { justify-content: center; padding: 8px; }
+  .grid-2col { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 767px) {
+  .sidebar { display: none; }
+  .topbar { padding: 0 16px; gap: 8px; }
+  .topbar .tb-sep,
+  .topbar .tb-title { display: none; }
+  .content { padding: 16px; gap: 16px; }
+  .alert-header-card { flex-direction: column; align-items: flex-start; padding: 16px; }
+  .ahc-stats { width: 100%; flex-wrap: wrap; gap: 16px; justify-content: flex-start; }
+  .ahc-divider { display: none; }
+  .dcard { padding: 16px; }
+  .dcard-head { flex-wrap: wrap; }
+  /* Timeline -> vertical */
+  .tl-track { flex-direction: column; }
+  .tl-node { flex-direction: row; align-items: stretch; text-align: left; padding: 0; }
+  .tl-marker { width: 20px; height: auto; flex-direction: column; align-items: center; margin-bottom: 0; margin-right: 12px; }
+  .tl-line { top: 20px; left: 50%; width: 2px; height: calc(100% - 16px); transform: translateX(-50%); }
+  .tl-body { padding-bottom: 20px; }
+  .tl-node:last-child .tl-body { padding-bottom: 0; }
+  /* Action bar -> stacked full-width */
+  .action-bar { padding: 12px 16px; }
+  .action-bar-inner { flex-direction: column-reverse; }
+  .action-bar .btn-primary,
+  .action-bar .btn-secondary { width: 100%; min-width: 0; }
+}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+  <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+  <style type="text/tailwindcss">
+    @theme inline {
+      --color-background: var(--tg-background);
+      --color-foreground: var(--tg-foreground);
+      --color-card: var(--tg-card);
+      --color-card-foreground: var(--tg-card-foreground);
+      --color-popover: var(--tg-popover);
+      --color-popover-foreground: var(--tg-popover-foreground);
+      --color-primary: var(--tg-primary);
+      --color-secondary: var(--tg-secondary);
+      --color-muted: var(--tg-muted);
+      --color-muted-foreground: var(--tg-muted-foreground);
+      --color-accent: var(--tg-accent);
+      --color-destructive: var(--tg-destructive);
+      --color-success: var(--success);
+      --color-warning: var(--warning);
+      --color-danger: var(--danger);
+      --color-border: var(--tg-border);
+      --color-input: var(--tg-input);
+      --color-ring: var(--tg-ring);
+      --color-ink: var(--ink);
+      --color-ink2: var(--ink2);
+      --color-surface2: var(--surface2);
+      --color-primary-foreground: var(--tg-primary-foreground);
+      --color-secondary-foreground: var(--tg-secondary-foreground);
+      --color-accent-foreground: var(--tg-accent-foreground);
+      --color-destructive-foreground: var(--tg-destructive-foreground);
+      --radius-sm: var(--tg-radius-small);
+      --radius-md: var(--tg-radius-medium);
+      --radius-lg: var(--tg-radius-large);
+    }
+    @layer base {
+      body { background: var(--tg-background); color: var(--tg-foreground); }
+    }
+  </style>
+  <style id="semantic-token-fallback">
+    .bg-background { background-color: var(--tg-background); }
+    .text-foreground { color: var(--tg-foreground); }
+    .bg-card { background-color: var(--tg-card); }
+    .text-card-foreground { color: var(--tg-card-foreground); }
+    .bg-primary { background-color: var(--tg-primary); }
+    .text-primary { color: var(--tg-primary); }
+    .border-primary { border-color: var(--tg-primary); }
+    .bg-secondary { background-color: var(--tg-secondary); }
+    .text-secondary { color: var(--tg-secondary); }
+    .bg-muted { background-color: var(--tg-muted); }
+    .text-muted-foreground { color: var(--tg-muted-foreground); }
+    .bg-accent { background-color: var(--tg-accent); }
+    .text-accent { color: var(--tg-accent); }
+    .bg-destructive { background-color: var(--tg-destructive); }
+    .text-destructive { color: var(--tg-destructive); }
+    .bg-success { background-color: var(--success); }
+    .text-success { color: var(--success); }
+    .bg-warning { background-color: var(--warning); }
+    .text-warning { color: var(--warning); }
+    .bg-danger { background-color: var(--danger); }
+    .text-danger { color: var(--danger); }
+    .border-border { border-color: var(--tg-border); }
+    .text-ink { color: var(--ink); }
+    .text-ink2 { color: var(--ink2); }
+    .bg-surface2 { background-color: var(--surface2); }
+    .text-primary-foreground { color: var(--tg-primary-foreground); }
+    .text-muted { color: var(--muted); }
+  </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+  <div class="app-shell">
+
+    <!-- ============ LEFT SIDEBAR ============ -->
+    <aside class="sidebar" aria-label="主导航">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 2 L28 7 V15 C28 22 23 27 16 30 C9 27 4 22 4 15 V7 Z" fill="var(--primary-light)" stroke="var(--primary)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M7 17 L12 17 L14 12 L17 21 L19 17 L25 17" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="brand-text">Tremor<span>Guard</span></div>
+      </div>
+
+      <div class="nav-section-label">主菜单</div>
+      <nav class="nav" aria-label="平台导航">
+        <a class="nav-item active" href="#" aria-current="page">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="9" rx="1"/>
+            <rect x="14" y="3" width="7" height="5" rx="1"/>
+            <rect x="14" y="12" width="7" height="9" rx="1"/>
+            <rect x="3" y="16" width="7" height="5" rx="1"/>
+          </svg>
+          <span class="nav-label">今日仪表盘</span>
+        </a>
+        <a class="nav-item" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+          <span class="nav-label">趋势分析</span>
+        </a>
+        <a class="nav-item" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="9" y1="13" x2="15" y2="13"/>
+            <line x1="9" y1="17" x2="15" y2="17"/>
+          </svg>
+          <span class="nav-label">报告列表</span>
+        </a>
+        <a class="nav-item" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10.5 20.5 3.5 13.5a5 5 0 0 1 7-7l7 7a5 5 0 0 1-7 7z"/>
+            <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
+          </svg>
+          <span class="nav-label">用药管理</span>
+        </a>
+        <a class="nav-item" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span class="nav-label">设备设置</span>
+        </a>
+      </nav>
+
+      <div class="user-profile" role="button" tabindex="0" aria-label="用户资料">
+        <div class="user-avatar" aria-hidden="true">张</div>
+        <div class="user-meta">
+          <div class="user-name">张明</div>
+          <div class="user-role">患者 · ID TG-2048</div>
+        </div>
+        <svg class="user-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN AREA ============ -->
+    <div class="main-area">
+
+      <!-- ===== TOP BAR ===== -->
+      <header class="topbar">
+        <button class="back-btn" type="button" data-dom-id="back-btn" aria-label="返回警报详情">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          <span>警报详情</span>
+        </button>
+        <span class="tb-sep" aria-hidden="true">/</span>
+        <h1 class="tb-title">震颤异常升高</h1>
+        <div class="tb-spacer" aria-hidden="true"></div>
+        <div class="tb-meta">
+          <span class="tb-time">2026-07-25 14:02</span>
+          <span class="badge badge-danger">高危</span>
+        </div>
+      </header>
+
+      <!-- ===== CONTENT ===== -->
+      <main class="content">
+
+        <!-- Row 1: Alert header card -->
+        <section class="alert-header-card" data-dom-id="event-header" aria-label="警报概览">
+          <div class="ahc-left">
+            <div class="ahc-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <div>
+              <div class="ahc-title">震颤异常升高</div>
+              <div class="ahc-badges">
+                <span class="badge badge-danger">高危</span>
+                <span class="badge badge-danger">
+                  <span class="dot-danger-pulse" aria-hidden="true"></span>
+                  进行中
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="ahc-stats">
+            <div>
+              <div class="ahc-stat-label">触发时间</div>
+              <div class="ahc-stat-value">14:02</div>
+            </div>
+            <div class="ahc-divider" aria-hidden="true"></div>
+            <div>
+              <div class="ahc-stat-label">持续时长</div>
+              <div class="ahc-stat-value">8 分钟</div>
+            </div>
+            <div class="ahc-divider" aria-hidden="true"></div>
+            <div>
+              <div class="ahc-stat-label">振幅峰值</div>
+              <div class="ahc-stat-value ahc-stat-danger">2.8 cm</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Row 2: 2-column grid -->
+        <div class="grid-2col">
+
+          <!-- Left col (60%): Tremor curve chart -->
+          <section class="dcard" data-dom-id="tremor-curve" aria-label="震颤曲线">
+            <div class="dcard-head">
+              <div>
+                <div class="dcard-title">震颤曲线</div>
+                <div class="dcard-subtitle">触发前 10 分钟至事件全程</div>
+              </div>
+              <div class="dcard-tag">窗口 13:52 – 14:10</div>
+            </div>
+            <div class="chart-wrap">
+              <svg class="chart-svg" viewBox="0 0 560 240" role="img" aria-label="震颤幅度随时间变化曲线，14:02 超过阈值 2.0cm，14:04 达到峰值 2.8cm，14:05 服药后开始下降">
+                <!-- Gridlines -->
+                <line x1="50" y1="30"  x2="540" y2="30"  stroke="var(--border)" stroke-width="1"/>
+                <line x1="50" y1="87"  x2="540" y2="87"  stroke="var(--border)" stroke-width="1"/>
+                <line x1="50" y1="143" x2="540" y2="143" stroke="var(--border)" stroke-width="1"/>
+
+                <!-- Axes -->
+                <line x1="50" y1="20"  x2="50"  y2="200" stroke="var(--border)" stroke-width="1"/>
+                <line x1="50" y1="200" x2="540" y2="200" stroke="var(--border)" stroke-width="1"/>
+
+                <!-- Y labels -->
+                <text x="44" y="33"  text-anchor="end" font-size="11" font-family="var(--tg-font-mono)" fill="var(--muted)">3.0</text>
+                <text x="44" y="90"  text-anchor="end" font-size="11" font-family="var(--tg-font-mono)" fill="var(--muted)">2.0</text>
+                <text x="44" y="146" text-anchor="end" font-size="11" font-family="var(--tg-font-mono)" fill="var(--muted)">1.0</text>
+                <text x="44" y="203" text-anchor="end" font-size="11" font-family="var(--tg-font-mono)" fill="var(--muted)">0</text>
+                <text x="20" y="115" text-anchor="middle" font-size="11" font-family="var(--tg-font)" fill="var(--muted)" transform="rotate(-90 20 115)">振幅 (cm)</text>
+
+                <!-- X labels -->
+                <text x="50"  y="218" text-anchor="middle" font-size="11" font-family="var(--tg-font-mono)" fill="var(--muted)">13:52</text>
+                <text x="268" y="218" text-anchor="middle" font-size="11" font-family="var(--tg-font-mono)" fill="var(--muted)">14:00</text>
+                <text x="322" y="218" text-anchor="middle" font-size="11" font-family="var(--tg-font-mono)" fill="var(--danger)" font-weight="600">14:02</text>
+                <text x="404" y="218" text-anchor="middle" font-size="11" font-family="var(--tg-font-mono)" fill="var(--secondary)" font-weight="600">14:05</text>
+                <text x="540" y="218" text-anchor="middle" font-size="11" font-family="var(--tg-font-mono)" fill="var(--muted)">14:10</text>
+
+                <!-- Medication marker (vertical dashed line at 14:05 -> x=404) -->
+                <line x1="404" y1="20" x2="404" y2="200" stroke="var(--secondary)" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <text x="404" y="14" text-anchor="middle" font-size="10" font-family="var(--tg-font-mono)" fill="var(--secondary)" font-weight="600">服药</text>
+
+                <!-- Amplitude fill area -->
+                <path d="M 50,177 C 130,178 210,170 268,149 C 285,143 302,130 322,87 C 338,62 358,44 377,41 C 390,43 400,51 404,58 C 435,76 495,98 540,115 L 540,200 L 50,200 Z"
+                      fill="var(--primary)" fill-opacity="0.10" stroke="none"/>
+
+                <!-- Threshold dashed line at y=87 (2.0cm) -->
+                <line x1="50" y1="87" x2="540" y2="87" stroke="var(--danger)" stroke-width="1.5" stroke-dasharray="6,4"/>
+                <text x="536" y="82" text-anchor="end" font-size="11" font-family="var(--tg-font-mono)" fill="var(--danger)" font-weight="600">阈值 2.0cm</text>
+
+                <!-- Amplitude curve -->
+                <path d="M 50,177 C 130,178 210,170 268,149 C 285,143 302,130 322,87 C 338,62 358,44 377,41 C 390,43 400,51 404,58 C 435,76 495,98 540,115"
+                      fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Threshold crossing point (14:02) -->
+                <circle cx="322" cy="87" r="4" fill="var(--danger)" stroke="var(--surface)" stroke-width="2"/>
+                <text x="322" y="76" text-anchor="middle" font-size="10" font-family="var(--tg-font-mono)" fill="var(--danger)" font-weight="600">触发</text>
+
+                <!-- Peak point (14:04, 2.8cm) -->
+                <circle cx="377" cy="41" r="6" fill="var(--danger)" stroke="var(--surface)" stroke-width="2.5"/>
+                <circle cx="377" cy="41" r="11" fill="none" stroke="var(--danger)" stroke-width="1" stroke-opacity="0.35"/>
+                <text x="377" y="29" text-anchor="middle" font-size="11" font-family="var(--tg-font-mono)" fill="var(--danger)" font-weight="700">峰值 2.8cm</text>
+              </svg>
+              <div class="chart-legend">
+                <div class="chart-legend-item"><span class="chart-legend-swatch" style="background: var(--primary);"></span>震幅曲线</div>
+                <div class="chart-legend-item"><span class="chart-legend-line" style="border-top: 2px dashed var(--danger);"></span>阈值 2.0cm</div>
+                <div class="chart-legend-item"><span class="chart-legend-line" style="border-top: 2px dashed var(--secondary);"></span>服药时间</div>
+                <div class="chart-legend-item"><span class="chart-legend-dot" style="background: var(--danger);"></span>触发点 / 峰值</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Right col (40%): Trigger conditions -->
+          <section class="dcard" data-dom-id="trigger-card" aria-label="触发条件">
+            <div class="dcard-head">
+              <div>
+                <div class="dcard-title">触发条件</div>
+                <div class="dcard-subtitle">满足任一条件即触发警报</div>
+              </div>
+              <span class="badge badge-danger">已超限</span>
+            </div>
+            <div class="trigger-row">
+              <span class="trigger-label">振幅峰值</span>
+              <span class="trigger-value trigger-value-danger">2.8 cm</span>
+            </div>
+            <div class="trigger-row">
+              <span class="trigger-label">上升速率</span>
+              <span class="trigger-value">0.4 cm/min</span>
+            </div>
+            <div class="trigger-row">
+              <span class="trigger-label">超阈值持续</span>
+              <span class="trigger-value">6 分钟</span>
+            </div>
+            <div class="trigger-row">
+              <span class="trigger-label">个体化阈值</span>
+              <span class="trigger-value trigger-value-muted">2.0 cm</span>
+            </div>
+            <div class="trigger-row">
+              <span class="trigger-label">受累部位</span>
+              <span class="trigger-value">右手 · 静止性</span>
+            </div>
+          </section>
+        </div><!-- /.grid-2col -->
+
+        <!-- Row 3: Intervention timeline (full width) -->
+        <section class="dcard" data-dom-id="intervention-timeline" aria-label="干预记录">
+          <div class="dcard-head">
+            <div>
+              <div class="dcard-title">干预记录</div>
+              <div class="dcard-subtitle">警报触发至响应处置全流程</div>
+            </div>
+            <span class="badge badge-off">
+              <span class="dot dot-warning" aria-hidden="true"></span>
+              追踪中
+            </span>
+          </div>
+
+          <div class="tl-track">
+
+            <div class="tl-node">
+              <div class="tl-marker">
+                <span class="tl-dot tl-dot-danger" aria-hidden="true"></span>
+                <span class="tl-line tl-line-done" aria-hidden="true"></span>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">14:02</div>
+                <div class="tl-title">警报触发</div>
+                <div class="tl-desc">震幅超阈值 2.0cm</div>
+                <div class="tl-actor">系统</div>
+              </div>
+            </div>
+
+            <div class="tl-node">
+              <div class="tl-marker">
+                <span class="tl-dot tl-dot-secondary" aria-hidden="true"></span>
+                <span class="tl-line tl-line-done" aria-hidden="true"></span>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">14:02</div>
+                <div class="tl-title">通知发送</div>
+                <div class="tl-desc">App 推送 + 振动提醒</div>
+                <div class="tl-actor">系统</div>
+              </div>
+            </div>
+
+            <div class="tl-node">
+              <div class="tl-marker">
+                <span class="tl-dot tl-dot-secondary" aria-hidden="true"></span>
+                <span class="tl-line tl-line-done" aria-hidden="true"></span>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">14:03</div>
+                <div class="tl-title">看护人通知</div>
+                <div class="tl-desc">用户确认警报</div>
+                <div class="tl-actor">张明（患者）</div>
+              </div>
+            </div>
+
+            <div class="tl-node">
+              <div class="tl-marker">
+                <span class="tl-dot tl-dot-success" aria-hidden="true"></span>
+                <span class="tl-line tl-line-pending" aria-hidden="true"></span>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">14:05</div>
+                <div class="tl-title">患者响应</div>
+                <div class="tl-desc">服药 左旋多巴 250mg</div>
+                <div class="tl-actor">张明（患者）</div>
+              </div>
+            </div>
+
+            <div class="tl-node tl-pending">
+              <div class="tl-marker">
+                <span class="tl-dot tl-dot-muted" aria-hidden="true"></span>
+              </div>
+              <div class="tl-body">
+                <div class="tl-time">追踪中</div>
+                <div class="tl-title">已解决</div>
+                <div class="tl-desc">振幅下降，待回归基线</div>
+                <div class="tl-actor">14:10 响应追踪中</div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </main><!-- /.content -->
+
+      <!-- Row 4: Sticky bottom action bar -->
+      <div class="action-bar" data-dom-id="action-bar">
+        <div class="action-bar-inner">
+          <button class="btn-secondary" data-dom-id="mark-resolved-btn" type="button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            标记已处理
+          </button>
+          <button class="btn-primary" data-dom-id="view-report-btn" type="button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="9" y1="13" x2="15" y2="13"/>
+              <line x1="9" y1="17" x2="15" y2="17"/>
+            </svg>
+            查看完整报告
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /.main-area -->
+  </div><!-- /.app-shell -->
+
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
+
+

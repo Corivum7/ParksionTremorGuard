@@ -1,0 +1,249 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+}
+
+.chartCard {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.chartHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.chartTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chartTitle {
+  margin: 0;
+  font-size: var(--text-h3);
+  font-weight: 700;
+  color: var(--tg-ink);
+  line-height: 1.2;
+}
+
+.chartSubtitle {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.chartToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.chartToggleLabel {
+  font-size: var(--text-caption);
+  color: var(--tg-ink-2);
+  font-weight: 600;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.metricCard {
+  background: var(--tg-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.statCard {
+  background: var(--tg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.statLabel {
+  font-size: var(--text-label);
+  font-weight: 600;
+  color: var(--tg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statValueRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.statValueMobile {
+  font-size: var(--text-h3);
+  font-weight: 700;
+  line-height: 1.1;
+  font-family: var(--font-mono);
+}
+
+.statValueDesktop {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+  font-family: var(--font-mono);
+}
+
+.statUnit {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.statTrend {
+  font-size: var(--text-label);
+  color: var(--tg-muted);
+}
+
+.eventsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-xs);
+}
+
+.eventsTitle {
+  margin: 0;
+  font-size: var(--text-h3);
+  font-weight: 700;
+  color: var(--tg-ink);
+}
+
+.eventsCount {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.eventsListMobile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.eventCardMobile {
+  padding: 14px var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.eventCardTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.eventTime {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--tg-ink);
+}
+
+.eventValueMobile {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--tg-danger);
+}
+
+.eventDescMobile {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  line-height: 1.4;
+}
+
+.eventChevron {
+  color: var(--tg-muted);
+  flex-shrink: 0;
+}
+
+.eventsListDesktop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.eventRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--tg-surface-2);
+  border: 1px solid var(--tg-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-xl);
+  transition: background var(--ease-fast), border-color var(--ease-fast);
+}
+
+.eventRow:hover {
+  background: var(--tg-surface);
+  border-color: var(--tg-primary);
+}
+
+.eventMain {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.eventDesc {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.eventRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.eventValue {
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--tg-danger);
+}
+
+@media (min-width: 1024px) {
+  .page {
+    gap: 20px;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+
+  .chartCard {
+    padding: var(--space-xl);
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}

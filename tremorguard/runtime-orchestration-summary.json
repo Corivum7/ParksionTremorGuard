@@ -1,0 +1,1558 @@
+{
+  "schemaVersion": "2026.07.11.0",
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": "2026.07.22.00.00.00",
+    "release": "prompt-base-cloud-ssot-migration",
+    "version_source": "skill-release-manifest.json",
+    "schema_version": "1.0",
+    "read_status": "loaded"
+  },
+  "project": {
+    "operation": "create",
+    "resolvedLane": "existing_edit_add_comparison",
+    "selectedIntentWorkflowRead": true,
+    "deviceType": "mobile",
+    "intentProfile": {
+      "caseFamily": "existing_edit_add_comparison",
+      "sourceType": "long_prd",
+      "operatingMode": "free-explore",
+      "replicationMode": "none"
+    },
+    "contextRequirementsLoaded": [
+      {
+        "path": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-complex-build/start-complex-project-build.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-complex-build/00-requirement-and-style-intake.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/long-requirement-intake-rules.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-complex-build/02-page-composition.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/orchestration-summary-contract/orchestration-summary-contract.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/design-artifact-formats/design-project-file-format.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+        "readStatus": "declared",
+        "bodyRead": true,
+        "note": "Declared Load for Page Sub-Agent shared runtime; Sub-Agents read directly"
+      },
+      {
+        "path": "delivery-quality/page-rendering-quality-gate.md",
+        "readStatus": "declared",
+        "bodyRead": true,
+        "note": "Sub-Agent constraint file; read directly during Phase 1"
+      },
+      {
+        "path": "delivery-quality/design-artifact-validation.md",
+        "readStatus": "declared",
+        "bodyRead": true,
+        "note": "Main Agent validation reference"
+      },
+      {
+        "path": "delivery-quality/delivery-evidence-contract.md",
+        "readStatus": "declared",
+        "bodyRead": true,
+        "note": "Delivery evidence contract"
+      },
+      {
+        "path": "visual-experience/visual-experience-guidelines.md",
+        "readStatus": "declared",
+        "bodyRead": true,
+        "note": "Sub-Agent aesthetics read during Phase 1a"
+      },
+      {
+        "path": "visual-experience/visual-checkpoint-protocol.md",
+        "readStatus": "declared",
+        "bodyRead": true,
+        "note": "Visual checkpoint protocol for layout-critical pages"
+      },
+      {
+        "path": "intent-workflows/intent-project-mutation/INTENT_WORKFLOW.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      }
+    ],
+    "contextReadScope": "Main Agent read orchestration-scope files only. Sub-Agents read constraint files (page-rendering-quality-gate, shared-page-rendering-kernel, visual-experience-guidelines, html-rendering-primitives) directly per shared-page-rendering-kernel Phase 0+1.",
+    "validationRunDiscipline": "Main Agent runs validate-design-workspace.mjs after all Sub-Agents complete. Sub-Agents do not run validation scripts.",
+    "lowValueCallWatchdog": {
+      "applies": true,
+      "noProgressNextAction": "If a page dispatch fails after retry, fall back to in-context generation per 02-page-composition.md Step 3.1. Do not enter extended thinking loops.",
+      "lastProgressTimestamp": 1784884183000
+    },
+    "designRead": "mobile health app / elderly Parkinson's patients + caregivers / clinical-trust teal + functional status colors / info-dense but progressive disclosure / avoid high cognitive load and small touch targets",
+    "designDials": {
+      "layoutVariance": 3,
+      "motionIntensity": 2,
+      "visualDensity": 4
+    },
+    "styleDefinitionBrief": "Medical-grade mobile UI for elderly Parkinson's patients. Teal primary (#0d9488) with semantic status colors (green/amber/red/orange). Outfit + GeistMono. 56px touch targets, 17px body baseline, WCAG 2.1 AA. Calm, trustworthy, low cognitive load.",
+    "cssPreflightEvidence": {
+      "command": "node apply-html-head-contract.mjs colors_and_type.css .preflight/preflight.html --title=TremorGuard --lang=zh --prefix=tg",
+      "exitCode": 0,
+      "generatedElements": [
+        "id=theme-vars",
+        "id=semantic-token-fallback",
+        "@theme inline",
+        "tailwind CDN",
+        "lucide CDN",
+        "html class=light"
+      ],
+      "status": "passed",
+      "prefixMode": "standard"
+    },
+    "sharedProjectShellContract": {
+      "mobileNavigation": {
+        "applies": true,
+        "type": "bottom-tab",
+        "items": [
+          {
+            "key": "today",
+            "label": "今日",
+            "icon": "layout-dashboard"
+          },
+          {
+            "key": "trend",
+            "label": "趋势",
+            "icon": "trending-up"
+          },
+          {
+            "key": "report",
+            "label": "报告",
+            "icon": "file-text"
+          }
+        ],
+        "heightPx": 98,
+        "position": "flow-bottom",
+        "activeState": "primary icon+label color only; geometry stays identical",
+        "structure": {
+          "navTag": "nav",
+          "navClass": "w-full bg-[var(--surface)] border-t border-[var(--border)] flex items-end",
+          "navStyle": "height:98px;padding-bottom:34px;",
+          "innerClass": "w-full max-w-[390px] mx-auto grid grid-cols-3 h-[64px]",
+          "itemTag": "button",
+          "itemClass": "min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full",
+          "iconClass": "w-7 h-7 shrink-0",
+          "labelClass": "text-[12px] leading-none whitespace-nowrap font-semibold",
+          "activeRule": "only color/font-weight/data-active may change; no class changes that affect layout",
+          "markerAttr": "data-mobile-nav=\"global\"",
+          "canonicalHtmlByKey": {
+            "today": "<nav data-mobile-nav=\"global\" class=\"w-full bg-[var(--surface)] border-t border-[var(--border)]\" style=\"height:98px;padding-bottom:34px;\"><div class=\"w-full max-w-[390px] mx-auto grid grid-cols-3\" style=\"height:64px;\"><button data-nav-key=\"today\" data-active=\"true\" data-dom-id=\"nav-today\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--primary);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-bold\">今日</span></button><button data-nav-key=\"trend\" data-dom-id=\"nav-trend\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/><polyline points=\"16 7 22 7 22 13\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">趋势</span></button><button data-nav-key=\"report\" data-dom-id=\"nav-report\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/><line x1=\"8\" y1=\"13\" x2=\"16\" y2=\"13\"/><line x1=\"8\" y1=\"17\" x2=\"16\" y2=\"17\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">报告</span></button></div></nav>",
+            "trend": "<nav data-mobile-nav=\"global\" class=\"w-full bg-[var(--surface)] border-t border-[var(--border)]\" style=\"height:98px;padding-bottom:34px;\"><div class=\"w-full max-w-[390px] mx-auto grid grid-cols-3\" style=\"height:64px;\"><button data-nav-key=\"today\" data-dom-id=\"nav-today\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">今日</span></button><button data-nav-key=\"trend\" data-active=\"true\" data-dom-id=\"nav-trend\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--primary);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/><polyline points=\"16 7 22 7 22 13\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-bold\">趋势</span></button><button data-nav-key=\"report\" data-dom-id=\"nav-report\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/><line x1=\"8\" y1=\"13\" x2=\"16\" y2=\"13\"/><line x1=\"8\" y1=\"17\" x2=\"16\" y2=\"17\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">报告</span></button></div></nav>",
+            "report": "<nav data-mobile-nav=\"global\" class=\"w-full bg-[var(--surface)] border-t border-[var(--border)]\" style=\"height:98px;padding-bottom:34px;\"><div class=\"w-full max-w-[390px] mx-auto grid grid-cols-3\" style=\"height:64px;\"><button data-nav-key=\"today\" data-dom-id=\"nav-today\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">今日</span></button><button data-nav-key=\"trend\" data-dom-id=\"nav-trend\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/><polyline points=\"16 7 22 7 22 13\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">趋势</span></button><button data-nav-key=\"report\" data-active=\"true\" data-dom-id=\"nav-report\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--primary);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/><line x1=\"8\" y1=\"13\" x2=\"16\" y2=\"13\"/><line x1=\"8\" y1=\"17\" x2=\"16\" y2=\"17\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-bold\">报告</span></button></div></nav>"
+          }
+        },
+        "canonicalHtmlByKey": {
+          "today": "<nav data-mobile-nav=\"global\" class=\"w-full bg-[var(--surface)] border-t border-[var(--border)] flex items-end\" style=\"height:64px;padding-bottom:34px;\"><div class=\"w-full max-w-[390px] mx-auto grid grid-cols-3 h-[64px]\"><button data-nav-key=\"today\" data-active=\"true\" data-dom-id=\"nav-today\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--primary);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-bold\">今日</span></button><button data-nav-key=\"trend\" data-dom-id=\"nav-trend\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/><polyline points=\"16 7 22 7 22 13\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">趋势</span></button><button data-nav-key=\"report\" data-dom-id=\"nav-report\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/><line x1=\"8\" y1=\"13\" x2=\"16\" y2=\"13\"/><line x1=\"8\" y1=\"17\" x2=\"16\" y2=\"17\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">报告</span></button></div></nav>",
+          "trend": "<nav data-mobile-nav=\"global\" class=\"w-full bg-[var(--surface)] border-t border-[var(--border)] flex items-end\" style=\"height:64px;padding-bottom:34px;\"><div class=\"w-full max-w-[390px] mx-auto grid grid-cols-3 h-[64px]\"><button data-nav-key=\"today\" data-dom-id=\"nav-today\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">今日</span></button><button data-nav-key=\"trend\" data-active=\"true\" data-dom-id=\"nav-trend\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--primary);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/><polyline points=\"16 7 22 7 22 13\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-bold\">趋势</span></button><button data-nav-key=\"report\" data-dom-id=\"nav-report\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/><line x1=\"8\" y1=\"13\" x2=\"16\" y2=\"13\"/><line x1=\"8\" y1=\"17\" x2=\"16\" y2=\"17\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">报告</span></button></div></nav>",
+          "report": "<nav data-mobile-nav=\"global\" class=\"w-full bg-[var(--surface)] border-t border-[var(--border)] flex items-end\" style=\"height:64px;padding-bottom:34px;\"><div class=\"w-full max-w-[390px] mx-auto grid grid-cols-3 h-[64px]\"><button data-nav-key=\"today\" data-dom-id=\"nav-today\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">今日</span></button><button data-nav-key=\"trend\" data-dom-id=\"nav-trend\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--muted);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/><polyline points=\"16 7 22 7 22 13\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-semibold\">趋势</span></button><button data-nav-key=\"report\" data-active=\"true\" data-dom-id=\"nav-report\" class=\"min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full\" style=\"color:var(--primary);\"><svg class=\"w-7 h-7 shrink-0\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/><line x1=\"8\" y1=\"13\" x2=\"16\" y2=\"13\"/><line x1=\"8\" y1=\"17\" x2=\"16\" y2=\"17\"/></svg><span class=\"text-[12px] leading-none whitespace-nowrap font-bold\">报告</span></button></div></nav>",
+          "none": ""
+        }
+      },
+      "radiusScale": {
+        "sm": 6,
+        "md": 8,
+        "lg": 12,
+        "pill": 999
+      },
+      "surfaceDepthModel": "Cards use --shadow-card (alpha 0.08). Floating layers (modals, sheets) use --shadow-modal (alpha 0.15). Static surfaces are border-led.",
+      "typographySystem": {
+        "fontFamily": "Outfit",
+        "monoFamily": "Geist Mono",
+        "bodyBaseline": "17px",
+        "lineHeight": "1.7"
+      }
+    },
+    "generationTree": {
+      "root": {
+        "nodeId": "gen-project-shell",
+        "kind": "project-shell",
+        "output": "colors_and_type.css",
+        "status": "generated",
+        "children": [
+          {
+            "nodeId": "gen-page-p01-dashboard",
+            "kind": "page-leaf",
+            "output": "pages/p01-dashboard.html",
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p02-trend",
+            "kind": "page-leaf",
+            "output": "pages/p02-trend.html",
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p05-report-list",
+            "kind": "page-leaf",
+            "output": "pages/p05-report-list.html",
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p03-medication",
+            "kind": "page-leaf",
+            "output": "pages/p03-medication.html",
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p14-alert-detail",
+            "kind": "page-leaf",
+            "output": "pages/p14-alert-detail.html",
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p13-onboarding",
+            "kind": "page-leaf",
+            "output": "pages/p13-onboarding.html",
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p16-emergency",
+            "kind": "page-leaf",
+            "output": "pages/p16-emergency.html",
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p01-dashboard-desktop",
+            "kind": "page-leaf",
+            "output": "pages/p01-dashboard-desktop.html",
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p02-trend-desktop",
+            "kind": "page-leaf",
+            "output": "pages/p02-trend-desktop.html",
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p05-report-list-desktop",
+            "kind": "page-leaf",
+            "output": "pages/p05-report-list-desktop.html",
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p03-medication-desktop",
+            "kind": "page-leaf",
+            "output": "pages/p03-medication-desktop.html",
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p14-alert-detail-desktop",
+            "kind": "page-leaf",
+            "output": "pages/p14-alert-detail-desktop.html",
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p13-onboarding-desktop",
+            "kind": "page-leaf",
+            "output": "pages/p13-onboarding-desktop.html",
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-p16-emergency-desktop",
+            "kind": "page-leaf",
+            "output": "pages/p16-emergency-desktop.html",
+            "status": "generated",
+            "children": []
+          }
+        ]
+      }
+    },
+    "dispatchPreflightManifest": [
+      {
+        "nodeId": "page-p01-dashboard",
+        "htmlSrc": "pages/p01-dashboard.html",
+        "allowedWritePaths": [
+          "pages/p01-dashboard.html",
+          "assets/"
+        ],
+        "status": "dispatched",
+        "mobileNavigation": {
+          "required": true,
+          "appliesToThisPage": true,
+          "activeKey": "today",
+          "contractPresent": true,
+          "structurePresent": true,
+          "canonicalHtmlIncluded": true,
+          "canonicalHtmlSource": "sharedProjectShellContract.mobileNavigation.structure.canonicalHtmlByKey.today",
+          "structureHash": "2fc4e9e802040b868c6ee2bae9c3cc9f8319dba8334b890c378006d06efe3702",
+          "missingFields": []
+        }
+      },
+      {
+        "nodeId": "page-p02-trend",
+        "htmlSrc": "pages/p02-trend.html",
+        "allowedWritePaths": [
+          "pages/p02-trend.html",
+          "assets/"
+        ],
+        "status": "dispatched",
+        "mobileNavigation": {
+          "required": true,
+          "appliesToThisPage": true,
+          "activeKey": "trend",
+          "contractPresent": true,
+          "structurePresent": true,
+          "canonicalHtmlIncluded": true,
+          "canonicalHtmlSource": "sharedProjectShellContract.mobileNavigation.structure.canonicalHtmlByKey.trend",
+          "structureHash": "2fc4e9e802040b868c6ee2bae9c3cc9f8319dba8334b890c378006d06efe3702",
+          "missingFields": []
+        }
+      },
+      {
+        "nodeId": "page-p05-report-list",
+        "htmlSrc": "pages/p05-report-list.html",
+        "allowedWritePaths": [
+          "pages/p05-report-list.html",
+          "assets/"
+        ],
+        "status": "dispatched",
+        "mobileNavigation": {
+          "required": true,
+          "appliesToThisPage": true,
+          "activeKey": "report",
+          "contractPresent": true,
+          "structurePresent": true,
+          "canonicalHtmlIncluded": true,
+          "canonicalHtmlSource": "sharedProjectShellContract.mobileNavigation.structure.canonicalHtmlByKey.report",
+          "structureHash": "2fc4e9e802040b868c6ee2bae9c3cc9f8319dba8334b890c378006d06efe3702",
+          "missingFields": []
+        }
+      },
+      {
+        "nodeId": "page-p03-medication",
+        "htmlSrc": "pages/p03-medication.html",
+        "allowedWritePaths": [
+          "pages/p03-medication.html",
+          "assets/"
+        ],
+        "status": "dispatched",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "push/detail page, no bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        }
+      },
+      {
+        "nodeId": "page-p14-alert-detail",
+        "htmlSrc": "pages/p14-alert-detail.html",
+        "allowedWritePaths": [
+          "pages/p14-alert-detail.html",
+          "assets/"
+        ],
+        "status": "dispatched",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "push/detail page, no bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        }
+      },
+      {
+        "nodeId": "page-p13-onboarding",
+        "htmlSrc": "pages/p13-onboarding.html",
+        "allowedWritePaths": [
+          "pages/p13-onboarding.html",
+          "assets/"
+        ],
+        "status": "dispatched",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "push/detail page, no bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        }
+      },
+      {
+        "nodeId": "page-p16-emergency",
+        "htmlSrc": "pages/p16-emergency.html",
+        "allowedWritePaths": [
+          "pages/p16-emergency.html",
+          "assets/"
+        ],
+        "status": "dispatched",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "push/detail page, no bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        }
+      },
+      {
+        "nodeId": "page-p01-dashboard-desktop",
+        "htmlSrc": "pages/p01-dashboard-desktop.html",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "desktop page, no mobile bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "allowedWritePaths": [
+          "pages/p01-dashboard-desktop.html",
+          "assets/"
+        ],
+        "status": "completed",
+        "sourcePageId": "page-p01-dashboard",
+        "sourceHtmlSrc": "pages/p01-dashboard.html",
+        "derivationType": "desktop-version",
+        "inPlaceEditAllowed": false
+      },
+      {
+        "nodeId": "page-p02-trend-desktop",
+        "htmlSrc": "pages/p02-trend-desktop.html",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "desktop page, no mobile bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "allowedWritePaths": [
+          "pages/p02-trend-desktop.html",
+          "assets/"
+        ],
+        "status": "completed",
+        "sourcePageId": "page-p02-trend",
+        "sourceHtmlSrc": "pages/p02-trend.html",
+        "derivationType": "desktop-version",
+        "inPlaceEditAllowed": false
+      },
+      {
+        "nodeId": "page-p05-report-list-desktop",
+        "htmlSrc": "pages/p05-report-list-desktop.html",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "desktop page, no mobile bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "allowedWritePaths": [
+          "pages/p05-report-list-desktop.html",
+          "assets/"
+        ],
+        "status": "completed",
+        "sourcePageId": "page-p05-report-list",
+        "sourceHtmlSrc": "pages/p05-report-list.html",
+        "derivationType": "desktop-version",
+        "inPlaceEditAllowed": false
+      },
+      {
+        "nodeId": "page-p03-medication-desktop",
+        "htmlSrc": "pages/p03-medication-desktop.html",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "desktop page, no mobile bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "allowedWritePaths": [
+          "pages/p03-medication-desktop.html",
+          "assets/"
+        ],
+        "status": "completed",
+        "sourcePageId": "page-p03-medication",
+        "sourceHtmlSrc": "pages/p03-medication.html",
+        "derivationType": "desktop-version",
+        "inPlaceEditAllowed": false
+      },
+      {
+        "nodeId": "page-p14-alert-detail-desktop",
+        "htmlSrc": "pages/p14-alert-detail-desktop.html",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "desktop page, no mobile bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "allowedWritePaths": [
+          "pages/p14-alert-detail-desktop.html",
+          "assets/"
+        ],
+        "status": "completed",
+        "sourcePageId": "page-p14-alert-detail",
+        "sourceHtmlSrc": "pages/p14-alert-detail.html",
+        "derivationType": "desktop-version",
+        "inPlaceEditAllowed": false
+      },
+      {
+        "nodeId": "page-p13-onboarding-desktop",
+        "htmlSrc": "pages/p13-onboarding-desktop.html",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "desktop page, no mobile bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "allowedWritePaths": [
+          "pages/p13-onboarding-desktop.html",
+          "assets/"
+        ],
+        "status": "completed",
+        "sourcePageId": "page-p13-onboarding",
+        "sourceHtmlSrc": "pages/p13-onboarding.html",
+        "derivationType": "desktop-version",
+        "inPlaceEditAllowed": false
+      },
+      {
+        "nodeId": "page-p16-emergency-desktop",
+        "htmlSrc": "pages/p16-emergency-desktop.html",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "desktop page, no mobile bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "allowedWritePaths": [
+          "pages/p16-emergency-desktop.html",
+          "assets/"
+        ],
+        "status": "completed",
+        "sourcePageId": "page-p16-emergency",
+        "sourceHtmlSrc": "pages/p16-emergency.html",
+        "derivationType": "desktop-version",
+        "inPlaceEditAllowed": false
+      },
+      {
+        "nodeId": "page-p17-user-profile",
+        "htmlSrc": "pages/p17-user-profile.html",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "push/detail page, no bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "allowedWritePaths": [
+          "pages/p17-user-profile.html",
+          "assets/"
+        ],
+        "status": "dispatched"
+      },
+      {
+        "nodeId": "page-p18-unauth",
+        "htmlSrc": "pages/p18-unauth.html",
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "unauthenticated screen, no bottom tab navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "allowedWritePaths": [
+          "pages/p18-unauth.html",
+          "assets/"
+        ],
+        "status": "dispatched"
+      }
+    ],
+    "expectedDispatches": [
+      {
+        "nodeId": "page-p01-dashboard",
+        "pageId": "page-p01-dashboard",
+        "targetPageId": "page-p01-dashboard",
+        "htmlSrc": "pages/p01-dashboard.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p01-dashboard.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "a9f889c746762ead",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-24T10:45:49.864Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p02-trend",
+        "pageId": "page-p02-trend",
+        "targetPageId": "page-p02-trend",
+        "htmlSrc": "pages/p02-trend.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p02-trend.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "870788f677743454",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-24T10:45:50.022Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p05-report-list",
+        "pageId": "page-p05-report-list",
+        "targetPageId": "page-p05-report-list",
+        "htmlSrc": "pages/p05-report-list.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p05-report-list.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "2a86fe556cd69902",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-24T10:45:50.177Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p03-medication",
+        "pageId": "page-p03-medication",
+        "targetPageId": "page-p03-medication",
+        "htmlSrc": "pages/p03-medication.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p03-medication.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "f9c4ad1135994136",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-24T10:45:50.327Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p14-alert-detail",
+        "pageId": "page-p14-alert-detail",
+        "targetPageId": "page-p14-alert-detail",
+        "htmlSrc": "pages/p14-alert-detail.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p14-alert-detail.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "aee0e65803b44b29",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-24T10:45:50.484Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p13-onboarding",
+        "pageId": "page-p13-onboarding",
+        "targetPageId": "page-p13-onboarding",
+        "htmlSrc": "pages/p13-onboarding.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p13-onboarding.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "eca82a739e0ed9e0",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-24T10:45:50.645Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p16-emergency",
+        "pageId": "page-p16-emergency",
+        "targetPageId": "page-p16-emergency",
+        "htmlSrc": "pages/p16-emergency.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p16-emergency.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "85e181a680dcb48e",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-24T10:45:50.795Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p01-dashboard-desktop",
+        "pageId": "page-p01-dashboard-desktop",
+        "targetPageId": "page-p01-dashboard-desktop",
+        "htmlSrc": "pages/p01-dashboard-desktop.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p01-dashboard-desktop.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "3abedcfbbd96f",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-25T07:44:14.076Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p02-trend-desktop",
+        "pageId": "page-p02-trend-desktop",
+        "targetPageId": "page-p02-trend-desktop",
+        "htmlSrc": "pages/p02-trend-desktop.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p02-trend-desktop.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "308d27c4b4744",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-25T07:44:14.077Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p05-report-list-desktop",
+        "pageId": "page-p05-report-list-desktop",
+        "targetPageId": "page-p05-report-list-desktop",
+        "htmlSrc": "pages/p05-report-list-desktop.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p05-report-list-desktop.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "96ed6139bd3e2",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-25T07:44:14.078Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p03-medication-desktop",
+        "pageId": "page-p03-medication-desktop",
+        "targetPageId": "page-p03-medication-desktop",
+        "htmlSrc": "pages/p03-medication-desktop.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p03-medication-desktop.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "cec026d140667",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-25T07:44:14.078Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p14-alert-detail-desktop",
+        "pageId": "page-p14-alert-detail-desktop",
+        "targetPageId": "page-p14-alert-detail-desktop",
+        "htmlSrc": "pages/p14-alert-detail-desktop.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p14-alert-detail-desktop.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "799bf0436d371",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-25T07:44:14.078Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p13-onboarding-desktop",
+        "pageId": "page-p13-onboarding-desktop",
+        "targetPageId": "page-p13-onboarding-desktop",
+        "htmlSrc": "pages/p13-onboarding-desktop.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p13-onboarding-desktop.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "49bad3fdc2bdb",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-25T07:44:14.078Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p16-emergency-desktop",
+        "pageId": "page-p16-emergency-desktop",
+        "targetPageId": "page-p16-emergency-desktop",
+        "htmlSrc": "pages/p16-emergency-desktop.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p16-emergency-desktop.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "f3224b8606e07",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-25T07:44:14.078Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p17-user-profile",
+        "pageId": "page-p17-user-profile",
+        "targetPageId": "page-p17-user-profile",
+        "htmlSrc": "pages/p17-user-profile.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p17-user-profile.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "p17profile9f3e2",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-25T09:25:08.990Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-p18-unauth",
+        "pageId": "page-p18-unauth",
+        "targetPageId": "page-p18-unauth",
+        "htmlSrc": "pages/p18-unauth.html",
+        "status": "completed",
+        "changedFiles": [
+          "pages/p18-unauth.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "p18unauth7d2c1",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-29T06:37:05.455Z",
+        "source": "record-dispatch-completion.mjs"
+      }
+    ],
+    "validationHistory": [],
+    "validationRepairLedger": [],
+    "styleContinuityAnchors": {
+      "colorSystem": "teal primary #0d9488, semantic status colors (success green, warning amber, danger red, accent orange, secondary blue)",
+      "typographySystem": "Outfit sans-serif + Geist Mono for data; 17px body baseline",
+      "radiusSystem": "6/8/12/999 pill",
+      "shadowSystem": "card 0.08 alpha, elevated 0.10, modal 0.15",
+      "touchTargetMin": "56px",
+      "iconLanguage": "inline SVG (Lucide-style stroke icons), 24-28px for nav, 20px for inline"
+    },
+    "mainAgentPostDispatchMutations": [],
+    "currentRequestType": "add-new-pages",
+    "currentRequestQuickPath": "A"
+  },
+  "designSource": {
+    "operatingMode": "free-explore",
+    "cssFilePath": "colors_and_type.css",
+    "brandPrefix": "tg",
+    "styleConstraints": {
+      "radiusMax": 12,
+      "staticShadowAlphaMax": 0.08
+    }
+  },
+  "pages": [
+    {
+      "nodeId": "page-p01-dashboard",
+      "title": "今日仪表盘",
+      "htmlSrc": "pages/p01-dashboard.html",
+      "pageIndex": 1,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "today",
+      "viewportMode": "document-scroll",
+      "visualNorthStar": "Calm clinical dashboard. Large tremor amplitude number as hero, 24h mini sparkline, medication timeline with color-coded nodes, conditional alert + AI insight cards. Green ON-state theme. Progressive disclosure: core info ≤5 items per screen.",
+      "compositionPattern": "vertical-stack: status bar → tremor status hero card → medication timeline → conditional alert → AI insight → bottom tab spacer",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "56px touch targets, 12px card radius, --shadow-card"
+      ],
+      "componentPlan": [
+        "btn-primary",
+        "btn-secondary",
+        "card",
+        "card-pressable",
+        "badge-on",
+        "badge-off",
+        "badge-danger",
+        "dot-success",
+        "dot-danger",
+        "skeleton",
+        "spinner-primary",
+        "bottom-tab-bar"
+      ],
+      "chartsRequired": [
+        "24h mini tremor sparkline (inline SVG)",
+        "medication timeline nodes"
+      ],
+      "imagePlan": [],
+      "qualityRisks": [
+        "chart overflow on narrow screens",
+        "information density for elderly users"
+      ],
+      "mobileNavigationApplies": true
+    },
+    {
+      "nodeId": "page-p02-trend",
+      "title": "趋势分析",
+      "htmlSrc": "pages/p02-trend.html",
+      "pageIndex": 2,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "trend",
+      "viewportMode": "document-scroll",
+      "visualNorthStar": "Data-driven trend page. Large amplitude line chart with ON/OFF color bands and medication markers. 2x3 statistics grid. Annotated event list. Segmented time range selector at top.",
+      "compositionPattern": "vertical-stack: segmented control → main chart (50%) → stats grid 2x3 → event list → bottom tab spacer",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "56px touch targets, 12px card radius, --shadow-card"
+      ],
+      "componentPlan": [
+        "card",
+        "badge-danger",
+        "badge-accent",
+        "badge-info",
+        "dot-danger",
+        "bottom-tab-bar",
+        "segmented-control"
+      ],
+      "chartsRequired": [
+        "amplitude line chart with ON/OFF bands (inline SVG)",
+        "medication markers as vertical dashed lines"
+      ],
+      "imagePlan": [],
+      "qualityRisks": [
+        "chart rendering fidelity",
+        "stats grid overflow"
+      ],
+      "mobileNavigationApplies": true
+    },
+    {
+      "nodeId": "page-p05-report-list",
+      "title": "报告列表",
+      "htmlSrc": "pages/p05-report-list.html",
+      "pageIndex": 3,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "report",
+      "viewportMode": "document-scroll",
+      "visualNorthStar": "Clean report list with type-coded cards. Horizontal filter chips. Each card has type icon, title, date range, summary metrics, view/share actions. Generating banner at top.",
+      "compositionPattern": "vertical-stack: filter chips → generating banner → report card list → bottom tab spacer",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "56px touch targets, 12px card radius, --shadow-card"
+      ],
+      "componentPlan": [
+        "card",
+        "card-pressable",
+        "badge-info",
+        "badge-on",
+        "badge-accent",
+        "badge-danger",
+        "bottom-tab-bar",
+        "filter-chip"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "card list density",
+        "filter chip horizontal scroll"
+      ],
+      "mobileNavigationApplies": true
+    },
+    {
+      "nodeId": "page-p03-medication",
+      "title": "用药详情",
+      "htmlSrc": "pages/p03-medication.html",
+      "pageIndex": 4,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "viewportMode": "document-scroll",
+      "visualNorthStar": "Medication detail with vertical timeline, response curve chart, compliance donut + bar chart. Push page with back nav bar.",
+      "compositionPattern": "vertical-stack: nav bar → regimen card → today timeline → response curve → compliance stats → change history",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "56px touch targets, 12px card radius, --shadow-card"
+      ],
+      "componentPlan": [
+        "btn-primary",
+        "btn-secondary",
+        "card",
+        "badge-on",
+        "badge-off",
+        "badge-info",
+        "dot-success",
+        "dot-primary",
+        "dot-danger",
+        "back-nav-bar"
+      ],
+      "chartsRequired": [
+        "120min response curve (inline SVG)",
+        "7-day compliance donut (inline SVG)",
+        "30-day trend bar chart (inline SVG)"
+      ],
+      "imagePlan": [],
+      "qualityRisks": [
+        "chart rendering fidelity",
+        "timeline vertical spacing"
+      ],
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "push/detail page, no bottom tab navigation"
+    },
+    {
+      "nodeId": "page-p14-alert-detail",
+      "title": "警报详情",
+      "htmlSrc": "pages/p14-alert-detail.html",
+      "pageIndex": 5,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "viewportMode": "document-scroll",
+      "visualNorthStar": "Alert event detail with severity color bar, full tremor curve with threshold line, trigger conditions, intervention timeline, bottom action bar. Red-tinted background for active alerts.",
+      "compositionPattern": "vertical-stack: nav bar → event header with severity bar → tremor curve → trigger card → intervention timeline → bottom action bar",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "56px touch targets, 12px card radius, --shadow-card"
+      ],
+      "componentPlan": [
+        "btn-primary",
+        "btn-secondary",
+        "card",
+        "badge-danger",
+        "dot-danger",
+        "back-nav-bar"
+      ],
+      "chartsRequired": [
+        "event tremor curve with threshold dashed line (inline SVG)"
+      ],
+      "imagePlan": [],
+      "qualityRisks": [
+        "red tint background readability",
+        "chart threshold line rendering"
+      ],
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "push/detail page, no bottom tab navigation"
+    },
+    {
+      "nodeId": "page-p13-onboarding",
+      "title": "首次配置引导",
+      "htmlSrc": "pages/p13-onboarding.html",
+      "pageIndex": 6,
+      "pageType": "task-driven",
+      "mobileNavigationActiveKey": "none",
+      "viewportMode": "document-scroll",
+      "visualNorthStar": "Step-by-step onboarding flow. Progress indicator at top. Welcome screen with logo, device binding with QR scan frame, medication regimen input, caregiver invite, calibration countdown. Calm, guided, large touch targets.",
+      "compositionPattern": "vertical-stack: progress indicator → step content (welcome/binding/regimen/caregiver/calibration/complete) → bottom nav buttons",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "56px touch targets, 12px card radius, --shadow-card"
+      ],
+      "componentPlan": [
+        "btn-primary",
+        "btn-secondary",
+        "card",
+        "input",
+        "badge-info",
+        "progress-indicator",
+        "qr-scan-frame"
+      ],
+      "chartsRequired": [
+        "calibration countdown ring (inline SVG)"
+      ],
+      "imagePlan": [],
+      "qualityRisks": [
+        "multi-step flow in single page",
+        "QR scan frame visual"
+      ],
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "push/detail page, no bottom tab navigation"
+    },
+    {
+      "nodeId": "page-p16-emergency",
+      "title": "紧急模式",
+      "htmlSrc": "pages/p16-emergency.html",
+      "pageIndex": 7,
+      "pageType": "task-driven",
+      "mobileNavigationActiveKey": "none",
+      "viewportMode": "document-scroll",
+      "visualNorthStar": "Full-screen emergency overlay. Pure red background, white text. Large tremor number, threshold comparison, duration. Two large action buttons (I took medication / Need help). Caregiver notification status. Emergency contact quick-dial. Simplified real-time curve at bottom.",
+      "compositionPattern": "vertical-stack: status display (40%) → action buttons → notification status → emergency contacts → real-time curve",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "56px touch targets, 12px card radius, --shadow-card"
+      ],
+      "componentPlan": [
+        "btn-primary",
+        "btn-secondary",
+        "badge-danger",
+        "dot-danger"
+      ],
+      "chartsRequired": [
+        "simplified real-time tremor curve with threshold line (inline SVG)"
+      ],
+      "imagePlan": [],
+      "qualityRisks": [
+        "red full-screen background contrast",
+        "large button sizing",
+        "emergency urgency visual"
+      ],
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "push/detail page, no bottom tab navigation"
+    },
+    {
+      "nodeId": "page-p01-dashboard-desktop",
+      "title": "今日仪表盘 - 桌面版",
+      "htmlSrc": "pages/p01-dashboard-desktop.html",
+      "pageIndex": 8,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "desktop page, no mobile bottom tab navigation",
+      "viewportMode": "document-scroll",
+      "deviceType": "desktop",
+      "visualNorthStar": "Desktop dashboard with left sidebar navigation. 2-column grid: left col has tremor status hero + medication timeline, right col has AI insight + alert + quick stats. Top bar with title and date.",
+      "compositionPattern": "sidebar-left + top-bar + 2col-grid-main",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "desktop sidebar navigation 240px, multi-column grid",
+        "responsive breakpoints at 1024px and 768px"
+      ],
+      "componentPlan": [
+        "sidebar-nav",
+        "card",
+        "btn-primary",
+        "btn-secondary",
+        "badge-on",
+        "badge-off",
+        "badge-danger"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "desktop layout responsive overflow",
+        "sidebar navigation interaction"
+      ],
+      "sourcePageId": "page-p01-dashboard",
+      "sourceHtmlSrc": "pages/p01-dashboard.html",
+      "derivationType": "desktop-version",
+      "inPlaceEditAllowed": false
+    },
+    {
+      "nodeId": "page-p02-trend-desktop",
+      "title": "趋势分析 - 桌面版",
+      "htmlSrc": "pages/p02-trend-desktop.html",
+      "pageIndex": 9,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "desktop page, no mobile bottom tab navigation",
+      "viewportMode": "document-scroll",
+      "deviceType": "desktop",
+      "visualNorthStar": "Desktop trend page with sidebar. Full-width amplitude chart at top, 3x2 stats grid below, annotated event list at bottom. Segmented time range selector.",
+      "compositionPattern": "sidebar-left + top-bar + full-width-chart + stats-grid",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "desktop sidebar navigation 240px, multi-column grid",
+        "responsive breakpoints at 1024px and 768px"
+      ],
+      "componentPlan": [
+        "sidebar-nav",
+        "card",
+        "btn-primary",
+        "btn-secondary",
+        "badge-on",
+        "badge-off",
+        "badge-danger"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "desktop layout responsive overflow",
+        "sidebar navigation interaction"
+      ],
+      "sourcePageId": "page-p02-trend",
+      "sourceHtmlSrc": "pages/p02-trend.html",
+      "derivationType": "desktop-version",
+      "inPlaceEditAllowed": false
+    },
+    {
+      "nodeId": "page-p05-report-list-desktop",
+      "title": "报告列表 - 桌面版",
+      "htmlSrc": "pages/p05-report-list-desktop.html",
+      "pageIndex": 10,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "desktop page, no mobile bottom tab navigation",
+      "viewportMode": "document-scroll",
+      "deviceType": "desktop",
+      "visualNorthStar": "Desktop report list with sidebar. Filter chips at top, 2-column report card grid, generating banner. Cards have type icon, title, date range, metrics, actions.",
+      "compositionPattern": "sidebar-left + top-bar + filter-chips + 2col-card-grid",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "desktop sidebar navigation 240px, multi-column grid",
+        "responsive breakpoints at 1024px and 768px"
+      ],
+      "componentPlan": [
+        "sidebar-nav",
+        "card",
+        "btn-primary",
+        "btn-secondary",
+        "badge-on",
+        "badge-off",
+        "badge-danger"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "desktop layout responsive overflow",
+        "sidebar navigation interaction"
+      ],
+      "sourcePageId": "page-p05-report-list",
+      "sourceHtmlSrc": "pages/p05-report-list.html",
+      "derivationType": "desktop-version",
+      "inPlaceEditAllowed": false
+    },
+    {
+      "nodeId": "page-p03-medication-desktop",
+      "title": "用药详情 - 桌面版",
+      "htmlSrc": "pages/p03-medication-desktop.html",
+      "pageIndex": 11,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "desktop page, no mobile bottom tab navigation",
+      "viewportMode": "document-scroll",
+      "deviceType": "desktop",
+      "visualNorthStar": "Desktop medication detail with sidebar. 2-column: left has regimen card + today timeline, right has response curve + compliance stats. Back nav in top bar.",
+      "compositionPattern": "sidebar-left + top-bar + 2col-split-content",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "desktop sidebar navigation 240px, multi-column grid",
+        "responsive breakpoints at 1024px and 768px"
+      ],
+      "componentPlan": [
+        "sidebar-nav",
+        "card",
+        "btn-primary",
+        "btn-secondary",
+        "badge-on",
+        "badge-off",
+        "badge-danger"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "desktop layout responsive overflow",
+        "sidebar navigation interaction"
+      ],
+      "sourcePageId": "page-p03-medication",
+      "sourceHtmlSrc": "pages/p03-medication.html",
+      "derivationType": "desktop-version",
+      "inPlaceEditAllowed": false
+    },
+    {
+      "nodeId": "page-p14-alert-detail-desktop",
+      "title": "警报详情 - 桌面版",
+      "htmlSrc": "pages/p14-alert-detail-desktop.html",
+      "pageIndex": 12,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "desktop page, no mobile bottom tab navigation",
+      "viewportMode": "document-scroll",
+      "deviceType": "desktop",
+      "visualNorthStar": "Desktop alert detail with sidebar. Alert header with severity bar, 2-column: left has tremor curve + trigger card, right has intervention timeline. Bottom action bar.",
+      "compositionPattern": "sidebar-left + top-bar + alert-header + 2col-content + action-bar",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "desktop sidebar navigation 240px, multi-column grid",
+        "responsive breakpoints at 1024px and 768px"
+      ],
+      "componentPlan": [
+        "sidebar-nav",
+        "card",
+        "btn-primary",
+        "btn-secondary",
+        "badge-on",
+        "badge-off",
+        "badge-danger"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "desktop layout responsive overflow",
+        "sidebar navigation interaction"
+      ],
+      "sourcePageId": "page-p14-alert-detail",
+      "sourceHtmlSrc": "pages/p14-alert-detail.html",
+      "derivationType": "desktop-version",
+      "inPlaceEditAllowed": false
+    },
+    {
+      "nodeId": "page-p13-onboarding-desktop",
+      "title": "首次配置引导 - 桌面版",
+      "htmlSrc": "pages/p13-onboarding-desktop.html",
+      "pageIndex": 13,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "desktop page, no mobile bottom tab navigation",
+      "viewportMode": "document-scroll",
+      "deviceType": "desktop",
+      "visualNorthStar": "Desktop onboarding with centered card layout (max-width 640px). Progress indicator, step content, bottom nav buttons. No sidebar - focused task flow.",
+      "compositionPattern": "centered-card-layout + progress + step-content + nav-buttons",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "desktop sidebar navigation 240px, multi-column grid",
+        "responsive breakpoints at 1024px and 768px"
+      ],
+      "componentPlan": [
+        "sidebar-nav",
+        "card",
+        "btn-primary",
+        "btn-secondary",
+        "badge-on",
+        "badge-off",
+        "badge-danger"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "desktop layout responsive overflow",
+        "sidebar navigation interaction"
+      ],
+      "sourcePageId": "page-p13-onboarding",
+      "sourceHtmlSrc": "pages/p13-onboarding.html",
+      "derivationType": "desktop-version",
+      "inPlaceEditAllowed": false
+    },
+    {
+      "nodeId": "page-p16-emergency-desktop",
+      "title": "紧急模式 - 桌面版",
+      "htmlSrc": "pages/p16-emergency-desktop.html",
+      "pageIndex": 14,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "desktop page, no mobile bottom tab navigation",
+      "viewportMode": "document-scroll",
+      "deviceType": "desktop",
+      "visualNorthStar": "Desktop emergency overlay. Full-screen red background, centered content. Large tremor number, threshold comparison, duration. Two large action buttons. Emergency contacts. Simplified curve.",
+      "compositionPattern": "full-screen-overlay + centered-status + action-buttons + contacts + curve",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "desktop sidebar navigation 240px, multi-column grid",
+        "responsive breakpoints at 1024px and 768px"
+      ],
+      "componentPlan": [
+        "sidebar-nav",
+        "card",
+        "btn-primary",
+        "btn-secondary",
+        "badge-on",
+        "badge-off",
+        "badge-danger"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "desktop layout responsive overflow",
+        "sidebar navigation interaction"
+      ],
+      "sourcePageId": "page-p16-emergency",
+      "sourceHtmlSrc": "pages/p16-emergency.html",
+      "derivationType": "desktop-version",
+      "inPlaceEditAllowed": false
+    },
+    {
+      "nodeId": "page-p17-user-profile",
+      "title": "用户主页",
+      "htmlSrc": "pages/p17-user-profile.html",
+      "pageIndex": 15,
+      "pageType": "information-dense",
+      "mobileNavigationActiveKey": "none",
+      "viewportMode": "document-scroll",
+      "visualNorthStar": "Personal center page for Parkinson's patient. Back nav bar at top. Profile header card with avatar initials, name, patient ID, age, diagnosis info. Health summary card with disease duration, current Hoehn-Yahr stage, recent tremor score, ON/OFF ratio. Device status card with wristband model, binding status, battery, last sync. Care team card with caregiver and neurologist info. Settings list with notification, privacy, data export, help, about entries. Logout button at bottom.",
+      "compositionPattern": "vertical-stack: back-nav-bar → profile-header-card → health-summary-card → device-status-card → care-team-card → settings-list → logout-button",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "56px touch targets, 12px card radius, --shadow-card"
+      ],
+      "componentPlan": [
+        "card",
+        "card-pressable",
+        "btn-secondary",
+        "badge-on",
+        "badge-off",
+        "badge-info",
+        "dot-success",
+        "dot-warning",
+        "back-nav-bar"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "information density for elderly users",
+        "settings list touch target spacing"
+      ],
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "push/detail page, no bottom tab navigation"
+    },
+    {
+      "nodeId": "page-p18-unauth",
+      "title": "未登录",
+      "htmlSrc": "pages/p18-unauth.html",
+      "pageIndex": 16,
+      "pageType": "task-driven",
+      "mobileNavigationActiveKey": "none",
+      "viewportMode": "document-scroll",
+      "visualNorthStar": "Unauthenticated access screen. Full-screen centered layout. App logo and brand name at top. Lock icon with warning tint. Message explaining session expired or not logged in. Two action buttons: login (primary) and register (secondary). Trust indicators at bottom: data security, clinical certification, privacy compliance.",
+      "compositionPattern": "vertical-center: brand-header → lock-icon-warning → message-block → login-button → register-button → trust-indicators",
+      "continuityAnchors": [
+        "teal primary #0d9488 with semantic status colors",
+        "Outfit 17px body + Geist Mono data",
+        "56px touch targets, 12px card radius, --shadow-card"
+      ],
+      "componentPlan": [
+        "btn-primary",
+        "btn-secondary",
+        "card",
+        "badge-info",
+        "dot-success"
+      ],
+      "chartsRequired": [],
+      "imagePlan": [],
+      "qualityRisks": [
+        "empty-state visual balance for elderly users",
+        "button touch target sizing"
+      ],
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "unauthenticated screen, no bottom tab navigation"
+    }
+  ],
+  "assets": []
+}

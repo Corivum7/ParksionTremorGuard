@@ -1,0 +1,30 @@
+.iconButton {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: none;
+  color: var(--tg-ink-2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background var(--ease-fast), color var(--ease-fast);
+}
+
+.iconButton:hover {
+  background: var(--tg-surface-2);
+  color: var(--tg-ink);
+}
+
+.notifDot {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--tg-danger);
+  border: 2px solid var(--tg-surface);
+}

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>趋势分析 · TremorGuard</title>
+    <style id="theme-vars">
+/* ============================================================
+   TremorGuard Design System — colors_and_type.css
+   Parkinson's Tremor Monitoring Platform
+   WCAG 2.1 AA · 56px touch targets · 17px body baseline
+   ============================================================ */
+
+/* ---- Font Imports ---- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+/* ============================================================
+   1. SEMANTIC ALIASES (brand prefix: tg)
+   Required by apply-html-head-contract.mjs
+   ============================================================ */
+:root {
+  /* --- Core palette (user-specified exact values) --- */
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #ccfbf1;
+
+  --secondary: #0369a1;
+  --secondary-light: #e0f2fe;
+
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --success: #16a34a;
+  --success-light: #dcfce7;
+  --accent: #c2410c;
+  --accent-light: #fed7aa;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+  --ink: #0f172a;
+  --ink2: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  /* --- Semantic aliases (tg prefix) --- */
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-primary: var(--primary);
+  --tg-primary-foreground: #ffffff;
+  --tg-secondary: var(--secondary);
+  --tg-secondary-foreground: #ffffff;
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-accent: var(--accent);
+  --tg-accent-foreground: #ffffff;
+  --tg-destructive: var(--danger);
+  --tg-destructive-foreground: #ffffff;
+  --tg-success: var(--success);
+  --tg-success-foreground: #ffffff;
+  --tg-warning: var(--warning);
+  --tg-warning-foreground: #ffffff;
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+  --tg-ring: var(--primary);
+
+  /* --- Radius scale --- */
+  --tg-radius-small: 6px;
+  --tg-radius-medium: 8px;
+  --tg-radius-large: 12px;
+  --tg-radius-full: 9999px;
+
+  /* --- Typography tokens --- */
+  --tg-font: 'Outfit', system-ui, -apple-system, sans-serif;
+  --tg-font-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+
+  --tg-text-display: 32px;
+  --tg-text-h1: 24px;
+  --tg-text-h2: 20px;
+  --tg-text-h3: 18px;
+  --tg-text-body-lg: 17px;
+  --tg-text-body: 16px;
+  --tg-text-caption: 14px;
+  --tg-text-label: 12px;
+
+  /* --- Spacing scale --- */
+  --tg-space-xs: 4px;
+  --tg-space-sm: 8px;
+  --tg-space-md: 12px;
+  --tg-space-lg: 16px;
+  --tg-space-xl: 24px;
+  --tg-space-2xl: 32px;
+
+  /* --- Radius (user spec) --- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* --- Spacing (user spec, mirrored) --- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.10);
+  --shadow-modal: 0 8px 32px rgba(15, 23, 42, 0.15);
+
+  /* --- Animation tokens --- */
+  --ease-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pulse: 1.2s infinite alternate;
+
+  /* --- Touch target --- */
+  --touch-min: 56px;
+  --tab-bar-height: 64px;
+  --safe-area-bottom: 34px;
+}
+
+/* ============================================================
+   2. DARK MODE (Phase 2 mappings)
+   ============================================================ */
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface2: #334155;
+  --ink: #f1f5f9;
+  --ink2: #cbd5e1;
+  --muted: #94a3b8;
+  --border: #334155;
+
+  --primary-light: #134e4a;
+  --secondary-light: #0c4a6e;
+  --danger-light: #7f1d1d;
+  --warning-light: #78350f;
+  --success-light: #14532d;
+  --accent-light: #7c2d12;
+
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+}
+
+/* ============================================================
+   3. TAILWIND v4 @theme INLINE
+   ============================================================ */
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--primary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: #ffffff;
+  --color-muted: var(--surface2);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: #ffffff;
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: #ffffff;
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-surface2: var(--surface2);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
+}
+
+/* ============================================================
+   4. BASE STYLES
+   ============================================================ */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--tg-font);
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Typography utility classes ---- */
+.text-display { font-size: var(--tg-text-display); font-weight: 700; line-height: 1.2; }
+.text-h1 { font-size: var(--tg-text-h1); font-weight: 700; line-height: 1.3; }
+.text-h2 { font-size: var(--tg-text-h2); font-weight: 700; line-height: 1.4; }
+.text-h3 { font-size: var(--tg-text-h3); font-weight: 600; line-height: 1.4; }
+.text-body-lg { font-size: var(--tg-text-body-lg); font-weight: 400; line-height: 1.7; }
+.text-body { font-size: var(--tg-text-body); font-weight: 400; line-height: 1.7; }
+.text-caption { font-size: var(--tg-text-caption); font-weight: 400; line-height: 1.5; }
+.text-label { font-size: var(--tg-text-label); font-weight: 600; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.05em; }
+.text-mono { font-family: var(--tg-font-mono); }
+
+/* ---- Focus ring (WCAG 2.1 AA) ---- */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+
+/* ============================================================
+   5. COMPONENT CLASSES
+   ============================================================ */
+
+/* ---- Buttons ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--primary);
+  color: #ffffff;
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-primary:active { background: var(--primary-dark); transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: transparent;
+  color: var(--primary);
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-secondary:active { transform: scale(0.98); }
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--danger);
+  color: #ffffff;
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast);
+}
+.btn-danger:active { transform: scale(0.98); }
+
+/* ---- Cards ---- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg);
+}
+.card-pressable {
+  cursor: pointer;
+  transition: transform var(--ease-normal), box-shadow var(--ease-normal);
+}
+.card-pressable:active {
+  transform: scale(0.99);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* ---- Status badges ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-pill);
+  font-size: var(--tg-text-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-on { background: var(--success-light); color: var(--success); }
+.badge-off { background: var(--warning-light); color: var(--warning); }
+.badge-danger { background: var(--danger-light); color: var(--danger); }
+.badge-info { background: var(--secondary-light); color: var(--secondary); }
+.badge-accent { background: var(--accent-light); color: var(--accent); }
+
+/* ---- Status dots ---- */
+.dot { width: 8px; height: 8px; border-radius: var(--radius-pill); display: inline-block; }
+.dot-success { background: var(--success); }
+.dot-warning { background: var(--warning); }
+.dot-danger { background: var(--danger); }
+.dot-primary { background: var(--primary); }
+
+/* ---- Inputs ---- */
+.input {
+  width: 100%;
+  height: var(--touch-min);
+  padding: 0 var(--space-lg);
+  font-size: var(--tg-text-body-lg);
+  font-family: var(--tg-font);
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--ease-normal);
+}
+.input:focus { border-color: var(--primary); outline: none; }
+.input-error { border-color: var(--danger); }
+
+/* ---- Pulse animation (pending medication) ---- */
+@keyframes tg-pulse {
+  from { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+  to { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+}
+.animate-pulse-ring { animation: var(--pulse); animation-name: tg-pulse; }
+
+/* ---- Shimmer (skeleton loading) ---- */
+@keyframes tg-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: tg-shimmer 1.5s infinite;
+}
+
+/* ---- Spinner ---- */
+@keyframes tg-spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: tg-spin 0.8s linear infinite;
+}
+.spinner-primary {
+  border-color: rgba(13, 148, 136, 0.2);
+  border-top-color: var(--primary);
+}
+
+/* ---- Mobile container ---- */
+.mobile-frame {
+  width: 390px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ---- Safe area bottom spacer ---- */
+.safe-area-bottom {
+  height: var(--safe-area-bottom);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--tg-background);
+    --color-foreground: var(--tg-foreground);
+    --color-card: var(--tg-card);
+    --color-card-foreground: var(--tg-card-foreground);
+    --color-popover: var(--tg-popover);
+    --color-popover-foreground: var(--tg-popover-foreground);
+    --color-primary: var(--tg-primary);
+    --color-secondary: var(--tg-secondary);
+    --color-muted: var(--tg-muted);
+    --color-muted-foreground: var(--tg-muted-foreground);
+    --color-accent: var(--tg-accent);
+    --color-destructive: var(--tg-destructive);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-danger: var(--danger);
+    --color-border: var(--tg-border);
+    --color-input: var(--tg-input);
+    --color-ring: var(--tg-ring);
+    --color-ink: var(--ink);
+    --color-ink2: var(--ink2);
+    --color-surface2: var(--surface2);
+    --color-primary-foreground: var(--tg-primary-foreground);
+    --color-secondary-foreground: var(--tg-secondary-foreground);
+    --color-accent-foreground: var(--tg-accent-foreground);
+    --color-destructive-foreground: var(--tg-destructive-foreground);
+    --radius-sm: var(--tg-radius-small);
+    --radius-md: var(--tg-radius-medium);
+    --radius-lg: var(--tg-radius-large);
+  }
+  @layer base {
+    body { background: var(--tg-background); color: var(--tg-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--tg-background); }
+      .text-background { color: var(--tg-background); }
+      .border-background { border-color: var(--tg-background); }
+      .ring-background { --tw-ring-color: var(--tg-background); }
+      .bg-foreground { background-color: var(--tg-foreground); }
+      .text-foreground { color: var(--tg-foreground); }
+      .border-foreground { border-color: var(--tg-foreground); }
+      .ring-foreground { --tw-ring-color: var(--tg-foreground); }
+      .bg-card { background-color: var(--tg-card); }
+      .text-card { color: var(--tg-card); }
+      .border-card { border-color: var(--tg-card); }
+      .ring-card { --tw-ring-color: var(--tg-card); }
+      .bg-card-foreground { background-color: var(--tg-card-foreground); }
+      .text-card-foreground { color: var(--tg-card-foreground); }
+      .border-card-foreground { border-color: var(--tg-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--tg-card-foreground); }
+      .bg-popover { background-color: var(--tg-popover); }
+      .text-popover { color: var(--tg-popover); }
+      .border-popover { border-color: var(--tg-popover); }
+      .ring-popover { --tw-ring-color: var(--tg-popover); }
+      .bg-popover-foreground { background-color: var(--tg-popover-foreground); }
+      .text-popover-foreground { color: var(--tg-popover-foreground); }
+      .border-popover-foreground { border-color: var(--tg-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--tg-popover-foreground); }
+      .bg-primary { background-color: var(--tg-primary); }
+      .text-primary { color: var(--tg-primary); }
+      .border-primary { border-color: var(--tg-primary); }
+      .ring-primary { --tw-ring-color: var(--tg-primary); }
+      .bg-secondary { background-color: var(--tg-secondary); }
+      .text-secondary { color: var(--tg-secondary); }
+      .border-secondary { border-color: var(--tg-secondary); }
+      .ring-secondary { --tw-ring-color: var(--tg-secondary); }
+      .bg-muted { background-color: var(--tg-muted); }
+      .text-muted { color: var(--tg-muted); }
+      .border-muted { border-color: var(--tg-muted); }
+      .ring-muted { --tw-ring-color: var(--tg-muted); }
+      .bg-muted-foreground { background-color: var(--tg-muted-foreground); }
+      .text-muted-foreground { color: var(--tg-muted-foreground); }
+      .border-muted-foreground { border-color: var(--tg-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--tg-muted-foreground); }
+      .bg-accent { background-color: var(--tg-accent); }
+      .text-accent { color: var(--tg-accent); }
+      .border-accent { border-color: var(--tg-accent); }
+      .ring-accent { --tw-ring-color: var(--tg-accent); }
+      .bg-destructive { background-color: var(--tg-destructive); }
+      .text-destructive { color: var(--tg-destructive); }
+      .border-destructive { border-color: var(--tg-destructive); }
+      .ring-destructive { --tw-ring-color: var(--tg-destructive); }
+      .bg-success { background-color: var(--success); }
+      .text-success { color: var(--success); }
+      .border-success { border-color: var(--success); }
+      .ring-success { --tw-ring-color: var(--success); }
+      .bg-warning { background-color: var(--warning); }
+      .text-warning { color: var(--warning); }
+      .border-warning { border-color: var(--warning); }
+      .ring-warning { --tw-ring-color: var(--warning); }
+      .bg-danger { background-color: var(--danger); }
+      .text-danger { color: var(--danger); }
+      .border-danger { border-color: var(--danger); }
+      .ring-danger { --tw-ring-color: var(--danger); }
+      .bg-border { background-color: var(--tg-border); }
+      .text-border { color: var(--tg-border); }
+      .border-border { border-color: var(--tg-border); }
+      .ring-border { --tw-ring-color: var(--tg-border); }
+      .bg-input { background-color: var(--tg-input); }
+      .text-input { color: var(--tg-input); }
+      .border-input { border-color: var(--tg-input); }
+      .ring-input { --tw-ring-color: var(--tg-input); }
+      .bg-ring { background-color: var(--tg-ring); }
+      .text-ring { color: var(--tg-ring); }
+      .border-ring { border-color: var(--tg-ring); }
+      .ring-ring { --tw-ring-color: var(--tg-ring); }
+      .bg-ink { background-color: var(--ink); }
+      .text-ink { color: var(--ink); }
+      .border-ink { border-color: var(--ink); }
+      .ring-ink { --tw-ring-color: var(--ink); }
+      .bg-ink2 { background-color: var(--ink2); }
+      .text-ink2 { color: var(--ink2); }
+      .border-ink2 { border-color: var(--ink2); }
+      .ring-ink2 { --tw-ring-color: var(--ink2); }
+      .bg-surface2 { background-color: var(--surface2); }
+      .text-surface2 { color: var(--surface2); }
+      .border-surface2 { border-color: var(--surface2); }
+      .ring-surface2 { --tw-ring-color: var(--surface2); }
+      .bg-primary-foreground { background-color: var(--tg-primary-foreground); }
+      .text-primary-foreground { color: var(--tg-primary-foreground); }
+      .border-primary-foreground { border-color: var(--tg-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--tg-primary-foreground); }
+      .bg-secondary-foreground { background-color: var(--tg-secondary-foreground); }
+      .text-secondary-foreground { color: var(--tg-secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--tg-secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--tg-secondary-foreground); }
+      .bg-accent-foreground { background-color: var(--tg-accent-foreground); }
+      .text-accent-foreground { color: var(--tg-accent-foreground); }
+      .border-accent-foreground { border-color: var(--tg-accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--tg-accent-foreground); }
+      .bg-destructive-foreground { background-color: var(--tg-destructive-foreground); }
+      .text-destructive-foreground { color: var(--tg-destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--tg-destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--tg-destructive-foreground); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+<style>
+  /* ---- Page-specific styles (P02 趋势分析) ---- */
+  .seg-container {
+    display: flex;
+    gap: 8px;
+    padding: 4px;
+    background: var(--surface2);
+    border-radius: var(--radius-md);
+  }
+  .seg-btn {
+    flex: 1;
+    height: 40px;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .seg-btn.seg-active {
+    background: var(--surface);
+    color: var(--ink);
+    font-weight: 700;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* ---- Export icon button (56px touch target) ---- */
+  .export-btn {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--ink2);
+    cursor: pointer;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--ease-fast), background var(--ease-fast);
+  }
+  .export-btn:active { transform: scale(0.96); background: var(--surface2); }
+  .export-btn svg { width: 24px; height: 24px; }
+
+  /* ---- Toggle switch (用药叠加) ---- */
+  .tg-toggle-hit {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .tg-toggle {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    border-radius: var(--radius-pill);
+    background: var(--border);
+    display: block;
+    transition: background 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .tg-toggle-hit[aria-checked="true"] .tg-toggle { background: var(--primary); }
+  .tg-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    transition: left 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .tg-toggle-hit[aria-checked="true"] .tg-thumb { left: 18px; }
+
+  /* ---- Metric cards ---- */
+  .metric-card {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 12px;
+  }
+
+  /* ---- SVG chart element styles (CSS variables, no hex) ---- */
+  .chart-grid { stroke: var(--border); stroke-width: 1; }
+  .chart-axis-line { stroke: var(--border); stroke-width: 1; }
+  .chart-band-on { fill: var(--success-light); opacity: 0.4; }
+  .chart-band-off { fill: var(--warning-light); opacity: 0.4; }
+  .chart-area { fill: var(--primary); fill-opacity: 0.08; }
+  .chart-line {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .chart-med-line {
+    stroke: var(--secondary);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 3;
+  }
+  .chart-anomaly-line {
+    stroke: var(--danger);
+    stroke-width: 1;
+    opacity: 0.3;
+    stroke-dasharray: 2 2;
+  }
+  .chart-anomaly-dot { fill: var(--danger); }
+  .chart-anomaly-ring { fill: none; stroke: var(--danger); stroke-width: 1; opacity: 0.35; }
+  .chart-axis-label {
+    font-family: var(--tg-font-mono);
+    font-size: 11px;
+    fill: var(--muted);
+  }
+  .chart-band-label {
+    font-family: var(--tg-font);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .event-row svg { width: 20px; height: 20px; }
+  .legend-swatch-on { background: var(--success-light); opacity: 0.85; }
+  .legend-swatch-off { background: var(--warning-light); opacity: 0.85; }
+  .legend-swatch-med { background: var(--secondary); }
+  .legend-swatch-anom { background: var(--danger); }
+</style>
+
+<main class="mobile-frame pb-[98px]">
+
+  <!-- ===== Header: title + export ===== -->
+  <header class="px-4 pt-5 pb-3">
+    <div class="flex items-start justify-between gap-3">
+      <div class="min-w-0">
+        <h1 class="text-h1" style="color:var(--ink)">趋势分析</h1>
+        <p class="text-caption mt-0.5" style="color:var(--muted)">2026年7月24日 · 周五</p>
+      </div>
+      <button data-dom-id="export-btn" class="export-btn" aria-label="导出报告" type="button">
+        <i data-lucide="download"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Time range segmented control ===== -->
+  <section class="px-4 pb-4" aria-label="时间范围选择">
+    <div class="seg-container" role="tablist" aria-label="时间范围">
+      <button data-dom-id="seg-day" class="seg-btn seg-active" role="tab" aria-selected="true" type="button">日</button>
+      <button data-dom-id="seg-week" class="seg-btn" role="tab" aria-selected="false" type="button">周</button>
+      <button data-dom-id="seg-month" class="seg-btn" role="tab" aria-selected="false" type="button">月</button>
+      <button data-dom-id="seg-3month" class="seg-btn" role="tab" aria-selected="false" type="button">3月</button>
+    </div>
+  </section>
+
+  <!-- ===== Main chart card ===== -->
+  <section class="px-4 pb-4">
+    <div class="card" data-dom-id="chart-main">
+      <!-- chart header row -->
+      <div class="flex items-start justify-between gap-3 mb-3">
+        <div class="min-w-0">
+          <div class="text-h3" style="color:var(--ink)">振幅趋势</div>
+          <div class="text-caption" style="color:var(--muted)">单位 cm · 0:00 – 24:00</div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="text-caption font-semibold" style="color:var(--ink2)">用药叠加</span>
+          <button data-dom-id="med-overlay-toggle" class="tg-toggle-hit" role="switch" aria-checked="true" aria-label="用药叠加" type="button">
+            <span class="tg-toggle" aria-hidden="true">
+              <span class="tg-thumb"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- inline SVG amplitude chart -->
+      <svg viewBox="0 0 360 240" class="w-full block" style="display:block;" role="img"
+           aria-label="全天振幅趋势图：横轴为时间0点至24点，纵轴为振幅0至3厘米；14点出现2.5厘米峰值异常">
+
+        <!-- ON / OFF status background bands -->
+        <rect class="chart-band-on"  x="125.3" y="16" width="93.4" height="200"/>
+        <rect class="chart-band-off" x="218.7" y="16" width="13.3" height="200"/>
+        <rect class="chart-band-on"  x="232"   y="16" width="93.3" height="200"/>
+
+        <!-- horizontal gridlines -->
+        <line class="chart-grid" x1="32" y1="16"    x2="352" y2="16"/>
+        <line class="chart-grid" x1="32" y1="82.7"  x2="352" y2="82.7"/>
+        <line class="chart-grid" x1="32" y1="149.3" x2="352" y2="149.3"/>
+        <line class="chart-axis-line" x1="32" y1="216" x2="352" y2="216"/>
+
+        <!-- band labels -->
+        <text class="chart-band-label" x="172"   y="29" text-anchor="middle" style="fill:var(--success)">ON</text>
+        <text class="chart-band-label" x="225.3" y="29" text-anchor="middle" style="fill:var(--warning)">OFF</text>
+        <text class="chart-band-label" x="278.7" y="29" text-anchor="middle" style="fill:var(--success)">ON</text>
+
+        <!-- medication vertical dashed lines (07:00 / 11:00 / 15:00 / 19:00) -->
+        <line class="chart-med-line" x1="125.3" y1="16" x2="125.3" y2="216"/>
+        <line class="chart-med-line" x1="178.7" y1="16" x2="178.7" y2="216"/>
+        <line class="chart-med-line" x1="232"   y1="16" x2="232"   y2="216"/>
+        <line class="chart-med-line" x1="285.3" y1="16" x2="285.3" y2="216"/>
+
+        <!-- amplitude fill area -->
+        <path class="chart-area" d="M 32 196 L 58.7 202.7 L 85.3 199.3 L 112 189.3 L 118.7 176 L 125.3 169.3 L 138.7 176 L 152 182.7 L 165.3 176 L 178.7 169.3 L 192 182.7 L 205.3 176 L 212 156 L 218.7 49.3 L 225.3 96 L 232 162.7 L 245.3 176 L 258.7 182.7 L 272 176 L 285.3 169.3 L 298.7 176 L 312 182.7 L 325.3 189.3 L 338.7 196 L 352 196 L 352 216 L 32 216 Z"/>
+
+        <!-- amplitude line -->
+        <path class="chart-line" d="M 32 196 L 58.7 202.7 L 85.3 199.3 L 112 189.3 L 118.7 176 L 125.3 169.3 L 138.7 176 L 152 182.7 L 165.3 176 L 178.7 169.3 L 192 182.7 L 205.3 176 L 212 156 L 218.7 49.3 L 225.3 96 L 232 162.7 L 245.3 176 L 258.7 182.7 L 272 176 L 285.3 169.3 L 298.7 176 L 312 182.7 L 325.3 189.3 L 338.7 196 L 352 196"/>
+
+        <!-- anomaly guide + dot at 14:00 peak (2.5cm) -->
+        <line class="chart-anomaly-line" x1="218.7" y1="16" x2="218.7" y2="216"/>
+        <circle class="chart-anomaly-ring" cx="218.7" cy="49.3" r="8"/>
+        <circle class="chart-anomaly-dot" cx="218.7" cy="49.3" r="4"/>
+        <text class="chart-band-label" x="213" y="44" text-anchor="end" style="fill:var(--danger)">2.5cm</text>
+
+        <!-- Y axis labels -->
+        <text class="chart-axis-label" x="26" y="16"    text-anchor="end" dominant-baseline="middle">3.0</text>
+        <text class="chart-axis-label" x="26" y="82.7"  text-anchor="end" dominant-baseline="middle">2.0</text>
+        <text class="chart-axis-label" x="26" y="149.3" text-anchor="end" dominant-baseline="middle">1.0</text>
+        <text class="chart-axis-label" x="26" y="216"   text-anchor="end" dominant-baseline="middle">0</text>
+
+        <!-- X axis labels -->
+        <text class="chart-axis-label" x="32"  y="232" text-anchor="middle">00:00</text>
+        <text class="chart-axis-label" x="112" y="232" text-anchor="middle">06:00</text>
+        <text class="chart-axis-label" x="192" y="232" text-anchor="middle">12:00</text>
+        <text class="chart-axis-label" x="272" y="232" text-anchor="middle">18:00</text>
+        <text class="chart-axis-label" x="352" y="232" text-anchor="middle">24:00</text>
+      </svg>
+
+      <!-- legend -->
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3">
+        <span class="flex items-center gap-1.5">
+          <span class="inline-block rounded-sm legend-swatch-on" style="width:14px;height:10px;"></span>
+          <span class="text-caption" style="color:var(--ink2)">ON 时段</span>
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="inline-block rounded-sm legend-swatch-off" style="width:14px;height:10px;"></span>
+          <span class="text-caption" style="color:var(--ink2)">OFF 时段</span>
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="inline-block legend-swatch-med" style="width:14px;height:2px;"></span>
+          <span class="text-caption" style="color:var(--ink2)">用药</span>
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="inline-block rounded-full legend-swatch-anom" style="width:8px;height:8px;"></span>
+          <span class="text-caption" style="color:var(--ink2)">异常事件</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Statistics summary grid (2 x 3) ===== -->
+  <section class="px-4 pb-4" aria-label="统计概览">
+    <div class="grid grid-cols-2 gap-3">
+      <div class="metric-card">
+        <div class="text-label" style="color:var(--muted)">平均振幅</div>
+        <div class="flex items-baseline gap-1 mt-1.5">
+          <span class="text-h3" style="color:var(--ink)">1.2</span>
+          <span class="text-caption" style="color:var(--muted)">cm</span>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="text-label" style="color:var(--muted)">峰值振幅</div>
+        <div class="flex items-baseline gap-1 mt-1.5">
+          <span class="text-h3" style="color:var(--accent)">2.5</span>
+          <span class="text-caption" style="color:var(--muted)">cm</span>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="text-label" style="color:var(--muted)">ON 时长占比</div>
+        <div class="flex items-baseline gap-1 mt-1.5">
+          <span class="text-h3" style="color:var(--success)">78</span>
+          <span class="text-caption" style="color:var(--muted)">%</span>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="text-label" style="color:var(--muted)">wearing-off 次数</div>
+        <div class="flex items-baseline gap-1 mt-1.5">
+          <span class="text-h3" style="color:var(--warning)">2</span>
+          <span class="text-caption" style="color:var(--muted)">次</span>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="text-label" style="color:var(--muted)">用药依从率</div>
+        <div class="flex items-baseline gap-1 mt-1.5">
+          <span class="text-h3" style="color:var(--success)">92</span>
+          <span class="text-caption" style="color:var(--muted)">%</span>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="text-label" style="color:var(--muted)">异常事件数</div>
+        <div class="flex items-baseline gap-1 mt-1.5">
+          <span class="text-h3" style="color:var(--danger)">1</span>
+          <span class="text-caption" style="color:var(--muted)">次</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Event annotation list ===== -->
+  <section class="px-4 pb-4" aria-label="异常事件列表">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-h3" style="color:var(--ink)">异常事件</h2>
+      <span class="text-caption" style="color:var(--muted)">今日 1 条</span>
+    </div>
+
+    <div class="space-y-2">
+      <button data-dom-id="event-row-1" type="button"
+              class="card card-pressable w-full text-left event-row"
+              style="padding:14px 16px;"
+              aria-label="查看异常事件详情：14:02 震颤升高">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="text-mono" style="font-size:14px;color:var(--ink);font-weight:600;">14:02</span>
+            <span class="badge badge-danger">震颤升高</span>
+          </div>
+          <div class="flex items-center gap-1 shrink-0">
+            <span class="text-mono" style="font-size:14px;color:var(--danger);font-weight:600;">2.5cm</span>
+            <i data-lucide="chevron-right" aria-hidden="true" style="color:var(--muted);"></i>
+          </div>
+        </div>
+        <div class="text-caption mt-1.5" style="color:var(--muted)">持续 8min · 较基线升高 3.1 倍 · 已自动记录</div>
+      </button>
+    </div>
+  </section>
+
+  <!-- bottom spacer above tab bar -->
+  <div style="height:80px;" aria-hidden="true"></div>
+
+</main>
+
+<nav data-mobile-nav="global" class="w-full bg-[var(--surface)] border-t border-[var(--border)] flex items-end" style="height:98px;padding-bottom:34px;"><div class="w-full max-w-[390px] mx-auto grid grid-cols-3 h-[64px]"><button data-nav-key="today" data-dom-id="nav-today" class="min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full" style="color:var(--muted);"><svg class="w-7 h-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><span class="text-[12px] leading-none whitespace-nowrap font-semibold">今日</span></button><button data-nav-key="trend" data-active="true" data-dom-id="nav-trend" class="min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full" style="color:var(--primary);"><svg class="w-7 h-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span class="text-[12px] leading-none whitespace-nowrap font-bold">趋势</span></button><button data-nav-key="report" data-dom-id="nav-report" class="min-w-0 flex flex-col items-center justify-center gap-1 px-1 h-full" style="color:var(--muted);"><svg class="w-7 h-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg><span class="text-[12px] leading-none whitespace-nowrap font-semibold">报告</span></button></div></nav>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+.card {
+  background: var(--tg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg);
+  transition: box-shadow var(--ease-fast);
+}
+
+.pressable {
+  cursor: pointer;
+  transition: transform var(--ease-normal), box-shadow var(--ease-normal);
+}
+
+.pressable:hover {
+  box-shadow: var(--shadow-elevated);
+}
+
+.pressable:active {
+  transform: scale(0.99);
+}
+
+.clickable {
+  cursor: pointer;
+}

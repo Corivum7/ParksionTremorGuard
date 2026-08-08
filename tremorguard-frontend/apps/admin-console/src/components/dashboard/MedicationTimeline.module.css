@@ -1,0 +1,119 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: var(--text-h2);
+  color: var(--tg-ink);
+  margin: 0;
+}
+
+.compliance {
+  font-size: var(--text-caption);
+  color: var(--tg-success);
+  font-weight: 600;
+}
+
+.timeline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+  width: 96px;
+}
+
+.nodeBtn {
+  width: 44px;
+  height: 44px;
+  min-height: var(--touch-min);
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--ease-fast), box-shadow var(--ease-fast);
+}
+
+.nodeBtn:hover {
+  transform: scale(1.05);
+}
+
+.nodeBtnDone {
+  background: var(--tg-success);
+  color: var(--tg-surface);
+}
+
+.nodeBtnPending {
+  background: var(--tg-surface);
+  border: 2px solid var(--tg-primary);
+  animation: pulse 1.2s infinite alternate;
+}
+
+.nodeBtnFuture {
+  background: var(--tg-surface);
+  border: 2px solid var(--tg-border);
+}
+
+@keyframes pulse {
+  from { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+  to { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background: var(--tg-border);
+  margin-top: 21px;
+  min-width: var(--space-sm);
+}
+
+.lineDone {
+  background: var(--tg-success);
+}
+
+.time {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+  font-weight: 600;
+}
+
+.timeActive {
+  color: var(--tg-primary);
+}
+
+.status {
+  font-size: var(--text-label);
+  color: var(--tg-ink-2);
+}
+
+.statusMuted {
+  color: var(--tg-muted);
+}
+
+.statusActive {
+  color: var(--tg-primary);
+}
+
+@media (max-width: 767px) {
+  .node {
+    width: 72px;
+  }
+}

@@ -1,0 +1,1341 @@
+﻿<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>报告列表 - 桌面版 · TremorGuard</title>
+    <style id="theme-vars">
+/* ============================================================
+   TremorGuard Design System — colors_and_type.css
+   Parkinson's Tremor Monitoring Platform
+   WCAG 2.1 AA · Desktop Layout · 17px body baseline
+   ============================================================ */
+
+/* ---- Font Imports ---- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+/* ============================================================
+   1. SEMANTIC ALIASES (brand prefix: tg)
+   ============================================================ */
+:root {
+  /* --- Core palette (user-specified exact values) --- */
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #ccfbf1;
+
+  --secondary: #0369a1;
+  --secondary-light: #e0f2fe;
+
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --success: #16a34a;
+  --success-light: #dcfce7;
+  --accent: #c2410c;
+  --accent-light: #fed7aa;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+  --ink: #0f172a;
+  --ink2: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  /* --- Semantic aliases (tg prefix) --- */
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-primary: var(--primary);
+  --tg-primary-foreground: #ffffff;
+  --tg-secondary: var(--secondary);
+  --tg-secondary-foreground: #ffffff;
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-accent: var(--accent);
+  --tg-accent-foreground: #ffffff;
+  --tg-destructive: var(--danger);
+  --tg-destructive-foreground: #ffffff;
+  --tg-success: var(--success);
+  --tg-success-foreground: #ffffff;
+  --tg-warning: var(--warning);
+  --tg-warning-foreground: #ffffff;
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+  --tg-ring: var(--primary);
+
+  /* --- Radius scale --- */
+  --tg-radius-small: 6px;
+  --tg-radius-medium: 8px;
+  --tg-radius-large: 12px;
+  --tg-radius-full: 9999px;
+
+  /* --- Typography tokens --- */
+  --tg-font: 'Outfit', system-ui, -apple-system, sans-serif;
+  --tg-font-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+
+  --tg-text-display: 32px;
+  --tg-text-h1: 24px;
+  --tg-text-h2: 20px;
+  --tg-text-h3: 18px;
+  --tg-text-body-lg: 17px;
+  --tg-text-body: 16px;
+  --tg-text-caption: 14px;
+  --tg-text-label: 12px;
+
+  /* --- Spacing scale --- */
+  --tg-space-xs: 4px;
+  --tg-space-sm: 8px;
+  --tg-space-md: 12px;
+  --tg-space-lg: 16px;
+  --tg-space-xl: 24px;
+  --tg-space-2xl: 32px;
+
+  /* --- Radius (user spec) --- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* --- Spacing (user spec, mirrored) --- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.10);
+  --shadow-modal: 0 8px 32px rgba(15, 23, 42, 0.15);
+
+  /* --- Animation tokens --- */
+  --ease-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pulse: 1.2s infinite alternate;
+}
+
+/* ============================================================
+   2. BASE STYLES
+   ============================================================ */
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--tg-font);
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Typography utility classes ---- */
+.text-display { font-size: var(--tg-text-display); font-weight: 700; line-height: 1.2; }
+.text-h1 { font-size: var(--tg-text-h1); font-weight: 700; line-height: 1.3; }
+.text-h2 { font-size: var(--tg-text-h2); font-weight: 700; line-height: 1.4; }
+.text-h3 { font-size: var(--tg-text-h3); font-weight: 600; line-height: 1.4; }
+.text-body-lg { font-size: var(--tg-text-body-lg); font-weight: 400; line-height: 1.7; }
+.text-body { font-size: var(--tg-text-body); font-weight: 400; line-height: 1.7; }
+.text-caption { font-size: var(--tg-text-caption); font-weight: 400; line-height: 1.5; }
+.text-label { font-size: var(--tg-text-label); font-weight: 600; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.05em; }
+.text-mono { font-family: var(--tg-font-mono); }
+
+/* ---- Focus ring (WCAG 2.1 AA) ---- */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+
+/* ---- Status badges ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-pill);
+  font-size: var(--tg-text-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.badge-on { background: var(--success-light); color: var(--success); }
+.badge-off { background: var(--warning-light); color: var(--warning); }
+.badge-danger { background: var(--danger-light); color: var(--danger); }
+.badge-info { background: var(--secondary-light); color: var(--secondary); }
+.badge-accent { background: var(--accent-light); color: var(--accent); }
+.badge-success { background: var(--success-light); color: var(--success); }
+
+/* ---- Animations ---- */
+@keyframes tg-spin { to { transform: rotate(360deg); } }
+@keyframes tg-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes tg-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ============================================================
+   3. DESKTOP LAYOUT — App Shell
+   ============================================================ */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  width: 240px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex-shrink: 0;
+  transition: width var(--ease-normal);
+  z-index: 20;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-xl) var(--space-xl) var(--space-lg);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
+}
+
+.sidebar-logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: var(--tg-primary-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebar-logo-text {
+  font-size: var(--tg-text-h3);
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  overflow-y: auto;
+}
+
+.sidebar-nav-label {
+  font-size: var(--tg-text-label);
+  color: var(--muted);
+  padding: var(--space-md) var(--space-lg) var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  color: var(--ink2);
+  font-size: var(--tg-text-body);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  transition: background var(--ease-fast), color var(--ease-fast);
+  white-space: nowrap;
+}
+
+.nav-item:hover {
+  background: var(--surface2);
+  color: var(--ink);
+}
+
+.nav-item.active {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.nav-item-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-item-badge {
+  margin-left: auto;
+  background: var(--danger);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  line-height: 1.4;
+}
+
+/* ---- Sidebar User ---- */
+.sidebar-user {
+  padding: var(--space-lg) var(--space-xl);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.sidebar-user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: var(--tg-text-body);
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.sidebar-user-name {
+  font-size: var(--tg-text-caption);
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-role {
+  font-size: var(--tg-text-label);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---- Main Area ---- */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ---- Top Bar ---- */
+.topbar {
+  height: 64px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-2xl);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  gap: var(--space-lg);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.topbar-title {
+  font-size: var(--tg-text-h2);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.topbar-subtitle {
+  font-size: var(--tg-text-caption);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
+.topbar-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  height: 40px;
+  padding: 0 var(--space-md);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  font-size: var(--tg-text-caption);
+  cursor: pointer;
+  transition: border-color var(--ease-fast);
+}
+.topbar-search:hover { border-color: var(--primary); }
+
+.topbar-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink2);
+  cursor: pointer;
+  transition: all var(--ease-fast);
+  position: relative;
+}
+.topbar-icon-btn:hover {
+  background: var(--surface2);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.topbar-icon-btn .notif-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--danger);
+  border: 2px solid var(--surface);
+}
+
+.btn-generate {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  height: 40px;
+  padding: 0 var(--space-lg);
+  background: var(--primary);
+  color: #ffffff;
+  font-size: var(--tg-text-caption);
+  font-weight: 600;
+  font-family: var(--tg-font);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--ease-fast), transform var(--ease-fast);
+  white-space: nowrap;
+}
+.btn-generate:hover { background: var(--primary-dark); }
+.btn-generate:active { transform: scale(0.98); }
+
+/* ---- Content Area ---- */
+.content {
+  padding: var(--space-xl);
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* ---- Filter Chips ---- */
+.filter-chips {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-chips-scroll {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-xs);
+}
+
+.chip {
+  height: 36px;
+  padding: 0 var(--space-lg);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink2);
+  font-size: var(--tg-text-caption);
+  font-weight: 600;
+  font-family: var(--tg-font);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  transition: all var(--ease-fast);
+}
+.chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+.chip.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+.chip.active:hover {
+  background: var(--primary-dark);
+  color: #ffffff;
+}
+.chip-count {
+  font-size: var(--tg-text-label);
+  font-weight: 700;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface2);
+  color: var(--muted);
+}
+.chip.active .chip-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* ---- Generating Banner ---- */
+.generating-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.generating-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--primary);
+}
+.generating-icon svg { animation: tg-spin 1.4s linear infinite; }
+
+.generating-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.generating-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+  gap: var(--space-md);
+}
+
+.generating-text {
+  font-size: var(--tg-text-body);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.generating-time {
+  font-size: var(--tg-text-caption);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.progress-track {
+  height: 6px;
+  background: var(--surface2);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 65%;
+  background: var(--primary);
+  border-radius: var(--radius-pill);
+  position: relative;
+  overflow: hidden;
+  transition: width var(--ease-slow);
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: tg-shimmer 1.8s linear infinite;
+}
+
+/* ---- Report Grid ---- */
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}
+
+/* ---- Report Card ---- */
+.report-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  transition: box-shadow var(--ease-normal), border-color var(--ease-normal), transform var(--ease-normal);
+  cursor: pointer;
+}
+
+.report-card:hover {
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* ---- Type Icon (left) ---- */
+.type-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  color: var(--tg-primary-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.type-icon-info { background: var(--secondary); }
+.type-icon-success { background: var(--success); }
+.type-icon-danger { background: var(--danger); }
+.type-icon-accent { background: var(--accent); }
+
+/* ---- Card Body (center) ---- */
+.card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.card-title {
+  font-size: var(--tg-text-h3);
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.card-date {
+  font-size: var(--tg-text-caption);
+  color: var(--muted);
+  margin: 0;
+}
+
+.card-metrics {
+  font-family: var(--tg-font-mono);
+  font-size: 13px;
+  color: var(--ink2);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+.card-status-text {
+  font-size: var(--tg-text-caption);
+  color: var(--success);
+  font-weight: 600;
+}
+
+/* ---- Card Actions (right) ---- */
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink2);
+  font-size: var(--tg-text-caption);
+  font-weight: 600;
+  font-family: var(--tg-font);
+  cursor: pointer;
+  transition: all var(--ease-fast);
+  white-space: nowrap;
+}
+.action-btn:hover {
+  background: var(--surface2);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.action-btn-view {
+  color: var(--primary);
+  border-color: var(--primary-light);
+  background: var(--primary-light);
+}
+.action-btn-view:hover {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* ---- Empty state spacer ---- */
+.content-footer {
+  padding: var(--space-xl) 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: var(--tg-text-caption);
+}
+
+/* ============================================================
+   4. RESPONSIVE — Adaptive Breakpoints
+   ============================================================ */
+
+/* ---- Tablet: Sidebar icon-only, cards 1-column ---- */
+@media (max-width: 1023px) {
+  .sidebar {
+    width: 64px;
+  }
+  .sidebar-logo {
+    justify-content: center;
+    padding: 0;
+    gap: 0;
+  }
+  .sidebar-logo-text {
+    display: none;
+  }
+  .sidebar-nav {
+    padding: var(--space-lg) var(--space-sm);
+    align-items: center;
+  }
+  .sidebar-nav-label {
+    display: none;
+  }
+  .nav-item {
+    justify-content: center;
+    padding: var(--space-md);
+    width: 44px;
+    height: 44px;
+  }
+  .nav-item-label,
+  .nav-item-badge {
+    display: none;
+  }
+  .sidebar-user {
+    justify-content: center;
+    padding: var(--space-lg) 0;
+  }
+  .sidebar-user-info {
+    display: none;
+  }
+
+  .topbar {
+    padding: 0 var(--space-xl);
+  }
+  .topbar-search {
+    display: none;
+  }
+
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Mobile: Sidebar hidden, cards 1-column, chips scroll ---- */
+@media (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topbar {
+    padding: 0 var(--space-lg);
+    height: 56px;
+  }
+  .topbar-subtitle {
+    display: none;
+  }
+  .topbar-icon-btn {
+    display: none;
+  }
+  .btn-generate {
+    padding: 0 var(--space-md);
+  }
+  .btn-generate span {
+    display: none;
+  }
+
+  .content {
+    padding: var(--space-lg);
+    gap: var(--space-lg);
+  }
+
+  .filter-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin: 0 calc(-1 * var(--space-lg));
+    padding: 0 var(--space-lg);
+  }
+  .filter-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .report-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .report-card {
+    flex-direction: row;
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+
+  .card-actions {
+    flex-direction: row;
+  }
+
+  .generating-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-md);
+  }
+  .generating-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ---- No scrollbar utility ---- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--tg-background);
+    --color-foreground: var(--tg-foreground);
+    --color-card: var(--tg-card);
+    --color-card-foreground: var(--tg-card-foreground);
+    --color-popover: var(--tg-popover);
+    --color-popover-foreground: var(--tg-popover-foreground);
+    --color-primary: var(--tg-primary);
+    --color-primary-foreground: var(--tg-primary-foreground);
+    --color-secondary: var(--tg-secondary);
+    --color-secondary-foreground: var(--tg-secondary-foreground);
+    --color-muted: var(--tg-muted);
+    --color-muted-foreground: var(--tg-muted-foreground);
+    --color-accent: var(--tg-accent);
+    --color-accent-foreground: var(--tg-accent-foreground);
+    --color-destructive: var(--tg-destructive);
+    --color-destructive-foreground: var(--tg-destructive-foreground);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-danger: var(--danger);
+    --color-border: var(--tg-border);
+    --color-input: var(--tg-input);
+    --color-ring: var(--tg-ring);
+    --color-ink: var(--ink);
+    --color-ink2: var(--ink2);
+    --color-surface2: var(--surface2);
+    --radius-sm: var(--tg-radius-small);
+    --radius-md: var(--tg-radius-medium);
+    --radius-lg: var(--tg-radius-large);
+    --radius-pill: var(--tg-radius-full);
+    --font-sans: var(--tg-font);
+    --font-mono: var(--tg-font-mono);
+  }
+  @layer base {
+    body { background: var(--tg-background); color: var(--tg-foreground); }
+  }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+
+<div class="app-layout">
+
+  <!-- ========== Left Sidebar ========== -->
+  <aside class="sidebar" aria-label="主导航">
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+      </div>
+      <span class="sidebar-logo-text">TremorGuard</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav" aria-label="主菜单">
+      <div class="sidebar-nav-label">主菜单</div>
+
+      <button class="nav-item" type="button">
+        <span class="nav-item-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="9" rx="1"/>
+            <rect x="14" y="3" width="7" height="5" rx="1"/>
+            <rect x="14" y="12" width="7" height="9" rx="1"/>
+            <rect x="3" y="16" width="7" height="5" rx="1"/>
+          </svg>
+        </span>
+        <span class="nav-item-label">今日仪表盘</span>
+      </button>
+
+      <button class="nav-item" type="button">
+        <span class="nav-item-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </span>
+        <span class="nav-item-label">趋势分析</span>
+      </button>
+
+      <button class="nav-item active" type="button" aria-current="page">
+        <span class="nav-item-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="8" y1="13" x2="16" y2="13"/>
+            <line x1="8" y1="17" x2="16" y2="17"/>
+          </svg>
+        </span>
+        <span class="nav-item-label">报告列表</span>
+      </button>
+
+      <button class="nav-item" type="button">
+        <span class="nav-item-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </span>
+        <span class="nav-item-label">用药管理</span>
+        <span class="nav-item-badge">2</span>
+      </button>
+
+      <button class="nav-item" type="button">
+        <span class="nav-item-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+        <span class="nav-item-label">设备设置</span>
+      </button>
+    </nav>
+
+    <!-- User -->
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar">王</div>
+      <div class="sidebar-user-info">
+        <span class="sidebar-user-name">王伯伯</span>
+        <span class="sidebar-user-role">患者</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========== Main Area ========== -->
+  <div class="main-area">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="topbar-title">报告列表</h1>
+        <span class="topbar-subtitle">临床报告与趋势总结</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <span>搜索报告...</span>
+        </div>
+        <button class="topbar-icon-btn" type="button" aria-label="通知">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="btn-generate" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="12" y1="18" x2="12" y2="12"/>
+            <line x1="9" y1="15" x2="15" y2="15"/>
+          </svg>
+          <span>生成报告</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+
+      <!-- Row 1: Filter Chips -->
+      <section class="filter-chips" aria-label="报告类型筛选">
+        <button class="chip active" type="button">
+          全部
+          <span class="chip-count">5</span>
+        </button>
+        <button class="chip" type="button">
+          周报
+          <span class="chip-count">1</span>
+        </button>
+        <button class="chip" type="button">
+          月报
+          <span class="chip-count">0</span>
+        </button>
+        <button class="chip" type="button">
+          警报
+          <span class="chip-count">1</span>
+        </button>
+        <button class="chip" type="button">
+          复诊
+          <span class="chip-count">1</span>
+        </button>
+      </section>
+
+      <!-- Row 2: Generating Banner -->
+      <section class="generating-banner" aria-label="报告生成中">
+        <div class="generating-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="2" x2="12" y2="6"/>
+            <line x1="12" y1="18" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="6" y2="12"/>
+            <line x1="18" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+          </svg>
+        </div>
+        <div class="generating-content">
+          <div class="generating-header">
+            <span class="generating-text">正在生成日报告...</span>
+            <span class="generating-time">预计 30 秒</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Row 3: Report Cards Grid -->
+      <section class="report-grid" aria-label="报告列表">
+
+        <!-- Card 1: Daily Report -->
+        <article class="report-card" data-dom-id="report-card-1">
+          <div class="type-icon type-icon-info">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3 class="card-title">7月24日 日报告</h3>
+              <span class="badge badge-info">日报</span>
+            </div>
+            <p class="card-date">2026-07-24 00:00 - 23:59</p>
+            <p class="card-metrics">平均 1.2cm · 峰值 2.5cm · 依从 92%</p>
+            <div class="card-status">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="color:var(--success)" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span class="card-status-text">已分享</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn action-btn-view" data-dom-id="view-btn-1" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              查看
+            </button>
+            <button class="action-btn" data-dom-id="share-btn-1" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              分享
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 2: Weekly Report -->
+        <article class="report-card" data-dom-id="report-card-2">
+          <div class="type-icon type-icon-info">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3 class="card-title">第30周 周报告</h3>
+              <span class="badge badge-info">周报</span>
+            </div>
+            <p class="card-date">2026-07-21 至 2026-07-27</p>
+            <p class="card-metrics">平均 1.3cm · 峰值 2.8cm · 依从 95%</p>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn action-btn-view" data-dom-id="view-btn-2" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              查看
+            </button>
+            <button class="action-btn" data-dom-id="share-btn-2" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              分享
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 3: Followup Report -->
+        <article class="report-card" data-dom-id="report-card-3">
+          <div class="type-icon type-icon-accent">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="8" y1="13" x2="16" y2="13"/>
+              <line x1="8" y1="17" x2="16" y2="17"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3 class="card-title">7月复诊报告</h3>
+              <span class="badge badge-accent">复诊</span>
+            </div>
+            <p class="card-date">2026-07-15 至 2026-07-24</p>
+            <p class="card-metrics">剂末效应 2 次 · 调整建议 1 项</p>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn action-btn-view" data-dom-id="view-btn-3" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              查看
+            </button>
+            <button class="action-btn" data-dom-id="share-btn-3" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              分享
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 4: Event/Alert Report -->
+        <article class="report-card" data-dom-id="report-card-4">
+          <div class="type-icon type-icon-danger">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3 class="card-title">14:02 震颤异常事件</h3>
+              <span class="badge badge-danger">警报</span>
+            </div>
+            <p class="card-date">2026-07-24 14:02</p>
+            <p class="card-metrics">峰值 2.5cm · 持续 8 min</p>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn action-btn-view" data-dom-id="view-btn-4" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              查看
+            </button>
+            <button class="action-btn" data-dom-id="share-btn-4" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              分享
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 5: Daily Report -->
+        <article class="report-card" data-dom-id="report-card-5">
+          <div class="type-icon type-icon-info">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3 class="card-title">7月23日 日报告</h3>
+              <span class="badge badge-info">日报</span>
+            </div>
+            <p class="card-date">2026-07-23 00:00 - 23:59</p>
+            <p class="card-metrics">平均 1.1cm · 峰值 1.9cm · 依从 100%</p>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn action-btn-view" data-dom-id="view-btn-5" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              查看
+            </button>
+            <button class="action-btn" data-dom-id="share-btn-5" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              分享
+            </button>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Footer -->
+      <div class="content-footer">
+        共 5 份报告 · 最后更新 2026-07-24 14:30
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

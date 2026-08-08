@@ -1,0 +1,461 @@
+/* ===== 页面容器 ===== */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding-bottom: 140px; /* 移动端避开 fixed 操作栏 */
+}
+
+/* ===== 警报头卡 —— 移动端 ===== */
+.headerCardMobile {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-lg);
+}
+
+.severityBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--tg-danger);
+}
+
+.headerTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: var(--space-sm);
+}
+
+.headerTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.headerTitleMobile {
+  font-size: var(--text-h1);
+  font-weight: 700;
+  color: var(--tg-ink);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.headerBadgeRow {
+  display: flex;
+  align-items: center;
+}
+
+.headerStatsMobile {
+  display: flex;
+  gap: var(--space-xl);
+  margin-top: var(--space-lg);
+}
+
+.statBlockMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statLabel {
+  font-size: var(--text-label);
+  color: var(--tg-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.statValueMono {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--tg-ink-2);
+  font-weight: 600;
+}
+
+/* ===== 警报头卡 —— 桌面端 ===== */
+.headerCardDesktop {
+  background: var(--tg-danger-light);
+  border-left: 4px solid var(--tg-danger);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.headerIconBox {
+  width: 56px;
+  height: 56px;
+  background: var(--tg-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.headerTitleDesktop {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--tg-ink);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.headerStatsDesktop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.statBlockDesktop {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statLabelDesktop {
+  font-size: 11px;
+  color: var(--tg-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statValueDesktop {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--tg-ink-2);
+  font-weight: 600;
+}
+
+.statValueDesktopDanger {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--tg-danger);
+  font-weight: 600;
+}
+
+.statDivider {
+  width: 1px;
+  height: 40px;
+  background: var(--tg-border);
+  flex-shrink: 0;
+}
+
+/* ===== Row 2 双列网格 ===== */
+.row2 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ===== 卡片通用头 ===== */
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.cardHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardTitle {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  color: var(--tg-ink);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.cardSubtitle {
+  font-size: 13px;
+  color: var(--tg-muted);
+}
+
+/* ===== 触发条件 ===== */
+.triggerList {
+  display: flex;
+  flex-direction: column;
+}
+
+.triggerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--tg-border);
+}
+
+.triggerRowLast {
+  border-bottom: none;
+}
+
+.triggerLabel {
+  font-size: 15px;
+  color: var(--tg-ink-2);
+}
+
+.triggerValue {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ===== 干预时间轴 —— 桌面端（水平） ===== */
+.timelineHorizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.timelineNodeDesktop {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.timelineMarkerRow {
+  position: relative;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.timelineDotDesktop {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-pill);
+  border: 3px solid var(--tg-surface);
+  z-index: 1;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.timelineLineDesktop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: var(--tg-border);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.timelineLineDone {
+  background: var(--tg-success);
+}
+
+.timelineContentDesktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: var(--space-sm);
+  padding: 0 var(--space-xs);
+}
+
+.timelineTimeDesktop {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tg-ink);
+}
+
+.timelineTitleDesktop {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tg-ink);
+}
+
+.timelineDescDesktop {
+  font-size: 12px;
+  color: var(--tg-ink-2);
+}
+
+.timelineActorDesktop {
+  font-size: 11px;
+  color: var(--tg-muted);
+}
+
+/* pending 节点变灰 */
+.timelineNodePending .timelineTimeDesktop,
+.timelineNodePending .timelineTitleDesktop {
+  color: var(--tg-muted);
+}
+
+/* ===== 干预时间轴 —— 移动端（垂直） ===== */
+.timelineVertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineNodeMobile {
+  position: relative;
+  padding-left: 28px;
+  padding-bottom: 18px;
+}
+
+.timelineNodeMobile:last-child {
+  padding-bottom: 0;
+}
+
+.timelineTrack {
+  position: absolute;
+  left: 7px;
+  top: 7px;
+  bottom: -7px;
+  width: 2px;
+  background: var(--tg-border);
+  z-index: 0;
+}
+
+.timelineNodeMobile:last-child .timelineTrack {
+  display: none;
+}
+
+.timelineDotMobile {
+  position: absolute;
+  left: 3px;
+  top: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--tg-surface);
+  z-index: 1;
+}
+
+.timelineContentMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.timelineTimeMobile {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tg-ink);
+}
+
+.timelineTitleMobile {
+  font-size: var(--text-body);
+  color: var(--tg-ink-2);
+}
+
+.timelineDescMobile {
+  font-size: 13px;
+  color: var(--tg-ink-2);
+}
+
+.timelineActorMobile {
+  font-size: var(--text-caption);
+  color: var(--tg-muted);
+}
+
+.timelineNodePending .timelineTimeMobile,
+.timelineNodePending .timelineTitleMobile {
+  color: var(--tg-muted);
+}
+
+/* ===== 底部操作栏 —— 移动端 ===== */
+.actionBarMobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--tg-surface);
+  border-top: 1px solid var(--tg-border);
+  padding: var(--space-lg);
+  padding-bottom: calc(var(--space-lg) + var(--safe-area-bottom));
+  display: flex;
+  gap: var(--space-md);
+  z-index: 20;
+}
+
+/* ===== 底部操作栏 —— 桌面端 ===== */
+.actionBarDesktop {
+  position: sticky;
+  bottom: 0;
+  background: var(--tg-surface);
+  border-top: 1px solid var(--tg-border);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  box-shadow: 0 -4px 12px rgba(15, 23, 42, 0.06);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-lg);
+  z-index: 20;
+}
+
+.actionBtnDesktop {
+  min-width: 180px !important;
+}
+
+/* ===== 脉冲红点动画 ===== */
+.dotDangerPulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--tg-danger);
+  animation: dangerPulse 1.2s infinite alternate;
+}
+
+@keyframes dangerPulse {
+  from {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+  to {
+    box-shadow: 0 0 0 6px rgba(220, 38, 38, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dotDangerPulse {
+    animation: none;
+  }
+}
+
+/* ===== 桌面端覆盖 ===== */
+@media (min-width: 1024px) {
+  .page {
+    gap: var(--space-xl);
+    padding-bottom: 0;
+  }
+
+  .row2 {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-xl);
+  }
+
+  .curveCard,
+  .triggerCard,
+  .interventionCard {
+    padding: 20px 24px;
+  }
+}

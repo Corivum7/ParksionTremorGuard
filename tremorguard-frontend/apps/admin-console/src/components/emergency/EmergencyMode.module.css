@@ -1,0 +1,353 @@
+/* ===== 紧急模式全屏遮罩 ===== */
+.emergencyOverlay {
+  background: var(--tg-danger);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+.emergencyContainer {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+/* ===== 区块1：状态显示 ===== */
+.statusSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.pulseDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  animation: tg-emergency-pulse 1.2s ease-in-out infinite;
+  margin-bottom: var(--space-xs);
+}
+
+.title {
+  font-size: var(--text-display);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.amplitudeDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.amplitudeValue {
+  font-family: var(--font-mono);
+  font-size: 48px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.amplitudeUnit {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.thresholdText {
+  font-size: var(--text-h3);
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.durationText {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ===== 区块2：主操作按钮 ===== */
+.actionsSection {
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+}
+
+.btnEmergency {
+  height: 56px;
+  min-width: 200px;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-body-lg);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0 var(--space-lg);
+  transition: transform 120ms ease, background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.btnEmergency:active {
+  transform: scale(0.97);
+}
+
+.btnMedication {
+  background: #fff;
+  color: var(--tg-danger);
+}
+
+.btnMedication:hover {
+  background: #fff1f1;
+}
+
+.btnHelp {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.btnHelp:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== 区块3：通知状态 ===== */
+.notificationSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-size: var(--text-body);
+  color: #fff;
+  line-height: 1.5;
+}
+
+.notificationText {
+  opacity: 0.95;
+}
+
+/* ===== 区块4：紧急联系人 ===== */
+.contactsSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.contactCard {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.contactAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: var(--text-body);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.contactName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.contactRelation {
+  font-size: var(--text-label);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.contactCallBtn {
+  background: #fff;
+  color: var(--tg-danger);
+  border-radius: var(--radius-pill);
+  padding: 6px var(--space-lg);
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 120ms ease, background-color 200ms ease;
+}
+
+.contactCallBtn:active {
+  transform: scale(0.96);
+}
+
+/* ===== 区块5：实时震颤曲线 ===== */
+.curveSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.curveHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.curveLabel {
+  font-size: var(--text-label);
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.curveThresholdLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+}
+
+.curveSvg {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+
+/* ===== 移动端布局（由 useResponsive 的 isMobile 驱动） ===== */
+.mobile.emergencyOverlay {
+  padding: 32px 20px;
+}
+
+.mobile .emergencyContainer {
+  gap: var(--space-xl);
+}
+
+.mobile .title {
+  font-size: 26px;
+}
+
+.mobile .amplitudeValue {
+  font-size: 40px;
+}
+
+.mobile .amplitudeUnit {
+  font-size: 18px;
+}
+
+.mobile .thresholdText {
+  font-size: var(--text-body);
+}
+
+.mobile .durationText {
+  font-size: var(--text-body);
+}
+
+.mobile .actionsSection {
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.mobile .btnEmergency {
+  width: 100%;
+  min-width: 0;
+}
+
+.mobile .contactsSection {
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.mobile .contactCard {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  gap: var(--space-md);
+  text-align: left;
+}
+
+.mobile .contactAvatar {
+  width: 40px;
+  height: 40px;
+}
+
+.mobile .contactInfo {
+  align-items: flex-start;
+  text-align: left;
+  flex: 1;
+  min-width: 0;
+}
+
+.mobile .contactCallBtn {
+  flex-shrink: 0;
+}
+
+.mobile .curveSvg {
+  height: 90px;
+}
+
+/* ===== 动画 ===== */
+@keyframes tg-emergency-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.65);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.18);
+    box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulseDot {
+    animation: none;
+  }
+  .btnEmergency,
+  .contactCallBtn {
+    transition: none;
+  }
+}

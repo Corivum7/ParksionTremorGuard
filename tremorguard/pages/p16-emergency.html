@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紧急模式 · TremorGuard</title>
+    <style id="theme-vars">
+/* ============================================================
+   TremorGuard Design System — colors_and_type.css
+   Parkinson's Tremor Monitoring Platform
+   WCAG 2.1 AA · 56px touch targets · 17px body baseline
+   ============================================================ */
+
+/* ---- Font Imports ---- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+/* ============================================================
+   1. SEMANTIC ALIASES (brand prefix: tg)
+   Required by apply-html-head-contract.mjs
+   ============================================================ */
+:root {
+  /* --- Core palette (user-specified exact values) --- */
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #ccfbf1;
+
+  --secondary: #0369a1;
+  --secondary-light: #e0f2fe;
+
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  --success: #16a34a;
+  --success-light: #dcfce7;
+  --accent: #c2410c;
+  --accent-light: #fed7aa;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+  --ink: #0f172a;
+  --ink2: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+
+  /* --- Semantic aliases (tg prefix) --- */
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-primary: var(--primary);
+  --tg-primary-foreground: #ffffff;
+  --tg-secondary: var(--secondary);
+  --tg-secondary-foreground: #ffffff;
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-accent: var(--accent);
+  --tg-accent-foreground: #ffffff;
+  --tg-destructive: var(--danger);
+  --tg-destructive-foreground: #ffffff;
+  --tg-success: var(--success);
+  --tg-success-foreground: #ffffff;
+  --tg-warning: var(--warning);
+  --tg-warning-foreground: #ffffff;
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+  --tg-ring: var(--primary);
+
+  /* --- Radius scale --- */
+  --tg-radius-small: 6px;
+  --tg-radius-medium: 8px;
+  --tg-radius-large: 12px;
+  --tg-radius-full: 9999px;
+
+  /* --- Typography tokens --- */
+  --tg-font: 'Outfit', system-ui, -apple-system, sans-serif;
+  --tg-font-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+
+  --tg-text-display: 32px;
+  --tg-text-h1: 24px;
+  --tg-text-h2: 20px;
+  --tg-text-h3: 18px;
+  --tg-text-body-lg: 17px;
+  --tg-text-body: 16px;
+  --tg-text-caption: 14px;
+  --tg-text-label: 12px;
+
+  /* --- Spacing scale --- */
+  --tg-space-xs: 4px;
+  --tg-space-sm: 8px;
+  --tg-space-md: 12px;
+  --tg-space-lg: 16px;
+  --tg-space-xl: 24px;
+  --tg-space-2xl: 32px;
+
+  /* --- Radius (user spec) --- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* --- Spacing (user spec, mirrored) --- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.10);
+  --shadow-modal: 0 8px 32px rgba(15, 23, 42, 0.15);
+
+  /* --- Animation tokens --- */
+  --ease-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pulse: 1.2s infinite alternate;
+
+  /* --- Touch target --- */
+  --touch-min: 56px;
+  --tab-bar-height: 64px;
+  --safe-area-bottom: 34px;
+}
+
+/* ============================================================
+   2. DARK MODE (Phase 2 mappings)
+   ============================================================ */
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface2: #334155;
+  --ink: #f1f5f9;
+  --ink2: #cbd5e1;
+  --muted: #94a3b8;
+  --border: #334155;
+
+  --primary-light: #134e4a;
+  --secondary-light: #0c4a6e;
+  --danger-light: #7f1d1d;
+  --warning-light: #78350f;
+  --success-light: #14532d;
+  --accent-light: #7c2d12;
+
+  --tg-background: var(--bg);
+  --tg-foreground: var(--ink);
+  --tg-card: var(--surface);
+  --tg-card-foreground: var(--ink);
+  --tg-popover: var(--surface);
+  --tg-popover-foreground: var(--ink);
+  --tg-muted: var(--surface2);
+  --tg-muted-foreground: var(--muted);
+  --tg-border: var(--border);
+  --tg-input: var(--border);
+}
+
+/* ============================================================
+   3. TAILWIND v4 @theme INLINE
+   ============================================================ */
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--primary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: #ffffff;
+  --color-muted: var(--surface2);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: #ffffff;
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: #ffffff;
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-surface2: var(--surface2);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
+}
+
+/* ============================================================
+   4. BASE STYLES
+   ============================================================ */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--tg-font);
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Typography utility classes ---- */
+.text-display { font-size: var(--tg-text-display); font-weight: 700; line-height: 1.2; }
+.text-h1 { font-size: var(--tg-text-h1); font-weight: 700; line-height: 1.3; }
+.text-h2 { font-size: var(--tg-text-h2); font-weight: 700; line-height: 1.4; }
+.text-h3 { font-size: var(--tg-text-h3); font-weight: 600; line-height: 1.4; }
+.text-body-lg { font-size: var(--tg-text-body-lg); font-weight: 400; line-height: 1.7; }
+.text-body { font-size: var(--tg-text-body); font-weight: 400; line-height: 1.7; }
+.text-caption { font-size: var(--tg-text-caption); font-weight: 400; line-height: 1.5; }
+.text-label { font-size: var(--tg-text-label); font-weight: 600; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.05em; }
+.text-mono { font-family: var(--tg-font-mono); }
+
+/* ---- Focus ring (WCAG 2.1 AA) ---- */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+
+/* ============================================================
+   5. COMPONENT CLASSES
+   ============================================================ */
+
+/* ---- Buttons ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--primary);
+  color: #ffffff;
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-primary:active { background: var(--primary-dark); transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: transparent;
+  color: var(--primary);
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast), background var(--ease-fast);
+}
+.btn-secondary:active { transform: scale(0.98); }
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: var(--touch-min);
+  min-width: 200px;
+  padding: 0 var(--space-xl);
+  background: var(--danger);
+  color: #ffffff;
+  font-size: var(--tg-text-body-lg);
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--ease-fast);
+}
+.btn-danger:active { transform: scale(0.98); }
+
+/* ---- Cards ---- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg);
+}
+.card-pressable {
+  cursor: pointer;
+  transition: transform var(--ease-normal), box-shadow var(--ease-normal);
+}
+.card-pressable:active {
+  transform: scale(0.99);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* ---- Status badges ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-pill);
+  font-size: var(--tg-text-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-on { background: var(--success-light); color: var(--success); }
+.badge-off { background: var(--warning-light); color: var(--warning); }
+.badge-danger { background: var(--danger-light); color: var(--danger); }
+.badge-info { background: var(--secondary-light); color: var(--secondary); }
+.badge-accent { background: var(--accent-light); color: var(--accent); }
+
+/* ---- Status dots ---- */
+.dot { width: 8px; height: 8px; border-radius: var(--radius-pill); display: inline-block; }
+.dot-success { background: var(--success); }
+.dot-warning { background: var(--warning); }
+.dot-danger { background: var(--danger); }
+.dot-primary { background: var(--primary); }
+
+/* ---- Inputs ---- */
+.input {
+  width: 100%;
+  height: var(--touch-min);
+  padding: 0 var(--space-lg);
+  font-size: var(--tg-text-body-lg);
+  font-family: var(--tg-font);
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--ease-normal);
+}
+.input:focus { border-color: var(--primary); outline: none; }
+.input-error { border-color: var(--danger); }
+
+/* ---- Pulse animation (pending medication) ---- */
+@keyframes tg-pulse {
+  from { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+  to { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+}
+.animate-pulse-ring { animation: var(--pulse); animation-name: tg-pulse; }
+
+/* ---- Shimmer (skeleton loading) ---- */
+@keyframes tg-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: tg-shimmer 1.5s infinite;
+}
+
+/* ---- Spinner ---- */
+@keyframes tg-spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: tg-spin 0.8s linear infinite;
+}
+.spinner-primary {
+  border-color: rgba(13, 148, 136, 0.2);
+  border-top-color: var(--primary);
+}
+
+/* ---- Mobile container ---- */
+.mobile-frame {
+  width: 390px;
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ---- Safe area bottom spacer ---- */
+.safe-area-bottom {
+  height: var(--safe-area-bottom);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--tg-background);
+    --color-foreground: var(--tg-foreground);
+    --color-card: var(--tg-card);
+    --color-card-foreground: var(--tg-card-foreground);
+    --color-popover: var(--tg-popover);
+    --color-popover-foreground: var(--tg-popover-foreground);
+    --color-primary: var(--tg-primary);
+    --color-secondary: var(--tg-secondary);
+    --color-muted: var(--tg-muted);
+    --color-muted-foreground: var(--tg-muted-foreground);
+    --color-accent: var(--tg-accent);
+    --color-destructive: var(--tg-destructive);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-danger: var(--danger);
+    --color-border: var(--tg-border);
+    --color-input: var(--tg-input);
+    --color-ring: var(--tg-ring);
+    --color-ink: var(--ink);
+    --color-ink2: var(--ink2);
+    --color-surface2: var(--surface2);
+    --color-primary-foreground: var(--tg-primary-foreground);
+    --color-secondary-foreground: var(--tg-secondary-foreground);
+    --color-accent-foreground: var(--tg-accent-foreground);
+    --color-destructive-foreground: var(--tg-destructive-foreground);
+    --radius-sm: var(--tg-radius-small);
+    --radius-md: var(--tg-radius-medium);
+    --radius-lg: var(--tg-radius-large);
+  }
+  @layer base {
+    body { background: var(--tg-background); color: var(--tg-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--tg-background); }
+      .text-background { color: var(--tg-background); }
+      .border-background { border-color: var(--tg-background); }
+      .ring-background { --tw-ring-color: var(--tg-background); }
+      .bg-foreground { background-color: var(--tg-foreground); }
+      .text-foreground { color: var(--tg-foreground); }
+      .border-foreground { border-color: var(--tg-foreground); }
+      .ring-foreground { --tw-ring-color: var(--tg-foreground); }
+      .bg-card { background-color: var(--tg-card); }
+      .text-card { color: var(--tg-card); }
+      .border-card { border-color: var(--tg-card); }
+      .ring-card { --tw-ring-color: var(--tg-card); }
+      .bg-card-foreground { background-color: var(--tg-card-foreground); }
+      .text-card-foreground { color: var(--tg-card-foreground); }
+      .border-card-foreground { border-color: var(--tg-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--tg-card-foreground); }
+      .bg-popover { background-color: var(--tg-popover); }
+      .text-popover { color: var(--tg-popover); }
+      .border-popover { border-color: var(--tg-popover); }
+      .ring-popover { --tw-ring-color: var(--tg-popover); }
+      .bg-popover-foreground { background-color: var(--tg-popover-foreground); }
+      .text-popover-foreground { color: var(--tg-popover-foreground); }
+      .border-popover-foreground { border-color: var(--tg-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--tg-popover-foreground); }
+      .bg-primary { background-color: var(--tg-primary); }
+      .text-primary { color: var(--tg-primary); }
+      .border-primary { border-color: var(--tg-primary); }
+      .ring-primary { --tw-ring-color: var(--tg-primary); }
+      .bg-secondary { background-color: var(--tg-secondary); }
+      .text-secondary { color: var(--tg-secondary); }
+      .border-secondary { border-color: var(--tg-secondary); }
+      .ring-secondary { --tw-ring-color: var(--tg-secondary); }
+      .bg-muted { background-color: var(--tg-muted); }
+      .text-muted { color: var(--tg-muted); }
+      .border-muted { border-color: var(--tg-muted); }
+      .ring-muted { --tw-ring-color: var(--tg-muted); }
+      .bg-muted-foreground { background-color: var(--tg-muted-foreground); }
+      .text-muted-foreground { color: var(--tg-muted-foreground); }
+      .border-muted-foreground { border-color: var(--tg-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--tg-muted-foreground); }
+      .bg-accent { background-color: var(--tg-accent); }
+      .text-accent { color: var(--tg-accent); }
+      .border-accent { border-color: var(--tg-accent); }
+      .ring-accent { --tw-ring-color: var(--tg-accent); }
+      .bg-destructive { background-color: var(--tg-destructive); }
+      .text-destructive { color: var(--tg-destructive); }
+      .border-destructive { border-color: var(--tg-destructive); }
+      .ring-destructive { --tw-ring-color: var(--tg-destructive); }
+      .bg-success { background-color: var(--success); }
+      .text-success { color: var(--success); }
+      .border-success { border-color: var(--success); }
+      .ring-success { --tw-ring-color: var(--success); }
+      .bg-warning { background-color: var(--warning); }
+      .text-warning { color: var(--warning); }
+      .border-warning { border-color: var(--warning); }
+      .ring-warning { --tw-ring-color: var(--warning); }
+      .bg-danger { background-color: var(--danger); }
+      .text-danger { color: var(--danger); }
+      .border-danger { border-color: var(--danger); }
+      .ring-danger { --tw-ring-color: var(--danger); }
+      .bg-border { background-color: var(--tg-border); }
+      .text-border { color: var(--tg-border); }
+      .border-border { border-color: var(--tg-border); }
+      .ring-border { --tw-ring-color: var(--tg-border); }
+      .bg-input { background-color: var(--tg-input); }
+      .text-input { color: var(--tg-input); }
+      .border-input { border-color: var(--tg-input); }
+      .ring-input { --tw-ring-color: var(--tg-input); }
+      .bg-ring { background-color: var(--tg-ring); }
+      .text-ring { color: var(--tg-ring); }
+      .border-ring { border-color: var(--tg-ring); }
+      .ring-ring { --tw-ring-color: var(--tg-ring); }
+      .bg-ink { background-color: var(--ink); }
+      .text-ink { color: var(--ink); }
+      .border-ink { border-color: var(--ink); }
+      .ring-ink { --tw-ring-color: var(--ink); }
+      .bg-ink2 { background-color: var(--ink2); }
+      .text-ink2 { color: var(--ink2); }
+      .border-ink2 { border-color: var(--ink2); }
+      .ring-ink2 { --tw-ring-color: var(--ink2); }
+      .bg-surface2 { background-color: var(--surface2); }
+      .text-surface2 { color: var(--surface2); }
+      .border-surface2 { border-color: var(--surface2); }
+      .ring-surface2 { --tw-ring-color: var(--surface2); }
+      .bg-primary-foreground { background-color: var(--tg-primary-foreground); }
+      .text-primary-foreground { color: var(--tg-primary-foreground); }
+      .border-primary-foreground { border-color: var(--tg-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--tg-primary-foreground); }
+      .bg-secondary-foreground { background-color: var(--tg-secondary-foreground); }
+      .text-secondary-foreground { color: var(--tg-secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--tg-secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--tg-secondary-foreground); }
+      .bg-accent-foreground { background-color: var(--tg-accent-foreground); }
+      .text-accent-foreground { color: var(--tg-accent-foreground); }
+      .border-accent-foreground { border-color: var(--tg-accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--tg-accent-foreground); }
+      .bg-destructive-foreground { background-color: var(--tg-destructive-foreground); }
+      .text-destructive-foreground { color: var(--tg-destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--tg-destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--tg-destructive-foreground); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main class="mobile-frame" style="background:var(--danger);color:#ffffff;min-height:100vh;padding:24px 16px 34px;">
+        <style>
+        @keyframes tg-emergency-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.1); } }
+        .emergency-pulse { animation: tg-emergency-pulse 1.2s ease-in-out infinite; }
+        </style>
+
+        <!-- 1. Status display area -->
+        <section style="text-align:center;padding-top:32px;display:flex;flex-direction:column;align-items:center;">
+            <!-- Pulsing alert icon -->
+            <div class="emergency-pulse" aria-hidden="true" style="width:48px;height:48px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+            </div>
+
+            <!-- Title -->
+            <h1 style="font-size:28px;font-weight:700;color:#ffffff;text-align:center;margin:0;line-height:1.3;">震颤水平升高</h1>
+
+            <!-- Hero number -->
+            <div style="display:flex;align-items:baseline;justify-content:center;margin-top:8px;">
+                <span style="font-size:48px;font-weight:700;color:#ffffff;line-height:1.1;">4.2</span>
+                <span style="font-size:20px;font-weight:400;color:#ffffff;margin-left:6px;">cm</span>
+            </div>
+
+            <!-- Threshold comparison -->
+            <p style="font-size:16px;color:#ffffff;opacity:0.85;text-align:center;margin:8px 0 0 0;line-height:1.5;">阈值 2.0cm · 当前 4.2cm</p>
+
+            <!-- Duration -->
+            <p style="font-size:16px;font-weight:600;color:#ffffff;text-align:center;margin:4px 0 0 0;line-height:1.5;">已持续 6 分钟</p>
+        </section>
+
+        <!-- 2. Main action buttons -->
+        <section style="display:flex;flex-direction:column;gap:16px;margin-top:32px;">
+            <!-- I've taken medication -->
+            <button data-dom-id="btn-medication" aria-label="我已服药" style="width:100%;height:72px;background:var(--success);color:#ffffff;font-size:20px;font-weight:700;border-radius:var(--radius-md);border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:transform var(--ease-fast);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+                    <path d="m8.5 8.5 7 7"/>
+                </svg>
+                <span>我已服药</span>
+            </button>
+
+            <!-- Need help -->
+            <button data-dom-id="btn-help" aria-label="需要帮助" style="width:100%;height:72px;background:#ffffff;color:var(--danger);font-size:20px;font-weight:700;border-radius:var(--radius-md);border:2px solid #ffffff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:12px;transition:transform var(--ease-fast);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 11V6a4 4 0 0 0-4-4v0a4 4 0 0 0-4 4v0"/>
+                    <path d="M14 10V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/>
+                    <path d="M18 10V6a2 2 0 0 1 4 0v9a8 8 0 0 1-8 8H9a4 4 0 0 1-4-4v-3a2 2 0 0 1 2-2v0a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span>需要帮助</span>
+            </button>
+        </section>
+
+        <!-- 3. Notification status -->
+        <section style="margin-top:24px;text-align:center;display:flex;flex-direction:column;align-items:center;">
+            <p style="font-size:16px;color:#ffffff;opacity:0.9;text-align:center;margin:0;line-height:1.5;">已通知照护者 张明 · 等待响应中...</p>
+            <div aria-hidden="true" style="width:32px;height:32px;border-radius:9999px;background:#ffffff;background:rgba(255,255,255,0.2);color:#ffffff;display:flex;align-items:center;justify-content:center;margin-top:8px;font-size:14px;font-weight:600;">张</div>
+        </section>
+
+        <!-- 4. Emergency contacts -->
+        <section style="margin-top:32px;display:flex;flex-direction:row;justify-content:center;align-items:flex-start;gap:16px;">
+            <!-- Call emergency contact -->
+            <button data-dom-id="btn-call-contact" aria-label="呼叫紧急联系人" style="background:transparent;border:2px solid #ffffff;color:#ffffff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:72px;height:72px;border-radius:9999px;padding:0;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span style="font-size:12px;color:#ffffff;line-height:1.2;">联系人</span>
+            </button>
+
+            <!-- Call 120 -->
+            <button data-dom-id="btn-call-120" aria-label="拨打 120 急救电话" style="background:#ffffff;border:none;color:var(--danger);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:72px;height:72px;border-radius:9999px;padding:0;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span style="font-size:12px;color:var(--danger);line-height:1.2;">拨打 120</span>
+            </button>
+        </section>
+
+        <!-- 5. Real-time tremor curve -->
+        <section data-dom-id="emergency-curve" style="margin-top:24px;position:relative;">
+            <span style="font-size:12px;color:#ffffff;opacity:0.7;position:absolute;top:0;left:0;line-height:1.4;">实时震颤</span>
+            <svg viewBox="0 0 340 60" height="60" width="100%" preserveAspectRatio="none" style="display:block;margin-top:16px;" aria-label="实时震颤曲线">
+                <!-- Threshold line (y=20) -->
+                <line x1="0" y1="20" x2="340" y2="20" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1" stroke-dasharray="4,3"/>
+                <!-- Amplitude line: high values above threshold -->
+                <polyline points="0,48 30,44 60,46 90,40 120,42 150,34 180,30 210,22 240,14 270,10 300,8 320,12 340,6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+        </section>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
