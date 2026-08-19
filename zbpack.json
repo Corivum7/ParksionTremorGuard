@@ -1,5 +1,5 @@
 {
-  "dockerfile": {
-    "path": "Dockerfile.backend"
-  }
+  "buildCommand": "cd tremorguard-frontend && pnpm install --frozen-lockfile && pnpm --filter @tremorguard/admin-console build",
+  "outputDirectory": "tremorguard-frontend/apps/admin-console/dist",
+  "installCommand": "cd tremorguard-frontend && pnpm install --frozen-lockfile"
 }

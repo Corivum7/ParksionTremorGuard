@@ -11,7 +11,7 @@ interface AppShellProps {
 
 export const AppShell: React.FC<AppShellProps> = ({ children }) => {
   const { isDesktop, isTablet, isMobile } = useResponsive();
-  const { setSidebarCollapsed, setSidebarOpen } = useDashboardStore();
+  const { setSidebarCollapsed, setSidebarOpen, fetchDashboardData, initialized } = useDashboardStore();
 
   useEffect(() => {
     if (isTablet) {
@@ -24,6 +24,12 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
       setSidebarCollapsed(false);
     }
   }, [isDesktop, isTablet, isMobile, setSidebarCollapsed, setSidebarOpen]);
+
+  useEffect(() => {
+    if (!initialized) {
+      fetchDashboardData();
+    }
+  }, [initialized, fetchDashboardData]);
 
   const getShellClass = () => {
     const classes = [styles.appShell];

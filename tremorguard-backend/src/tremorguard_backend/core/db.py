@@ -16,10 +16,10 @@ _is_sqlite = _url.startswith("sqlite")
 
 _engine_kwargs: dict = {"echo": settings.is_development}
 if not _is_sqlite:
-    # SQLite 默认连接池不支持 pool_size/max_overflow
     _engine_kwargs.update(
         pool_size=settings.database_pool_size,
         max_overflow=settings.database_max_overflow,
+        connect_args={"server_settings": {"statement_timeout": "30000"}},
     )
 
 engine = create_async_engine(_url, **_engine_kwargs)

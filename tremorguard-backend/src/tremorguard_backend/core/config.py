@@ -3,7 +3,7 @@
 from functools import lru_cache
 from typing import Annotated, Literal
 
-from pydantic import field_validator
+from pydantic import AliasChoices, Field, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
@@ -20,8 +20,8 @@ class Settings(BaseSettings):
     # 应用
     app_name: str = "TremorGuard Backend"
     app_env: Literal["development", "test", "production"] = "development"
-    app_host: str = "0.0.0.0"
-    app_port: int = 8000
+    app_host: str = Field(default="0.0.0.0", validation_alias=AliasChoices("APP_HOST", "HOST"))
+    app_port: int = Field(default=8000, validation_alias=AliasChoices("APP_PORT", "PORT"))
     app_log_level: str = "INFO"
 
     # PostgreSQL
